@@ -1,0 +1,150 @@
+package br.com.cesaretransportes.modelo;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
+
+public class Empresa implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	// PK
+	private int idEmpresa;
+	
+	private Endereco endereco;
+	
+	private String nome;	
+	private String cnpj;
+	private String msn;
+	private String email;
+	private String senha;
+	
+	private List<Telefone> telefones;
+	
+	public Empresa(){}
+	
+	public Empresa(int idEmpresa, String nome, Endereco endereco, String cnpj, String msn, String email, String senha, List<Telefone> telefones) {
+		this.idEmpresa = idEmpresa;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.cnpj = cnpj;
+		this.msn = msn;
+		this.email = email;
+		this.senha = senha;
+		this.telefones = telefones;
+	}
+	
+	public int getIdEmpresa() {
+		return idEmpresa;
+	}
+
+	public void setIdEmpresa(int idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getMsn() {
+		return msn;
+	}
+
+	public void setMsn(String msn) {
+		this.msn = msn;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+	
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+	
+	public String getDetalheEndereco(){
+		return endereco.getLocalizacao() + ", " + endereco.getCidade() + " - " + endereco.getEstado();
+	}
+	
+	public String getTelefone1(){
+		try {
+			return telefones.get(0).toString();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return "";
+		}	
+	}
+	
+	public String getTelefone2(){
+		try {
+			return telefones.get(1).toString();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return "";
+		}
+	}
+	
+	public String getTelefone3(){
+		try {
+			return telefones.get(2).toString();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return "";
+		}
+	}
+
+
+	public void serialize(DataOutputStream dataOut) throws IOException{		
+		dataOut.writeInt(idEmpresa);
+		dataOut.writeUTF(nome);		
+		dataOut.writeUTF(cnpj);
+		dataOut.writeUTF(msn);
+		dataOut.writeUTF(email);
+		dataOut.writeUTF(senha);
+		dataOut.writeInt(endereco.getIdEndereco());
+		dataOut.writeUTF(endereco.getCidade());
+		dataOut.writeUTF(endereco.getEstado());
+		dataOut.writeUTF(endereco.getLocalizacao());
+		
+		dataOut.writeInt(telefones.size());
+		for(Telefone telefone : telefones){
+			dataOut.writeUTF(telefone.getDdd());
+			dataOut.writeUTF(telefone.getNumero());
+			dataOut.writeUTF(telefone.getComplemento());			
+		}		
+	}
+	
+}

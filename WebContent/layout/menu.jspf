@@ -1,0 +1,40 @@
+<table width="100%" bgcolor="#000000">	
+	<tr>
+		<td>		
+		<ul id="menu">
+			<li><a href="index.jsp">Empresa</a></li>
+			<li><a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a></li>
+			<li><a href="cadastrar-contato.jsp">Contato</a></li>
+			<li><a href="download.jsp">Download</a></li>
+			<li><a href="login.jsp">Login</a></li>							
+		</ul>		
+		</td>
+	</tr>
+</table>
+<c:if test="${not empty cliente}">
+<table width="100%" bgcolor="#000000">	
+	<tr>
+		<td>		
+		<ul id="menu">			
+			<c:if test="${not empty cliente}">
+				<li><a href="javascript:document.formPerfil.submit();">Perfil</a></li>
+				<form action="PerfilServlet" name="formPerfil" id="formPerfil">
+					<input type="hidden" name="idCliente" value="${cliente.idCliente}"/>
+				</form>
+				<li><a href="javascript:document.formOrcamentos.submit();">Meus Or&ccedil;amentos</a></li>
+				<form action="ClienteOpcaoConsultaServlet" name="formOrcamentos" id="formOrcamentos">
+					<input type="hidden" name="idCliente" value="${cliente.idCliente}"/>
+					<input type="hidden" name="opcao" value="5"/>
+				</form>
+				<li><a href="javascript:document.formServicos.submit();">Meus Servi&ccedil;os</a></li>
+				<form action="ClienteOpcaoConsultaServlet" name="formServicos" id="formServicos">
+					<input type="hidden" name="idCliente" value="${cliente.idCliente}"/>
+					<input type="hidden" name="opcao" value="6"/>
+				</form>
+				<li><a href="LogoutServlet">sair</a></li>				
+			</c:if>					
+		</ul>		
+		</td>
+	</tr>
+</table>
+</c:if>	

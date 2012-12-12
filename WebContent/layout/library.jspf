@@ -1,0 +1,13 @@
+
+<link rel="icon" type="image/gif" href="imagens/animated_favicon1.gif" />
+<link rel="stylesheet" type="text/css" href="estilo.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/COMMONS.js"></script>
+<script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
+<script type="text/javascript" src="js/jquery.puts.js"></script>
+<script type="text/javascript" src="js/cadastrarOrcamento.js"></script>
+<script type="text/javascript" src="js/cadastrarContato.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/cadastrarCliente.js"></script>
+<script type="text/javascript" src="js/recuperarSenha.js"></script>

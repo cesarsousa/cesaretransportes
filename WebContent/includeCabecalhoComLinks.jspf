@@ -1,0 +1,53 @@
+<table width="100%" bgcolor="#FF6600" cellpadding="10">
+	<tr>
+		<td>
+		<div align="center">
+		<table>
+			<tr>
+				<td>	
+				<ul id="menu2">
+					<li><a href="LogoutServlet">Sair</a></li>								
+				</ul>
+				</td>
+			</tr>
+		</table>
+		</div>
+
+		<table width="100%" bgcolor="#333333">
+			<tr>
+				<td>
+				<table width="100%">
+					<tr>
+						<td bgcolor="#333333">
+						<div align="left"><img src="imagens/logo_sisint_1_1_200_100.jpg" /></div>
+						</td>
+						<td bgcolor="#333333">
+						<div align="center"><img src="imagens/logo_sisint_2_1_100_100.jpg" /></div>
+						</td>
+						<td bgcolor="#333333">
+						<div align="right"><img src="imagens/logo_sisint_3_1_200_100.jpg" /></div>
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+
+		<div align="center">
+		<table>
+			<tr>
+				<td>
+				<ul id="menu2">
+					<li><a href="ClienteAcaoServlet?acao=1">Clientes</a></li>
+					<li><a href="cadastrarVeiculo?acao=3">Ve&iacute;culos</a></li>					
+					<li><a href="mostrarListaDosOrcamentos?opcao=idOrcamento&tipo=orcamento">Or&ccedil;amentos</a></li>
+					<li><a href="mostrarListaDosOrcamentos?opcao=idServico&tipo=servico">Servi&ccedil;os</a></li>
+					<li><a href="busca.jsp">Busca</a></li>					
+				</ul>
+				</td>
+			</tr>
+		</table>
+		</div>
+		</td>
+	</tr>
+</table>

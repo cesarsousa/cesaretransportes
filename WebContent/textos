@@ -1,0 +1,40 @@
+configuração de email da empresa
+
+<!-- Enviar Contato(email) -->
+  <servlet>
+    <servlet-name>ContatoServlet</servlet-name>
+    <servlet-class>br.com.cesaretransportes.servlet.ContatoServlet</servlet-class>
+    <init-param>
+    	<param-name>cetrans</param-name>
+    	<param-value>cesaretransportes@gmail.com</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>senha</param-name>
+    	<param-value>53340276</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContatoServlet</servlet-name>
+    <url-pattern>/enviarContato</url-pattern>
+  </servlet-mapping>
+  
+  ..............................................................................
+  
+  // TODO
+  
+  ao solicitar responder email atraves do icone na tela de orçamentos
+  salvos a opção de salvo esta habilitada, verificar logica e corrigir este erro...
+  
+  na mesma tela a opçao de retorno para a caixa de entrada não verifica
+  para qual caixa devera redirecionar(salvos ou não salvos)... 
+  
+  email e orçamentos cadastrados sem a aplicação estar conctada estão sendo salvo
+  uma exceção não tratada é lançada rediredionar exceção e notificar erro...
+  
+  tirar a conexão do codigo e colocar no server xml.
+  
+  ...............................................................
+  
+  tratar exceção para erro 404 quando solicita buscar sem start no banco
+  
+  

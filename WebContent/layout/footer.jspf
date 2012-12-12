@@ -1,0 +1,19 @@
+
+
+<p>.</p>
+<p>.</p>
+
+<div id="footerIndex">
+	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>
+	<p>
+	<div id="menuFooter">	
+		<a href="index.jsp">Empresa</a> | 
+		<a href="cadastrar-contato.jsp">Contato</a> | 
+		<a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a> | 
+		<!-- <a href="download.jsp">Download</a> | -->
+		<a href="login.jsp">Login</a>	
+	</div>
+	</p>
+	
+	
+</div>
