@@ -17,7 +17,7 @@ import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Empresa;
 
 /*
- * Esta servlet recebe requisação da pagina cadastrar-contato.jsp
+ * Esta servlet recebe requisaï¿½ï¿½o da pagina cadastrar-contato.jsp
  */
 public class EmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -56,7 +56,7 @@ public class EmpresaServlet extends HttpServlet {
 			new CetransServletException("SQLE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
 		} finally{
 			try {
-				conexao.close();
+				if (conexao != null) conexao.close();
 			} catch (SQLException e) {
 				e.printStackTrace();			
 				new CetransServletException("SLE2", getClass().getSimpleName(), e.getMessage()).doPost(request, response);

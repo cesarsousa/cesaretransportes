@@ -26,7 +26,7 @@
 			<li><a href="index.jsp">Empresa</a></li>
 			<li><a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a></li>
 			<li><a href="cadastrar-contato.jsp">Contato</a></li>
-			<li><a href="download.jsp">Download</a></li>
+			<!-- <li><a href="download.jsp">Download</a></li> -->
 			<li><a href="login.jsp">Login</a></li>							
 		</ul>		
 		</td>
