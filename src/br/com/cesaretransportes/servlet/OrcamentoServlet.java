@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.org.apache.bcel.internal.generic.DDIV;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
 import br.com.cesaretransportes.dao.ClienteDao;
 import br.com.cesaretransportes.dao.EmpresaDao;
@@ -55,8 +52,8 @@ public class OrcamentoServlet extends HttpServlet {
 			 *  requisicao da pagina cadastrar-orcamento.jsp
 			 */
 			
-			HttpSession sessao = request.getSession();
-			Cliente cliente = (Cliente) sessao.getAttribute("cliente");
+			/*HttpSession sessao = request.getSession();
+			Cliente cliente = (Cliente) sessao.getAttribute("cliente");*/
 			
 			/*boolean clienteAtivo = false;
 			if(cliente != null){
@@ -101,7 +98,7 @@ public class OrcamentoServlet extends HttpServlet {
 
 			if (ValidacaoOrcamento.orcamentoEhValido(nome, email, ddd, telefone, cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao) /*&& clienteAtivo*/) {
 									
-				orcamento.setCliente(cliente);
+				orcamento.setCliente(new Cliente());
 				orcamento.setPeso(peso);
 				orcamento.setDimensao(dimensao);
 				orcamento.setMensagem(mensagem);					
@@ -141,16 +138,19 @@ public class OrcamentoServlet extends HttpServlet {
 				request.setAttribute("mensagem", "Obrigado,\n\nSeu or&ccedil;amento foi enviado com sucesso e "
 								+ "em breve entraremos em contato!\n\nAtenciosamente,\nCesare Transportes Ltda.");
 				
-				pagina = "/resposta-de-solicitacao.jsp";				
+				pagina = "/resposta-de-solicitacao.jsp";
+				RequestDispatcher dispacher = request.getRequestDispatcher(pagina);
+				dispacher.forward(request, response);
 			} else {					
-				ValidacaoOrcamento.verificarCamposPreenchidos(cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao, mensagem, request, response);
-				pagina = "/cadastrar-orcamento).jsp";
+				ValidacaoOrcamento.verificarCamposPreenchidos(nome, email, ddd, telefone, cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao, mensagem, request);
+				pagina = "/cadastrar-orcamento.jsp";				
+				RequestDispatcher dispacher = request.getRequestDispatcher(pagina);
+				dispacher.forward(request, response);
 			}
 			
-			System.out.println("aqui");
 			
-			RequestDispatcher dispacher = request.getRequestDispatcher(pagina);
-			dispacher.forward(request, response);
+			
+			
 						
 			/*if ("responderOrcamento".equals(acao)) {
 				

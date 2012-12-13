@@ -17,10 +17,10 @@
 
 <jsp:include page="layout/header.jspf"/>
 
-<table width="100%" bgcolor="#000000">	
+<table width="100%" bgcolor="#000000" align="center">	
 	<tr>
-		<td>		
-		<ul id="menu">
+		<td>			
+		<ul id="menu">			
 			<li><a href="index.jsp">Empresa</a></li>
 			<li><a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a></li>
 			<li><a href="cadastrar-contato.jsp">Contato</a></li>
@@ -84,12 +84,10 @@
 				
 				<form id="formCadOrcamento" action="enviarOrcamento" name="orcamento" method="post">
 				
-				<c:if test="${msgErro}">
-					<table width="100%" class="tableErro" cellpadding="5">
-						<tr>
-							<td>
+				<c:if test="${not empty msgErro}">
+					<div class="tableErro">
 							<div align="center">
-							<span class="erro"><c:out value="ERRO DE VALIDAÇÃO NOS DADOS DO SERVIÇO"/></span><br/><br/>
+							<span class="erro"><c:out value="ERRO DE VALIDAÇÃO NOS DADOS DO ORÇAMENTO"/></span><br/><br/>
 							</div>
 							
 							<c:if test="${not empty msgOrigem }"><span class="erro"><c:out value="${msgOrigem}"/></span><br/></c:if>
@@ -98,9 +96,7 @@
 							<c:if test="${not empty msgEnderecoDestino }"><span class="erro"><c:out value="${msgEnderecoDestino}"/></span><br/></c:if>
 							<c:if test="${not empty msgPeso }"><span class="erro"><c:out value="${msgPeso}"/></span><br/></c:if>
 							<c:if test="${not empty msgDimensao }"><span class="erro"><c:out value="${msgDimensao}"/></span><br/></c:if>
-							</td>
-						</tr>				
-					</table>				
+					</div>				
 				</c:if>
 				
 				<%-- <c:if test="${not empty mensagem}">
@@ -110,10 +106,9 @@
 					</div>
 				</c:if>	 --%>		
 				
-				<span class="legenda">Dados do solicitante</span>
-				<table width="100%" cellpadding="10">
-							
+				<p class="legenda">Dados do solicitante</p>
 				
+				<table width="100%" cellpadding="10">				
 				<!-- se existe um cliente na sessão renderiza o formulario pre preenchido -->				
 				<c:if test="${not empty cliente}">
 								
@@ -149,8 +144,6 @@
 					</tr>					
 				</c:if>			
 				</table>
-				
-				<br/>		
 					
 				<span class="legenda">Dados de localização</span>				
 				<table width="100%">
@@ -195,8 +188,7 @@
 					</tr>				
 				</table>				
 								
-				<br />
-				<p><span class="legenda">Digite sua mensagem</span></p>
+				<p><span class="legenda">Informações adicionais gerais</span></p>
 				
 				<span class="textoInformativo">
 				Se desejar, utilize o campo abaixo para informa&ccedil;&otilde;es adicionais referentes ao servi&ccedil;o	

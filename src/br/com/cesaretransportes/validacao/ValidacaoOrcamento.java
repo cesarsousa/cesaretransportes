@@ -2,63 +2,68 @@ package br.com.cesaretransportes.validacao;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class ValidacaoOrcamento {
 	
-	public static void verificarCamposPreenchidos(String cidadeOrigem, String enderecoOrigem, String cidadeDestino, 
-			String enderecoDestino, String peso, String dimensao, String mensagem,
-			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public static void verificarCamposPreenchidos(
+			String nome, 
+			String email, 
+			String ddd, 
+			String telefone, 
+			String cidadeOrigem, 
+			String enderecoOrigem, 
+			String cidadeDestino, 
+			String enderecoDestino, 
+			String peso, 
+			String dimensao, 
+			String mensagem,
+			HttpServletRequest request ) throws ServletException, IOException {
 				
-		if ("".equals(cidadeOrigem)){
+		if (cidadeOrigem.isEmpty() || "CIDADE DE ORIGEM".equals(cidadeOrigem)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgOrigem", "O campo 'origem' é obrigatório!");
+			request.setAttribute("msgOrigem", "O campo 'CIDADE DE ORIGEM' é obrigatório!");
 		}else {
 			request.setAttribute("origem", cidadeOrigem);
 		}
 		
-		if("".equals(enderecoOrigem)){
+		if(enderecoOrigem.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoOrigem)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgEnderecoOrigem", "O campo 'endere�o de origem' é obrigatório!");
+			request.setAttribute("msgEnderecoOrigem", "O campo 'LOGRADOURO (nome da rua, numero e bairro)' é obrigatório!");
 		}else{
 			request.setAttribute("enderecoOrigem", enderecoOrigem);
 		}		
 		
-		if ("".equals(cidadeDestino)){
+		if (cidadeDestino.isEmpty() || "CIDADE DE DESTINO".equals(cidadeDestino)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgDestino", "O campo 'destino' é obrigatório!");
+			request.setAttribute("msgDestino", "O campo 'CIDADE DE DESTINO' é obrigatório!");
 		}else {
 			request.setAttribute("destino", cidadeDestino);
 		}
 		
-		if("".equals(enderecoDestino)){
+		if(enderecoDestino.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoDestino)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgEnderecoDestino", "O campo 'endere�o do destino' é obrigatório!");
+			request.setAttribute("msgEnderecoDestino", "O campo 'LOGRADOURO (nome da rua, numero e bairro)' é obrigatório!");
 		}else{
 			request.setAttribute("enderecoDestino", enderecoDestino);
 		}
 		
-		if ("".equals(peso)){
+		if (peso.isEmpty() || "PESO (aproximado)".equals(peso)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgPeso", "O campo 'peso' é obrigatório!");
+			request.setAttribute("msgPeso", "O campo 'PESO (aproximado)' é obrigatório!");
 		}else {
 			request.setAttribute("peso", peso);
 		}
 		
-		if ("".equals(dimensao)){
+		if (dimensao.isEmpty() || "DIMENSAO (aproximada)".equals(dimensao)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgDimensao", "O campo 'dimensão' é obrigatório!");
+			request.setAttribute("msgDimensao", "O campo 'DIMENSAO (aproximada)' é obrigatório!");
 		}else {
 			request.setAttribute("dimensao", dimensao);
 		}
 		
-		request.setAttribute("mensagem", mensagem);		
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-orcamento.jsp");
-		dispatcher.forward(request, response);		
+		request.setAttribute("mensagem", mensagem);				
 	}
 	
 	public static boolean orcamentoEhValido(String nome, String email, String ddd, String telefone, String origem, String enderecoOrigem,
