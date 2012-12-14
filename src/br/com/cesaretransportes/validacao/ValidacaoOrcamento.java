@@ -20,6 +20,36 @@ public class ValidacaoOrcamento {
 			String dimensao, 
 			String mensagem,
 			HttpServletRequest request ) throws ServletException, IOException {
+		
+		boolean msgErro = false;
+		
+		if(nome.isEmpty() || "NOME ou EMPRESA".equals(nome)){
+			request.setAttribute("msgErro", true);
+			request.setAttribute("msgNome", "O campo 'NOME ou EMPRESA' é obrigatório!");
+		}else{
+			request.setAttribute("nome", nome);
+		}
+		
+		if(email.isEmpty() || "EMAIL".equals(email)){
+			request.setAttribute("msgErro", true);
+			request.setAttribute("msgEmail", "O campo 'EMAIL' é obrigatório!");
+		}else{
+			request.setAttribute("email", email);
+		}
+		
+		if(ddd.isEmpty() || "DDD".equals(ddd)){
+			request.setAttribute("msgErro", true);
+			request.setAttribute("msgDdd", "O campo 'DDD' é obrigatório!");
+		}else{
+			request.setAttribute("ddd", ddd);
+		}
+		
+		if(telefone.isEmpty() || "TELEFONE".equals(telefone)){
+			request.setAttribute("msgErro", true);
+			request.setAttribute("msgTelefone", "O campo 'TELEFONE' é obrigatório!");
+		}else{
+			request.setAttribute("telefone", telefone);
+		}
 				
 		if (cidadeOrigem.isEmpty() || "CIDADE DE ORIGEM".equals(cidadeOrigem)){
 			request.setAttribute("msgErro", true);

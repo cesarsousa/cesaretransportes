@@ -46,7 +46,7 @@ public class OrcamentoServlet extends HttpServlet {
 			
 			Orcamento orcamento = new Orcamento();
 			
-			Empresa empresa = empresaDao.get();
+			Empresa empresa = empresaDao.get(2);
 			
 			/*
 			 *  requisicao da pagina cadastrar-orcamento.jsp

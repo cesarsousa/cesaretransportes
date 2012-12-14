@@ -11,17 +11,17 @@ function fecharJanela(){
 
 $(document).ready(function(){
 	
-	$('#nomeCadOrcamento').puts('NOME ou EMPRESA');
-	$('#emailCadOrcamento').puts('EMAIL');
-	$('#dddCadOrcamento').puts('DDD');
-	$('#telefoneCadOrcamento').puts('TELEFONE');
-	$('#origemCadOrcamento').puts('CIDADE DE ORIGEM');
-	$('#destinoCadOrcamento').puts('CIDADE DE DESTINO');
-	$('#enderecoOrigemCadOrcamento').puts('LOGRADOURO (nome da rua, numero e bairro)');
-	$('#enderecoDestinoCadOrcamento').puts('LOGRADOURO (nome da rua, numero e bairro)');
-	$('#pesoCadOrcamento').puts('PESO (aproximado)');
-	$('#dimensaoCadOrcamento').puts('DIMENSAO (aproximada)');
-	$('#mensagemCadOrcamento').puts('DIGITE SUA MENSAGEM ...');
+	if($('#nomeCadOrcamento').val() == "") $('#nomeCadOrcamento').puts('NOME ou EMPRESA');
+	if($('#emailCadOrcamento').val() == "")	$('#emailCadOrcamento').puts('EMAIL');
+	if($('#dddCadOrcamento').val() == "") $('#dddCadOrcamento').puts('DDD');
+	if($('#telefoneCadOrcamento').val() == "") $('#telefoneCadOrcamento').puts('TELEFONE');
+	if($('#origemCadOrcamento').val() == "") $('#origemCadOrcamento').puts('CIDADE DE ORIGEM');
+	if($('#destinoCadOrcamento').val() == "") $('#destinoCadOrcamento').puts('CIDADE DE DESTINO');
+	if($('#enderecoOrigemCadOrcamento').val() == "")$('#enderecoOrigemCadOrcamento').puts('LOGRADOURO (nome da rua, numero e bairro)');
+	if($('#enderecoDestinoCadOrcamento').val() == "")$('#enderecoDestinoCadOrcamento').puts('LOGRADOURO (nome da rua, numero e bairro)');
+	if($('#pesoCadOrcamento').val() == "")$('#pesoCadOrcamento').puts('PESO (aproximado)');
+	if($('#dimensaoCadOrcamento').val() == "")$('#dimensaoCadOrcamento').puts('DIMENSAO (aproximada)');
+	if($('#mensagemCadOrcamento').val() == "")$('#mensagemCadOrcamento').puts('DIGITE SUA MENSAGEM ...');
 	
 	
 	$('#estadoOrigem, #estadoDestino').append(
@@ -41,6 +41,5 @@ $(document).ready(function(){
 	});
 	$('#formCadOrcamento input, textarea').blur(function(){
 		$(this).removeClass('destacar');
-	});
-	
+	});	
 });

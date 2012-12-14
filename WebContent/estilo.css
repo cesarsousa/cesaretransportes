@@ -56,6 +56,10 @@ transition: 1s;}
 	padding: 10px;
 }
 
+.ponteiro {
+	cursor: pointer;
+}
+
 .width{
 width: 90%;
 padding-left: 10px;

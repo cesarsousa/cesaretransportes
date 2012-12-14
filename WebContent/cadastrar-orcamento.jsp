@@ -80,16 +80,18 @@
 		<td>		
 		<table width="100%" cellpadding="10">
 			<tr>
-				<td>		
-				
-				<form id="formCadOrcamento" action="enviarOrcamento" name="orcamento" method="post">
+				<td>
 				
 				<c:if test="${not empty msgErro}">
 					<div class="tableErro">
 							<div align="center">
-							<span class="erro"><c:out value="ERRO DE VALIDAÇÃO NOS DADOS DO ORÇAMENTO"/></span><br/><br/>
+							<!-- <img id="fecharErro" class="direita ponteiro" src="imagens/iconeDelete.png" alt="fechar" title="fechar" border="0" width="20px" height="20px"/> -->
+							<span class="erro"><c:out value="Verifique campos obrigatórios não preenchidos"/></span><br/><br/>
 							</div>
-							
+							<c:if test="${not empty msgNome }"><span class="erro"><c:out value="${msgNome}"/></span><br/></c:if>
+							<c:if test="${not empty msgEmail }"><span class="erro"><c:out value="${msgEmail}"/></span><br/></c:if>
+							<c:if test="${not empty msgDdd }"><span class="erro"><c:out value="${msgDdd}"/></span><br/></c:if>
+							<c:if test="${not empty msgTelefone }"><span class="erro"><c:out value="${msgTelefone}"/></span><br/></c:if>
 							<c:if test="${not empty msgOrigem }"><span class="erro"><c:out value="${msgOrigem}"/></span><br/></c:if>
 							<c:if test="${not empty msgEnderecoOrigem }"><span class="erro"><c:out value="${msgEnderecoOrigem}"/></span><br/></c:if>
 							<c:if test="${not empty msgDestino }"><span class="erro"><c:out value="${msgDestino}"/></span><br/></c:if>
@@ -97,7 +99,11 @@
 							<c:if test="${not empty msgPeso }"><span class="erro"><c:out value="${msgPeso}"/></span><br/></c:if>
 							<c:if test="${not empty msgDimensao }"><span class="erro"><c:out value="${msgDimensao}"/></span><br/></c:if>
 					</div>				
-				</c:if>
+				</c:if>		
+				
+				<form id="formCadOrcamento" action="enviarOrcamento" name="orcamento" method="post">
+				
+				
 				
 				<%-- <c:if test="${not empty mensagem}">
 					<div id="infoMensagem" align="center">
@@ -130,16 +136,16 @@
 				<c:if test="${empty cliente}">
 					<tr>
 						
-						<td><div align="left"><input id="nomeCadOrcamento" type="text" class="input100" name="nome"/></div></td>
+						<td><div align="left"><input id="nomeCadOrcamento" type="text" class="input100" name="nome" value="${nome}" /></div></td>
 					</tr>										
 					<tr>
-						<td><div align="left"><input id="emailCadOrcamento" type="text" class="input100" name="email"/></div></td>
+						<td><div align="left"><input id="emailCadOrcamento" type="text" class="input100" name="email" value="${email}"/></div></td>
 					</tr>					
 					<tr>
 						<td>
 						<div align="left">
-						<input id="dddCadOrcamento" class="input20" type="text" maxlength="3" name="ddd"/>
-						<input id="telefoneCadOrcamento" class="input40" type="text" maxlength="9" name="telefone"/>
+						<input id="dddCadOrcamento" class="input20" type="text" maxlength="3" name="ddd" value="${ddd}"/>
+						<input id="telefoneCadOrcamento" class="input40" type="text" maxlength="9" name="telefone" value="${telefone}"/>
 						</div></td>
 					</tr>					
 				</c:if>			
