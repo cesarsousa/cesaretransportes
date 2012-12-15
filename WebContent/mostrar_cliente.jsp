@@ -68,7 +68,7 @@ p.estilo{
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
 <h3>${mensagem}</h3>
-<h3>Clientes</h3>
+<h3>Clientes usu&aacute;rios do site</h3>
 
 	<table width="100%">
 		<tr>
@@ -112,16 +112,35 @@ p.estilo{
 	
 	<table width="100%" class="collapse" cellpadding="5" width="1200" align="center" >
 		<tr>
-			<td></td>
-			<td width="750" bgcolor="#FF6600" align="right">
+			<td>
+				<table>
+					<tr>
+					<td>
+						<form action="">
+						<input type="submit" value="Clientes Ativos" class="button"/>
+						</form>
+					</td>
+					
+					<td>
+						<form action="">
+						<input type="submit" value="Clientes Inativos" class="button"/>
+						</form>
+					</td>
+					</tr>
+				</table>		
+
+			</td>
+			<td width="750" align="right">
 				<form action="ClienteAcaoServlet" method="post">
-					<input type="text" name="parametro" class="campoInput" size="60"/>
 					<input type="hidden" name="acao" value="4"/>
-					<label class="label">Filtro:</label>
+					<label class="label">Filtro para busca:</label>
 					<input type="radio" name="filtro" value="id" checked="checked"/><label class="label">id</label>
 	      			<input type="radio" name="filtro" value="nome" /><label class="label">nome</label>
 	      			<input type="radio" name="filtro" value="documento" /><label class="label">documento</label>
-					<input type="submit" value="BUSCAR"/>
+					<input type="text" name="parametro" class="input70" size="50"/>
+					
+					
+					<input type="submit" value="BUSCAR" class="button"/>
 				</form>
 			</td>					
 		</tr>
@@ -146,28 +165,28 @@ p.estilo{
 			
 			<c:choose>
 				<c:when test="${cliente.deletado}">
-					<td width="30" bgcolor="#000000">
-						<img src="imagens/excluir_20px.png" alt="cliente excluido"	title="cliente excluido" border="0" />
+					<td width="30">
+						<img src="imagens/icone_excluir_opaco.png" alt="cliente excluido"	title="cliente nao visivel" border="0" />
 					</td>
 				</c:when>
 				<c:otherwise>
 					<td width="30">
 						<a href="ClienteAcaoServlet?id=${cliente.idCliente}&acao=2" onclick="javascript:return confirm('Deletar este cliente ?')">
-						<img src="imagens/excluir_20px.png" alt="excluir cliente"	title="excluir cliente" border="0" /></a>
+						<img src="imagens/excluir_20px.png" alt="excluir cliente desta vicualizacao"	title="excluir cliente desta visualizacao" border="0" /></a>
 					</td>
 				</c:otherwise>
 				
 			</c:choose>		
 			
 			<c:choose>
-				<c:when test="${cliente.cliente}">
+				<c:when test="${cliente.situacaoAtual}">
 					<td width="40">						
-						<img src="imagens/icone-confirmar_opaco.png" alt="cliente salco"	title="cliente salvo" border="0" /></td>
+						<img src="imagens/icone-confirmar_opaco.png" alt="cliente salco" title="cliente visivel" border="0" /></td>
 				</c:when>
 				<c:otherwise>
 					<td width="40">
 						<a href="ClienteAcaoServlet?id=${cliente.idCliente}&acao=3" onclick="abrirJanela();">
-						<img src="imagens/icone-confirmar.png" alt="confirmar cliente"	title="confirmar cliente" border="0" /></a></td>
+						<img src="imagens/icone-confirmar.png" alt="confirmar cliente"	title="confirmar cliente para visualizacao" border="0" /></a></td>
 				</c:otherwise>
 			</c:choose>		
 			
@@ -186,18 +205,19 @@ p.estilo{
 			<td width="50" class="label" bgcolor="#E8E8E8">${cliente.idCliente}</td>
 			
 			<c:choose>
-				<c:when test="${cliente.cliente}">
-					<td width="130" class="label" bgcolor="#6B8E23">${cliente.situacaoCliente}</td>
+				<c:when test="${cliente.situacaoAtual}">
+					<td width="130" class="label" bgcolor="#6B8E23">Us&uacute;ario <%-- ${cliente.situacaoCliente} --%></td>
 				</c:when>
 				<c:otherwise>
-					<td width="130" class="label" bgcolor="#CD5C5C">${cliente.situacaoCliente}</td>
+					<td width="130" class="label" bgcolor="#CD5C5C">Us&uacute;ario <%-- ${cliente.situacaoCliente} --%></td>
 				</c:otherwise>
 			</c:choose>			
 			<td width="200" class="label" bgcolor="#E8E8E8">${cliente.nome}</td>
 			<td width="130" class="label" bgcolor="#CFCFCF">(${cliente.telefone.ddd}) ${cliente.telefone.numero} / ${cliente.telefone.complemento}</td>
 			<td width="200" class="label" bgcolor="#CFCFCF">${cliente.email}</td>
 			<td width="250" class="label" bgcolor="#E8E8E8">${cliente.tipoDoDocumento} - ${cliente.numeroDoDocumentoFormatado}</td>
-			<td width="250" class="label" bgcolor="#E8E8E8">${cliente.endereco.localizacao}, ${cliente.endereco.cidade} - ${cliente.endereco.estado}</td>				
+			<%-- <td width="250" class="label" bgcolor="#E8E8E8">${cliente.endereco.localizacao}, ${cliente.endereco.cidade} - ${cliente.endereco.estado}</td> --%>
+			<td width="250" class="label" bgcolor="#E8E8E8">NA - na</td>				
 			<td width="100" class="label" bgcolor="#E8E8E8">${cliente.dataCadastroFomatada}</td>			
 		</tr>
 		</c:forEach>

@@ -151,7 +151,7 @@ public class ClienteDao {
 		String condicao = todos ? "" : "and dataExclusao is null";
 		
 		String sql = "select idCliente, nome, tipoCliente, email, statusCliente, senha, tipoDoc, numDoc, dataCadastro, dataExclusao " +
-				"from cliente where tipoCliente <> 'A' ?1 order by ?2 , ?3 desc".replace("?1", condicao).replace("?2", filtro1).replace("?3", filtro2);
+				"from cliente where tipoCliente = 'U' ?1 order by ?2 , ?3 desc".replace("?1", condicao).replace("?2", filtro1).replace("?3", filtro2);
 
 				
 		PreparedStatement statement = conexao.prepareStatement(sql);
@@ -192,7 +192,7 @@ public class ClienteDao {
 	}
 
 	/**
-	 * exclus�o l�gica de um ve�culo da base de dados. Atualiza o campo <code>dataExclusao</code>
+	 * exclusao logica de um cliente da base de dados. Atualiza o campo <code>dataExclusao</code>
 	 * com a data atual.
 	 * 
 	 * @param id
@@ -211,7 +211,7 @@ public class ClienteDao {
 	}
 	
 	/**
-	 * Faz uma atualiza��o no registro parametrizado, setando o status do cliente como <code>true</code>.
+	 * Faz uma atualizacao no registro parametrizado, setando o status do cliente como <code>true</code>.
 	 * 
 	 * @param id identificador do registros do cliente a ser atualizado
 	 * @throws SQLException 

@@ -30,7 +30,7 @@ import br.com.cesaretransportes.util.Email;
 import br.com.cesaretransportes.util.HtmlMensagem;
 
 /**
- * Classe servlet responsável pelo tratamento das requisições da view <code>mostrar-cliente.jsp</code>
+ * Classe servlet responsavel pelo tratamento das requisicoes da view <code>mostrar-cliente.jsp</code>
  */
 public class ClienteAcaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;       
@@ -62,7 +62,7 @@ public class ClienteAcaoServlet extends HttpServlet {
 						
 			switch (acao) {
 			case AcaoCliente.LISTAR_TODOS:
-				clientes = clienteDao.getAllBy(false, "statusCliente", "dataCadastro");
+				clientes = clienteDao.getAllBy(true, "statusCliente", "dataCadastro");
 				if(clientes.size()>0){
 					for(Cliente cliente : clientes){
 						atualizarCliente(orcamentoDao, telefoneDao, enderecoDao, cliente);
@@ -187,8 +187,8 @@ public class ClienteAcaoServlet extends HttpServlet {
 	}
 
 	/**
-	 * Adiciona ao cliente o seu endereço, telefone e caso existam os orçamentos. Caso exista um ou mais orçamentos
-	 * relacionados ao cliente, adiciona os respectivos endereços a cada orçamento.
+	 * Adiciona ao cliente o seu endereco, telefone e caso existam os orcamentos. Caso exista um ou mais orcamentos
+	 * relacionados ao cliente, adiciona os respectivos enderecos a cada orcamento.
 	 * @param orcamentoDao
 	 * @param telefoneDao
 	 * @param enderecoDao
@@ -196,7 +196,8 @@ public class ClienteAcaoServlet extends HttpServlet {
 	 * @throws SQLException
 	 */
 	protected void atualizarCliente(OrcamentoDao orcamentoDao, TelefoneDao telefoneDao, EnderecoDao enderecoDao, Cliente cliente) throws SQLException {
-		cliente.setEndereco(enderecoDao.get(cliente.getIdCliente()));
+		/*cliente.setEndereco(enderecoDao.get(cliente.getIdCliente()));*/
+		cliente.setEndereco(null);		
 		cliente.setTelefone(telefoneDao.get(cliente.getIdCliente()));
 		cliente.setOrcamentos(orcamentoDao.getListaDeOrcamentos(cliente.getIdCliente(), "idOrcamento", 1));
 		if(cliente.getOrcamentos().size() > 0){

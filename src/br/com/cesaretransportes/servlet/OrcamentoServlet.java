@@ -81,21 +81,7 @@ public class OrcamentoServlet extends HttpServlet {
 			String enderecoDestino = request.getParameter("enderecoDestino");
 			String peso = request.getParameter("peso");
 			String dimensao = request.getParameter("dimensao");
-			String mensagem = request.getParameter("mensagem");
-			
-			System.out.println(nome);
-			System.out.println(email);
-			System.out.println(ddd);
-			System.out.println(telefone);
-			System.out.println(enderecoOrigem);
-			System.out.println(cidadeOrigem);
-			System.out.println(estadoOrigem);
-			System.out.println(enderecoDestino);
-			System.out.println(cidadeDestino);
-			System.out.println(estadoDestino);
-			System.out.println(peso);
-			System.out.println(dimensao);
-			System.out.println(mensagem);
+			String mensagem = request.getParameter("mensagem");			
 
 			String pagina = "/index.jsp";
 

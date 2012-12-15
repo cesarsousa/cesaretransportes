@@ -51,20 +51,21 @@ public class OrcamentoDao {
 	}
 	
 	/**
-	 * Método utilitário para listar todos os orçamentos de um cliente.
-	 * <p>Faz uma chamada ao método OrcamentoDao#getListaDeOrcamentos(String, String, int) para
-	 * listar todos os orçamentos, e em seguida filtra pelo id do cliente.</p>
+	 * Metodo utilitario para listar todos os orcamentos de um cliente.
+	 * <p>Faz uma chamada ao metodo OrcamentoDao#getListaDeOrcamentos(String, String, int) para
+	 * listar todos os orcamentos, e em seguida filtra pelo id do cliente.</p>
 	 * 
 	 * @param idCliente id do cliente, se id for <code>0</code> lista todos os cliente.
-	 * @param filtro filtro para ordenação (nome da tabela no banco)
-	 * @param tipoOrdenacao 0 para ordenação crescente, 1 para ordenação descrescente.
+	 * @param filtro filtro para ordenacao (nome da tabela no banco)
+	 * @param tipoOrdenacao 0 para ordenacao crescente, 1 para ordenacao descrescente.
 	 * @return
 	 * @throws SQLException	 
 	 */
 	public List<Orcamento> getListaDeOrcamentos(int idCliente, String filtro, int tipoOrdenacao) throws SQLException {
 		if(idCliente == 0){
 			return getListaDeOrcamentos(filtro, tipoOrdenacao);
-		}
+		}		
+		
 		List<Orcamento> orcamentos = new ArrayList<Orcamento>();
 		for(Orcamento orcamento : getListaDeOrcamentos(filtro, tipoOrdenacao)){
 			if(orcamento.getCliente().getIdCliente() == idCliente){
@@ -75,12 +76,12 @@ public class OrcamentoDao {
 	}
 
 	/**
-	 * Metodo utilitario para a listar todos os orçamentos cadastrados.
+	 * Metodo utilitario para a listar todos os orcamentos cadastrados.
 	 * 
 	 * @param filtro
-	 *            parametro de ordenacao para exibicao dos orçamentos.
-	 * @param tipoOrdenacao 0 para ordenação crescente, 1 para ordenação descrescente.
-	 * @return lista dos orcamentos que não foram logicamente excluidos excluidos 
+	 *            parametro de ordenacao para exibicao dos orcamentos.
+	 * @param tipoOrdenacao 0 para ordenacao crescente, 1 para ordenacao descrescente.
+	 * @return lista dos orcamentos que nao foram logicamente excluidos excluidos 
 	 * @throws SQLException 
 	 */
 	public List<Orcamento> getListaDeOrcamentos(String filtro, int tipoOrdenacao) throws SQLException {
@@ -127,7 +128,7 @@ public class OrcamentoDao {
 
 	/**
 	 * 
-	 * @return todos os orçamentos cadastrados no banco.
+	 * @return todos os orcamentos cadastrados no banco.
 	 * @throws SQLException
 	 */
 	public List<Orcamento> getListaDeOrcamentos() throws SQLException {
@@ -167,7 +168,7 @@ public class OrcamentoDao {
 	}
 
 	/**
-	 * exclusão lógica de um orçamento da base de dados. Atualiza o campo <code>dataExclusao</code>
+	 * exclusao logica de um orcamento da base de dados. Atualiza o campo <code>dataExclusao</code>
 	 * com a data atual.
 	 * 
 	 * @param id

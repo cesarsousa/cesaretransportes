@@ -39,7 +39,7 @@
 				<td>
 				<ul id="menu2">
 					<li><a href="ClienteAcaoServlet?acao=1">Clientes</a></li>
-					<li><a href="cadastrarVeiculo?acao=3">Ve&iacute;culos</a></li>					
+					<!-- <li><a href="cadastrarVeiculo?acao=3">Ve&iacute;culos</a></li> -->					
 					<li><a href="mostrarListaDosOrcamentos?opcao=idOrcamento&tipo=orcamento">Or&ccedil;amentos</a></li>
 					<li><a href="mostrarListaDosOrcamentos?opcao=idServico&tipo=servico">Servi&ccedil;os</a></li>
 					<li><a href="busca.jsp">Busca</a></li>					

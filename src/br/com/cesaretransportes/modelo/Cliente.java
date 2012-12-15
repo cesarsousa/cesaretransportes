@@ -95,8 +95,8 @@ public class Cliente {
 		this.numeroDoDocumento = numeroDoDocumento;
 	}
 	
-	public String getNumeroDoDocumentoFormatado(){
-		return CesareUtil.formatarDocumento(tipoDoDocumento, numeroDoDocumento);
+	public String getNumeroDoDocumentoFormatado(){		
+		return TipoDoDocumento.NA.equals(this.tipoDoDocumento) ? this.tipoDoDocumento.codigo : CesareUtil.formatarDocumento(tipoDoDocumento, numeroDoDocumento);
 	}
 
 	public Telefone getTelefone() {
@@ -178,6 +178,12 @@ public class Cliente {
 	public boolean isAtivo(){
 		return dataExclusao == null ? true : false;
 	}
+	
+	public boolean getSituacaoAtual(){
+		return dataExclusao == null ? true : false;
+	}
+	
+	
 	
 	public enum TipoDoDocumento {
 		CPF("cpf"),

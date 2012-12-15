@@ -21,9 +21,6 @@ import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Cliente;
 import br.com.cesaretransportes.util.MSG;
 
-/**
- * Servlet implementation class LoginServlet
- */
 public class LoginServlet extends HttpServlet {	
 	private static final long serialVersionUID = 2494418281704963586L;
 
@@ -49,10 +46,6 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("mensagem", MSG.LOGIN.toString());
 				pagina = "/login.jsp";
 			} else {				
-				cliente.setTelefone(telefoneDao.get(cliente.getIdCliente()));
-				cliente.setEndereco(enderecoDao.get(cliente.getIdCliente()));
-				cliente.setOrcamentos(orcamentoDao.getListaDeOrcamentos(cliente.getIdCliente(), "idOrcamento", 1));
-				
 				if(cliente.getTipoCliente().equals("A")){
 					pagina = "/index-sistema-interno.jsp";
 				}else{
@@ -60,6 +53,10 @@ public class LoginServlet extends HttpServlet {
 						request.setAttribute("cliente", cliente);
 						pagina = "/recadastramentoCliente.jsp";
 					}else{
+						cliente.setTelefone(telefoneDao.get(cliente.getIdCliente()));
+						cliente.setEndereco(enderecoDao.get(cliente.getIdCliente()));
+						cliente.setOrcamentos(orcamentoDao.getListaDeOrcamentos(cliente.getIdCliente(), "idOrcamento", 1));
+						
 						HttpSession session = request.getSession();
 						session.setAttribute("cliente", cliente);
 						pagina = "/index.jsp";						
