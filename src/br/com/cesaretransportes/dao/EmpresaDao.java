@@ -20,7 +20,7 @@ public class EmpresaDao {
 	}
 
 	public Empresa get() throws SQLException {
-		return get(1);
+		return get(2);
 	}
 	
 	public Empresa get(int idEmpresa) throws SQLException {

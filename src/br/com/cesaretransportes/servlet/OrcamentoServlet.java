@@ -21,9 +21,11 @@ import br.com.cesaretransportes.dao.ClienteDao;
 import br.com.cesaretransportes.dao.EmpresaDao;
 import br.com.cesaretransportes.dao.EnderecoDao;
 import br.com.cesaretransportes.dao.OrcamentoDao;
+import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Cliente;
 import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.modelo.Endereco;
+import br.com.cesaretransportes.modelo.Telefone;
 import br.com.cesaretransportes.modelo.Endereco.StatusEndereco;
 import br.com.cesaretransportes.modelo.Orcamento;
 import br.com.cesaretransportes.util.CesareUtil;
@@ -43,10 +45,11 @@ public class OrcamentoServlet extends HttpServlet {
 			EmpresaDao empresaDao = new EmpresaDao(conexao);
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
 			ClienteDao clienteDao = new ClienteDao(conexao);
+			TelefoneDao telefoneDao = new TelefoneDao(conexao);
 			
 			Orcamento orcamento = new Orcamento();
 			
-			Empresa empresa = empresaDao.get(2);
+			Empresa empresa = empresaDao.get();
 			
 			/*
 			 *  requisicao da pagina cadastrar-orcamento.jsp
@@ -97,8 +100,15 @@ public class OrcamentoServlet extends HttpServlet {
 			String pagina = "/index.jsp";
 
 			if (ValidacaoOrcamento.orcamentoEhValido(nome, email, ddd, telefone, cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao) /*&& clienteAtivo*/) {
-									
-				orcamento.setCliente(new Cliente());
+								
+				Cliente cliente = new Cliente(nome, email);				
+				int idClienteUsuario = clienteDao.cadastrar(cliente);
+				cliente.setIdCliente(idClienteUsuario);
+				
+				Telefone telefoneUsuarioCliente = new Telefone(0, idClienteUsuario, ddd, telefone, " ");
+				telefoneDao.cadastrar(telefoneUsuarioCliente);				
+				
+				orcamento.setCliente(cliente);
 				orcamento.setPeso(peso);
 				orcamento.setDimensao(dimensao);
 				orcamento.setMensagem(mensagem);					

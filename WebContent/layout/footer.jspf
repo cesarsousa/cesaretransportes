@@ -11,7 +11,8 @@
 		<a href="cadastrar-contato.jsp">Contato</a> | 
 		<a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a> | 
 		<!-- <a href="download.jsp">Download</a> | -->
-		<a href="login.jsp">Login</a>	
+		<a href="login.jsp">Login</a> |
+		<a href="valoresCeTrans.jsp" target="_blank">Pol&iacute;tica de Qualidade</a>	
 	</div>
 	</p>
 	

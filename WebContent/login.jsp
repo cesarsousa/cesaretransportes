@@ -91,7 +91,8 @@
 				</c:when>				
 			</c:choose>			
 			
-			<h3>Lembre-se! seu usuário é o email utilizado em seu cadastro.</h3>
+			<!-- <h3>Lembre-se! seu usuário é o email utilizado em seu cadastro.</h3> -->
+			<h3> &Aacute;rea Restrita. Somente pessoal autorizado.</h3>
 			
 			<form id="formLogin" action="login" name="acesso" method="post" onsubmit="return validaForm()">
 				<div align="center">
@@ -100,27 +101,30 @@
 					<input id="passwordChecker" type="text" value="SENHA" class="input70"/>
 					<input id="inputSenha" type="password" name="senha" class="input70" />
 					</p>
+					<p>
 					<input type="submit" value="Login" class="button" />
+					</p>
 				</div>
 			</form>			
 						
-			<div align="center">
+			<!-- <div align="center">
 			<p><a href="recuperarSenha.jsp"><span class="legenda">Esqueceu sua senha? Clique aqui.</span></a></p>				
-			</div>
+			</div> -->
 			
 			<table class="faixaLaranja">
 				<tr>
 					<td align="right">
+					<!-- 
 						<span class="labelinformativo">Não sou um cliente ainda?</span>
 					</td>
 					<td align="left">
 						<form action="cadastrar-cliente.jsp">
 							<input type="submit" value="Cadastrar-se!" class="button"/>
-						</form>
+						</form> -->
 					</td>
 				</tr>						
 			</table>
-			<br/>
+			
 			</div>
 		</td>
 	</tr>

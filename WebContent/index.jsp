@@ -64,6 +64,16 @@
 <table width="800px" align="center">
 	<tr>
 		<td>
+		
+		<br/>
+		<table width="760" align="center">
+			<tr>
+				<td><span class="tituloPagina">A Empresa</span></td>
+			</tr>
+		</table>
+		
+		
+		
 		<jsp:useBean id="data" class="java.util.Date"/>
         <h3><fmt:formatDate value="${data}" dateStyle="full" timeZone="America/Sao_Paulo"/></h3>
 		

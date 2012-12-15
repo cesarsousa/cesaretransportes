@@ -104,7 +104,7 @@ public class ClienteServlet extends HttpServlet {
 			
 			boolean termoContrato = Boolean.valueOf(request.getParameter("termoContrato"));
 			
-			// inicio da validação
+			// inicio da validaï¿½ï¿½o
 			if (usuario.isEmpty()){
 				paginaComErro = true;				
 				request.setAttribute("msgUser", "Um endere&ccedil;o de email v&aacute;lido dever ser preenchido !");
@@ -180,7 +180,7 @@ public class ClienteServlet extends HttpServlet {
 				paginaComErro = true;
 				request.setAttribute("msgTermoContrato", "Para se cadastrar, o Termo de Contrato deve ser aceito !");
 			}
-			// fim da validação
+			// fim da validaï¿½ï¿½o
 			
 			if (clienteCadastrado){
 				if(senhasConferem(senha1, senha2)){
@@ -262,7 +262,7 @@ public class ClienteServlet extends HttpServlet {
 							HtmlMensagem.getMensagemNotificacaoCliente(nome, "cadastro"));
 	
 					/*
-					 * Email de notificação a empresa de um novo cliente cadastrado.
+					 * Email de notificacao a empresa de um novo cliente cadastrado.
 					 */
 					Email.enviarEmail(
 							e.getEmail(), e.getSenha(), e.getEmail(),

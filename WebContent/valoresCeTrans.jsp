@@ -19,6 +19,13 @@
 <tr><td>
 <a name="topo"></a>
 
+<br/>
+<table width="760" align="center">
+	<tr>
+		<td><span class="tituloPagina">Pol&iacute;tica de Qualidade</span></td>
+	</tr>
+</table>
+
 <h3>Declara&ccedil;&atilde;o dos Valores da Cesare Transportes</h3>
 <div id="cardInformacao">
 <h2>Valores s&atilde;o ra&iacute;zes inspiradoras que d&atilde;o sentido ao que 
@@ -123,6 +130,11 @@ conhecimento aplicado, foco na relev&acirc;ncia e capacidade inovadora.</h2>
 <a href='#top'><span></span></a>
 </div>
 
-<jsp:include page="layout/footer.jspf"></jsp:include>
+<p>.</p>
+<p>.</p>
+<div id="footerIndex">
+	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+</div>
+
 </body>
 </html>

@@ -68,6 +68,13 @@
 	</c:if>	
 </c:if>
 
+<br/>
+<table width="760" align="center">
+	<tr>
+		<td><span class="tituloPagina">Contato</span></td>
+	</tr>
+</table>
+
 <jsp:useBean id="data" class="java.util.Date"/>
 <h3><fmt:formatDate value="${data}" dateStyle="full" timeZone="America/Sao_Paulo"/></h3>
 

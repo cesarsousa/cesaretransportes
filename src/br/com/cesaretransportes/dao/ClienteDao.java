@@ -66,7 +66,7 @@ public class ClienteDao {
 			return cliente;			
 	}
 
-	public void cadastrar(Cliente cliente) throws SQLException,	ClassNotFoundException {
+	public int cadastrar(Cliente cliente) throws SQLException,	ClassNotFoundException {
 				
 		String sql = "insert into cliente (nome,email,statusCliente,senha,tipoDoc,numDoc, dataCadastro,tipoCliente) "
 				+ "values (?,?,?,?,?,?,?,?)";		
@@ -82,15 +82,26 @@ public class ClienteDao {
 		statement.setString(8, cliente.getTipoCliente());			
 		
 		statement.execute();
-		statement.close();		
+		
+		sql = "select max(idCliente) as ultimoId from cliente;";
+		statement = conexao.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+		int idCliente = 0;
+		if(resultSet.first()){
+			idCliente = resultSet.getInt("ultimoId");	
+		}
+		
+		statement.close();
+		
+		return idCliente;
 	}
 
 	/**
 	 * 
-	 * @param usuario endereço de email do cliente usado no cadastro.
+	 * @param usuario endereï¿½o de email do cliente usado no cadastro.
 	 * @param senha a senha do cliente.
 	 * @param orcamentoDao 
-	 * @return os dados do cliente caso usuário e email informados sejam válidos, caso contrário retorna <code>null</code>.
+	 * @return os dados do cliente caso usuï¿½rio e email informados sejam vï¿½lidos, caso contrï¿½rio retorna <code>null</code>.
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -181,7 +192,7 @@ public class ClienteDao {
 	}
 
 	/**
-	 * exclusão lógica de um veículo da base de dados. Atualiza o campo <code>dataExclusao</code>
+	 * exclusï¿½o lï¿½gica de um veï¿½culo da base de dados. Atualiza o campo <code>dataExclusao</code>
 	 * com a data atual.
 	 * 
 	 * @param id
@@ -200,7 +211,7 @@ public class ClienteDao {
 	}
 	
 	/**
-	 * Faz uma atualização no registro parametrizado, setando o status do cliente como <code>true</code>.
+	 * Faz uma atualizaï¿½ï¿½o no registro parametrizado, setando o status do cliente como <code>true</code>.
 	 * 
 	 * @param id identificador do registros do cliente a ser atualizado
 	 * @throws SQLException 
@@ -216,11 +227,11 @@ public class ClienteDao {
 	 * 
 	 * @param todos
 	 *            se <code>true</code> busca todos os cliente ativo e inativos,
-	 *            caso contrário somente cliente ativo, ou seja, com data de
-	 *            exclusão nula.
+	 *            caso contrï¿½rio somente cliente ativo, ou seja, com data de
+	 *            exclusï¿½o nula.
 	 * @param id
 	 *            o id do cliente	
-	 * @return um cliente cadastro na base, caso não exista o cliente referente
+	 * @return um cliente cadastro na base, caso nï¿½o exista o cliente referente
 	 *         retorna <code>null</code>
 	 * @throws SQLException
 	 */
@@ -267,9 +278,9 @@ public class ClienteDao {
 	}
 	
 	/**
-	 * Pesquisa um cliente sem nenhum tipo de restrição quanto a tipo de cliente, status e data de exclusão.
+	 * Pesquisa um cliente sem nenhum tipo de restriï¿½ï¿½o quanto a tipo de cliente, status e data de exclusï¿½o.
 	 * @param idCliente o id do cliente
-	 * @return um cliente se existe, caso contrário retorna null.
+	 * @return um cliente se existe, caso contrario retorna null.
 	 * @throws SQLException
 	 */
 	public Cliente getCliente(int idCliente) throws SQLException {
@@ -315,19 +326,19 @@ public class ClienteDao {
 	}
 	
 	/**
-	 * Busca todos os clientes cujo parâmetro de busca esteja contido no campo
+	 * Busca todos os clientes cujo parametro de busca esteja contido no campo
 	 * nome do cliente.
 	 * 
 	 * @param todos
 	 *            se <code>true</code> busca todos os cliente ativo e inativos,
-	 *            caso contrário somente cliente ativo, ou seja, com data de
-	 *            exclusão nula. 
+	 *            caso contrario somente cliente ativo, ou seja, com data de
+	 *            exclusao nula. 
 	 * @param busca
 	 *            parametro da busca
 	 * @param orcamentoDao 
 	 * @return a lista dos clientes ordenadas por statusCliente e dataCadastro,
-	 *         caso não sejam encontrados clientes com o parâmetro uma lista
-	 *         vazia será retornada.
+	 *         caso nao sejam encontrados clientes com o parametro uma lista
+	 *         vazia sera retornada.
 	 * @throws SQLException 
 	 */
 	public List<Cliente> getAllByBusca(boolean todos, String busca, String filtro) throws SQLException {
@@ -389,7 +400,7 @@ public class ClienteDao {
 	}
 
 	public boolean clienteExiste(String email) throws SQLException {
-		String sql = "select * from cliente where email='" + email + "'";
+		String sql = "select * from cliente where email='" + email + "' and tipoCliente='C'";
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		ResultSet result = statement.executeQuery();
 		boolean resultado = result.first();
@@ -437,9 +448,9 @@ public class ClienteDao {
 	
 	/**
 	 * Recadastramento de cliente. Ativa o cliente, ou seja, atualizar a data de
-	 * exclusão como nula.
+	 * exclusï¿½o como nula.
 	 * 
-	 * @param email o email do cliente que será atualizado
+	 * @param email o email do cliente que serï¿½ atualizado
 	 * @param senha a nova senha do cliente
 	 * @param dataCadastro a nova data de cadastro
 	 * @throws SQLException 

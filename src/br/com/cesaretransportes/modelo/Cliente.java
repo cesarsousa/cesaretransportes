@@ -47,6 +47,14 @@ public class Cliente {
 		this.idCliente = idCliente;		
 	}
 
+	public Cliente(String nome, String email) {
+		this.nome = nome;
+		this.email = email;
+		this.tipoDoDocumento = TipoDoDocumento.NA;
+		this.dataCadastro = Calendar.getInstance();
+		this.tipoCliente = "U";
+	}
+
 	public int getIdCliente() {
 		return idCliente;
 	}
@@ -173,7 +181,8 @@ public class Cliente {
 	
 	public enum TipoDoDocumento {
 		CPF("cpf"),
-		CNPJ("cnpj");
+		CNPJ("cnpj"),
+		NA("na");
 		
 		private String codigo;
 		
@@ -183,7 +192,7 @@ public class Cliente {
 		
 		public static TipoDoDocumento criarPorCodigo(String codigo){
 			if (codigo == null) {
-				throw new IllegalArgumentException("código de documento nulo");
+				throw new IllegalArgumentException("codigo de documento nulo");
 			}
 			
 			for (TipoDoDocumento tipo : TipoDoDocumento.values()){
@@ -191,7 +200,7 @@ public class Cliente {
 					return tipo;
 				}
 			}			
-			throw new IllegalArgumentException("código de documento inválido: " + codigo);			
+			throw new IllegalArgumentException("cï¿½digo de documento invï¿½lido: " + codigo);			
 		}
 		
 		public String toString() {			
@@ -221,7 +230,7 @@ public class Cliente {
 		String status = String.valueOf(statusCliente);
 		dataOut.writeUTF(status);
 		
-		// serialização do telefone		
+		// serializaï¿½ï¿½o do telefone		
 		dataOut.writeInt(getTelefone().getIdTelefone());		
 		dataOut.writeInt(getTelefone().getIdCliente());
 		dataOut.writeUTF(getTelefone().getDdd());
@@ -232,7 +241,7 @@ public class Cliente {
 			dataOut.writeUTF(getTelefone().getComplemento());
 		}
 		
-		// serialização do endereço
+		// serializaï¿½ï¿½o do endereï¿½o
 		dataOut.writeInt(getEndereco().getIdEndereco());		
 		dataOut.writeInt(getEndereco().getCliente().getIdCliente());
 		dataOut.writeUTF(getEndereco().getCidade());
