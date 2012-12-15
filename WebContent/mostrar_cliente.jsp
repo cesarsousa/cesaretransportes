@@ -134,9 +134,9 @@ p.estilo{
 				<form action="ClienteAcaoServlet" method="post">
 					<input type="hidden" name="acao" value="4"/>
 					<label class="label">Filtro para busca:</label>
-					<input type="radio" name="filtro" value="id" checked="checked"/><label class="label">id</label>
-	      			<input type="radio" name="filtro" value="nome" /><label class="label">nome</label>
-	      			<input type="radio" name="filtro" value="documento" /><label class="label">documento</label>
+					<input type="radio" name="filtro" value="nome" checked="checked"/><label class="label">nome</label>
+					<input type="radio" name="filtro" value="id"/><label class="label">id</label>	      			
+	      		<!-- 	<input type="radio" name="filtro" value="documento" /><label class="label">documento</label> -->
 					<input type="text" name="parametro" class="input70" size="50"/>
 					
 					

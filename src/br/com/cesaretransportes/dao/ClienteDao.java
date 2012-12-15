@@ -217,7 +217,7 @@ public class ClienteDao {
 	 * @throws SQLException 
 	 */
 	public void confirmar(int id) throws SQLException {
-		String sql = "update cliente set statusCliente='true' where idCliente=" + id;
+		String sql = "update cliente set dataExclusao=null where idCliente=" + id;
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.execute();
 		statement.close();		

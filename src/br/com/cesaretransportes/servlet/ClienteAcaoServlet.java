@@ -92,7 +92,7 @@ public class ClienteAcaoServlet extends HttpServlet {
 				id = Integer.parseInt(request.getParameter("id"));
 				clienteDao.confirmar(id);
 				Cliente cliente = clienteDao.getCliente(false, id);
-				clientes = clienteDao.getAllBy(false, "statusCliente", "dataCadastro");
+				clientes = clienteDao.getAllBy(true, "dataCadastro", "statusCliente");
 				if(clientes.size()>0){
 					for(Cliente c : clientes){
 						atualizarCliente(orcamentoDao, telefoneDao, enderecoDao, c);
@@ -102,9 +102,9 @@ public class ClienteAcaoServlet extends HttpServlet {
 				request.setAttribute("clientes", clientes);
 				request.setAttribute("infoCliente", "Cliente confirmado com sucesso !");
 				
-				Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), cliente.getEmail(), 
+				/*Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), cliente.getEmail(), 
 						"Cesare Transportes - Confirmacao de Cadastro", 
-						HtmlMensagem.getMensagemConfirmacaoCadastro(cliente));
+						HtmlMensagem.getMensagemConfirmacaoCadastro(cliente));*/
 							
 				break;
 			case AcaoCliente.BUSCAR:				
@@ -167,18 +167,9 @@ public class ClienteAcaoServlet extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			new CetransServletException("CNFE ", getClass().getSimpleName(), e.getMessage()).doGet(request, response);
-		} catch (AddressException e) {
-			e.printStackTrace();
-			new CetransServletException("AE ", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
-		} catch (SendFailedException e) {
-			e.printStackTrace();
-			new CetransServletException("SFE ", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
-		} catch (MessagingException e) {
-			e.printStackTrace();
-			new CetransServletException("SQL ", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
-		} finally{
+		}  finally{
 			try {
-				conexao.close();
+				if (conexao != null) conexao.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				new CetransServletException("SQLE2 " + e.getMessage(), getClass().getSimpleName(), e.getMessage()).doPost(request, response);
