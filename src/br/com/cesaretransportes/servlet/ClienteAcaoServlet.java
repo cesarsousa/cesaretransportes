@@ -62,7 +62,7 @@ public class ClienteAcaoServlet extends HttpServlet {
 						
 			switch (acao) {
 			case AcaoCliente.LISTAR_TODOS:
-				clientes = clienteDao.getAllBy(true, "statusCliente", "dataCadastro");
+				clientes = clienteDao.getAllBy(true, "dataCadastro", "statusCliente");
 				if(clientes.size()>0){
 					for(Cliente cliente : clientes){
 						atualizarCliente(orcamentoDao, telefoneDao, enderecoDao, cliente);
@@ -79,7 +79,7 @@ public class ClienteAcaoServlet extends HttpServlet {
 					clienteDao.deletar(id);
 					request.setAttribute("infoCliente", "Cliente deletado com sucesso !");					
 				}
-				clientes = clienteDao.getAllBy(false, "statusCliente", "dataCadastro");
+				clientes = clienteDao.getAllBy(true, "dataCadastro", "statusCliente");
 				if(clientes.size()>0){
 					for(Cliente c : clientes){
 						atualizarCliente(orcamentoDao, telefoneDao, enderecoDao, c);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page import="java.util.List"%>
@@ -12,6 +13,10 @@
 <style type="text/css">
 p {
 	color: #333;
+	font-weight: bold;
+}
+p.estilo{
+	color: #FF6600
 }
 
 ul li {
@@ -27,10 +32,41 @@ ul li {
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 <br />
+<h3>Consulta por Or&ccedil;amento</h3>
+<jsp:useBean id="data" class="java.util.Date" />
+<p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
 <table class="laranjado" width="740" align="center" bgcolor="#ffffff">
 	<tr>
 		<td>
-		<table border="0">
+		
+		<form action="buscar">
+				<input type="hidden" name="opcao" value="orcamento"> 
+				<div align="left">
+				<p>Selecione o filtro da busca</p>
+				<select name="filtro" class="select input30">
+					<option value="codigo">Id or&ccedil;amento </option>
+					<option value="nome">Nome</option>
+					<option value="email">Email</option>
+					<option value="origem">Origem</option>
+					<option value="destino">Destino</option>					
+				</select>
+				
+				<c:choose>
+					<c:when test="${not empty mensagemOrcamento}">
+						<p class="vermelho">${mensagemOrcamento}</p>
+					</c:when>
+					<c:otherwise>
+						<p>Digite um par&acirc;metro de busca</p>
+					</c:otherwise>
+				</c:choose>				
+				<input type="text" name="paramBusca" class="input50">
+				<input type="submit" value="Consultar" class="button" ></div>
+				<br/>
+				</form>
+		
+		
+		
+		<%-- <table border="0">
 			<tr>
 				<td width="370">
 				<fieldset><legend class="legenda">Servi&ccedil;o</legend>				
@@ -61,35 +97,11 @@ ul li {
 				</fieldset>
 				</td>
 
-				<td width="370">
-				<fieldset><legend class="legenda">Or&ccedil;amento</legend>				
-				<form action="buscar">
-				<input type="hidden" name="opcao" value="orcamento"> 
-				<div align="center">
-				<c:choose>
-					<c:when test="${not empty mensagemOrcamento}">
-						<p class="vermelho">${mensagemOrcamento}</p>
-					</c:when>
-					<c:otherwise>
-						<p>Digite um par&acirc;metro de busca</p>
-					</c:otherwise>
-				</c:choose>								
-				<select name="filtro" class="select">
-					<option value="codigo">Id orcm</option>
-					<option value="nome">Nome</option>
-					<option value="email">Email</option>
-					<option value="origem">Origem</option>
-					<option value="destino">Destino</option>					
-				</select>
-				<br/><br/>
-				<input type="text" name="paramBusca">
-				<input type="submit" value="Consultar"></div>
-				<br/>
-				</form>
-				</fieldset>
+				<td width="100%">
+				
 				</td>				
 			</tr>
-		</table>
+		</table> --%>
 		</td>		
 	</tr>	
 </table>
