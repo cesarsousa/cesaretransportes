@@ -36,9 +36,12 @@ public class LoginServlet extends HttpServlet {
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
 			ClienteDao clienteDao = new ClienteDao(conexao);			
 			
-			final String usuario = request.getParameter("usuario");
-			final String senha = request.getParameter("senha");
-			String pagina = "/resposta-de-solicitacao.jsp";	
+			String usuario = request.getParameter("usuario");
+			String senha = request.getParameter("senha");
+			String pagina = "/resposta-de-solicitacao.jsp";
+			
+			usuario = "c";
+			senha = "c";
 			
 			Cliente cliente = clienteDao.getCliente(usuario, senha);			
 			

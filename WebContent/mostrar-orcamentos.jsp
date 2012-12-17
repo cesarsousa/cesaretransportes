@@ -46,7 +46,7 @@ table {
 <title>Cesare Transportes - Or&ccedil;amentos</title>
 </head>
 
-<body bgcolor="#ffffff">
+<body bgcolor="#cccccc">
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
