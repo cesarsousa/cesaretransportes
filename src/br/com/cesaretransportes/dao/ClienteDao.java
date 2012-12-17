@@ -14,6 +14,7 @@ import br.com.cesaretransportes.modelo.Cliente.TipoDoDocumento;
 import br.com.cesaretransportes.modelo.Endereco;
 import br.com.cesaretransportes.modelo.Orcamento;
 import br.com.cesaretransportes.modelo.Telefone;
+import br.com.cesaretransportes.util.AcaoCliente;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
@@ -148,15 +149,33 @@ public class ClienteDao {
 	}
 
 	public List<Cliente> getAllBy(boolean todos, String filtro1, String filtro2) throws SQLException {
-		String condicao = todos ? "" : "and dataExclusao is null";
-		
+		String condicao = todos ? "" : "and dataExclusao is null";		
 		String sql = "select idCliente, nome, tipoCliente, email, statusCliente, senha, tipoDoc, numDoc, dataCadastro, dataExclusao " +
 				"from cliente where tipoCliente = 'U' ?1 order by ?2 , ?3 desc".replace("?1", condicao).replace("?2", filtro1).replace("?3", filtro2);
-
 				
 		PreparedStatement statement = conexao.prepareStatement(sql);
-		ResultSet result = statement.executeQuery();	
-		
+		ResultSet result = statement.executeQuery();		
+		List<Cliente> clientes = setListaDeClientes(result);		
+		result.close();
+		statement.close();		
+		return clientes;
+	}
+	
+	public List<Cliente> getAllByStatus(int status) throws SQLException {
+		String condicao = AcaoCliente.INATIVO == status ? "not" : "";		
+		String sql = "select idCliente, nome, tipoCliente, email, statusCliente, senha, tipoDoc, numDoc, dataCadastro, dataExclusao " +
+				"from cliente where tipoCliente = 'U' and dataExclusao is " + condicao + " null order by dataCadastro";
+				
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		ResultSet result = statement.executeQuery();		
+		List<Cliente> clientes = setListaDeClientes(result);		
+		result.close();
+		statement.close();		
+		return clientes;
+	}
+
+	private List<Cliente> setListaDeClientes(ResultSet result)
+			throws SQLException {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		while (result.next()){			
 			Calendar dataCadastro = Calendar.getInstance();
@@ -185,9 +204,7 @@ public class ClienteDao {
 					dataCadastro,
 					dataExclusao,
 					orcamentos));			
-		}		
-		result.close();
-		statement.close();		
+		}
 		return clientes;
 	}
 
@@ -448,7 +465,7 @@ public class ClienteDao {
 	
 	/**
 	 * Recadastramento de cliente. Ativa o cliente, ou seja, atualizar a data de
-	 * exclus�o como nula.
+	 * exclusao como nula.
 	 * 
 	 * @param email o email do cliente que ser� atualizado
 	 * @param senha a nova senha do cliente
@@ -607,5 +624,5 @@ public class ClienteDao {
 		resultSet.close();
 		statement.close();		
 		return cliente;
-	}			
+	}				
 }

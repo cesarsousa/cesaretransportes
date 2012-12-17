@@ -155,6 +155,26 @@ public class ClienteAcaoServlet extends HttpServlet {
 				request.setAttribute("clienteOrcamentos", cliente.getOrcamentos());
 				request.setAttribute("mostrarOrcamentos", true);
 				break;				
+			case AcaoCliente.ATIVO:
+				clientes = clienteDao.getAllByStatus(AcaoCliente.ATIVO);
+				if(clientes.size()>0){
+					for(Cliente c : clientes){
+						atualizarCliente(orcamentoDao, telefoneDao, enderecoDao, c);
+					}
+				}
+				request.setAttribute("clientes", clientes);
+				pagina = "/mostrar_cliente.jsp";				
+				break;
+			case AcaoCliente.INATIVO:
+				clientes = clienteDao.getAllByStatus(AcaoCliente.INATIVO);
+				if(clientes.size()>0){
+					for(Cliente c : clientes){
+						atualizarCliente(orcamentoDao, telefoneDao, enderecoDao, c);
+					}
+				}
+				request.setAttribute("clientes", clientes);
+				pagina = "/mostrar_cliente.jsp";
+				break;
 			default:
 				new CetransServletException("ClienteAcaoServlet", getClass().getSimpleName(), "No switch for '" + acao + "' option.");
 			}

@@ -52,15 +52,15 @@ table {
 
 <h3>${mensagem}</h3>
 
-<label class="label1">Legenda de tipos de or&ccedil;amentos</label>
-<ul>
+<label class="label1">${tipoOrcamento}</label>
+<!-- <ul>
 	<li><img alt="orcamento nao confirmado" src="imagens/van_orcamento_30_30.png">
 		<label class="label2">Representa um or&ccedil;amento comuns, ou seja, n&atilde;o foi confimado com um servi&ccedil;o ativo.</label>
 	<li><img alt="orcamento confirmado como servico" src="imagens/van_servico_30_30.png">
 		<label class="label2">Representa um servi&ccedil;o ativo que n&atilde;o foi entregue.</label>
 	<li><img alt="serviço finalizado" src="imagens/van_servico_entregue_30_30.png">
 		<label class="label2">Representa um servi&ccedil;o inativo, ou seja, um servi&ccedil;o ativo j&aacute; entregue.</label></li>
-</ul>
+</ul> -->
 
 <table width="100%">
 	<tr>
@@ -82,9 +82,17 @@ table {
 				<table border="0" width="100%">
 					<tr>
 						<td width="30">
-						<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=excluirOrcamento" onclick="javascript:return confirm('Deletar este Orcamento ?')">
-						<img src="imagens/excluir_20px.png" alt="excluir orcamento"
-							title="excluir orcamento" border="0" /></a></td>
+						<c:choose>
+							<c:when test="${orcamento.excluido}">
+							<img src="imagens/icone_excluir_opaco.png" alt="excluido da visualizacao" title="excluido da visualizacao" border="0" /></a>
+							</c:when>
+							
+							<c:otherwise>
+							<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=excluirOrcamento" onclick="javascript:return confirm('Deletar este Orcamento ?')">
+							<img src="imagens/excluir_20px.png" alt="excluir orcamento" title="excluir orcamento" border="0" /></a>
+							</c:otherwise>
+						</c:choose>					
+						</td>
 							
 						<td width="30">
 						<img src="imagens/van_orcamento_30_30.png" alt="orçamento" title="orçamento" border="0" /></td>

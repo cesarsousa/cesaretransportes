@@ -87,9 +87,15 @@ public class OrcamentoDao {
 	public List<Orcamento> getListaDeOrcamentos(String filtro, int tipoOrdenacao) throws SQLException {
 		String ordenacao = tipoOrdenacao == 0 ? "asc" : "desc";
 		
+		String condicaoExclusao = "where dataExclusao is null";
+		
+//		String sql = "select " +
+//				"idOrcamento, idCliente, peso, dimensao, mensagem, orcamentoLido, orcamentoRespondido, dataCadastro, dataExclusao " +
+//				"from orcamento  where dataExclusao is null order by " + filtro + " " + ordenacao;
+		
 		String sql = "select " +
 				"idOrcamento, idCliente, peso, dimensao, mensagem, orcamentoLido, orcamentoRespondido, dataCadastro, dataExclusao " +
-				"from orcamento  where dataExclusao is null order by " + filtro + " " + ordenacao;
+				"from orcamento order by " + filtro + " " + ordenacao;
 
 		List<Orcamento> listaDeOrcamentos = new ArrayList<Orcamento>();
 		PreparedStatement statement = this.conexao.prepareStatement(sql);

@@ -111,7 +111,11 @@ public class Orcamento {
 		this.enderecos = enderecos;
 	}
 	
-	// métodos utilitario para a camada de visão
+	public boolean isExcluido(){
+		return dataExclusao != null ? true : false; 
+	}
+	
+	// mï¿½todos utilitario para a camada de visï¿½o
 	public String getDetalheOrigem(){
 		for(Endereco endereco : enderecos){
 			if(StatusEndereco.ORIGEM == endereco.getStatusEndereco()){

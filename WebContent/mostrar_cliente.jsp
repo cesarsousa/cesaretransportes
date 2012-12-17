@@ -47,7 +47,6 @@ p.estilo{
 .label{
 	color: #000000;
 	font-style: italic;
-	font-weight: bold;
 	font-family: Comic Sans MS, Geneva, sans-serif;
 	font-size: small;
 }
@@ -116,13 +115,15 @@ p.estilo{
 				<table>
 					<tr>
 					<td>
-						<form action="">
+						<form action="ClienteAcaoServlet" method="post">
+						<input type="hidden" name="acao" value="7"/>
 						<input type="submit" value="Clientes Ativos" class="button"/>
 						</form>
 					</td>
 					
 					<td>
-						<form action="">
+						<form action="ClienteAcaoServlet" method="post">
+						<input type="hidden" name="acao" value="8"/>
 						<input type="submit" value="Clientes Inativos" class="button"/>
 						</form>
 					</td>

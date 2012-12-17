@@ -38,29 +38,34 @@ public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 			VeiculoDao veiculoDao = new VeiculoDao(conexao);
 			
 			/*
-			 * filtro de ordenação dos orçamentos.
+			 * filtro de ordenacao dos orcamentos.
 			 */
 			String opcao = request.getParameter("opcao");
 			
 			/*
-			 * tipo do orçamento.
-			 * tipo = orcamento - carregar apenas dados de orçamento.
-			 * tipo = serviço - carrega dados de serviço.
+			 * tipo do orcamento.
+			 * tipo = orcamento - carregar apenas dados de orcamento.
+			 * tipo = servico - carrega dados de servico.
 			 */
 			String tipo = request.getParameter("tipo");
 			
 			String pagina;
 			
-			if(tipo.equals("orcamento")){				
-				List<Orcamento> listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, 1);
+			if(tipo.equals("orcamento")){
+				opcao = " orcamentoLido, dataCadastro";
+				List<Orcamento> listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, 0);
 				for(Orcamento orcamento : listaDeOrcamentos){					
 					orcamento.getCliente().setTelefone(telefoneDao.get(orcamento.getCliente().getIdCliente()));
 					orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(orcamento.getIdOrcamento()));					
 				}
-				List<Servico> listaDeServicos = servicoDao.getAll();					
-								
-				request.setAttribute("mensagem", "Or&ccedil;amentos");				
-				request.setAttribute("listaDeOrcamentos", getOrcamentos(listaDeOrcamentos, listaDeServicos));
+				List<Servico> listaDeServicos = servicoDao.getAll();
+				
+				request.setAttribute("mensagem", "Or&ccedil;amentos");
+				request.setAttribute("tipoOrcamento", "Listagem de todos os or&ccedil;amentos");
+				request.setAttribute("listaDeOrcamentos", listaDeOrcamentos);
+				
+				// filtrar os servicos
+				/*request.setAttribute("listaDeOrcamentos", getOrcamentos(listaDeOrcamentos, listaDeServicos));*/
 				
 				pagina = "/mostrar-orcamentos.jsp";					
 			}else{
@@ -99,7 +104,7 @@ public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 	}
 
 	/*
-	 * remove os orçamentos relacionados a serviços
+	 * remove os orcamentos relacionados a servicos
 	 */
 	private List<Orcamento> getOrcamentos(List<Orcamento> listaDeOrcamentos, List<Servico> listaDeServicos) {
 		
@@ -114,9 +119,9 @@ public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 		Integer indice = null;
 		
 		/*
-		 * se o lista todos os orçamentos, ao encontrar o id referente a um serviço
-		 * guarda sua posição da lista em indice. A seguir interrompe o loop e remove
-		 * o indice da lista de orçamentos.
+		 * se ao lista todos os orcamentos, ao encontrar o id referente a um servico
+		 * guarda sua posicao da lista em indice. A seguir interrompe o loop e remove
+		 * o indice da lista de orcamentos.
 		 */
 		for(int i =0;i<listaDeOrcamentos.size();i++){
 			if(listaDeOrcamentos.get(i).getIdOrcamento() == idOrcamentoDoServico){
