@@ -121,7 +121,7 @@ textarea {
 </c:if>
 
 <br />
-<table width="1000" align="center" border="0" class="colada">
+<table width="1000" align="center" border="0" class="colada" cellpadding="5">
 	<tr>
 		<td colspan="4" align="right">enviado em <b>${orcamento.infoDataCadastro}</b></td> 
 	</tr>
@@ -135,35 +135,35 @@ textarea {
 		
 		<c:choose>
 			<c:when test="${not empty buscar}">
-				<td width="25" bgcolor="#FFA500"><a href="javascript:history.go(-1)">
+				<td width="25"><a href="javascript:history.go(-1)">
 					<img src="imagens/voltar_20px.png" alt="voltar" title="voltar" border="0" /></a></td>
-				<td width="25" bgcolor="#FFA500">
+				<td width="25">
 					<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}
 										&acao=excluirOrcamento
 										&buscar=true
 										&paramBusca=${paramBusca}
 										&opcao=${opcao}
 										&filtro=${filtro}" onclick="javascript:return confirm('Deletar este Orcamento ?')">
-					<img src="imagens/excluir_20px.png" alt="excluir email" title="excluir orçamento" border="0" /></a></td>
+					<img src="imagens/excluir_20px.png" alt="excluir orcamento" title="excluir orcamento" border="0" /></a></td>
 			</c:when>
 			<c:otherwise>				
 				
-					<td width="25" bgcolor="#FFA500"><a href="mostrarListaDosOrcamentos?opcao=idOrcamento&tipo=orcamento">
-					<img src="imagens/voltar_20px.png" alt="caixa de entrada" title="caixa de entrada" border="0" /></a></td>
+					<td width="25"><a href="mostrarListaDosOrcamentos?opcao=idOrcamento&tipo=orcamento">
+					<img src="imagens/voltar_20px.png" alt="voltar" title="voltar" border="0" /></a></td>
 				
-					<td width="25" bgcolor="#FFA500"><a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}
+					<td width="25"><a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}
 											&acao=excluirOrcamento											
 											&opcao=${opcao}
 											&filtro=${filtro}" onclick="javascript:return confirm('Deletar este Orcamento ?')">
-					<img src="imagens/excluir_20px.png" alt="excluir email" title="excluir email" border="0" /></a></td>
+					<img src="imagens/excluir_20px.png" alt="excluir orcamento" title="excluir orcamento" border="0" /></a></td>
 										
 			</c:otherwise>
 		</c:choose>
 			
-					<td width="35" align="left" bgcolor="#FFA500">
+					<!-- <td width="35" align="left" bgcolor="#FFA500">
 					<img src="imagens/van_orcamento_30_30.png" title="Orcamento de Servico" alt="Orcamento de Servico" border="0" />
-					</td>
-					<td width="100%" bgcolor="#FFA500">
+					</td> -->
+					<%-- <td width="100%" bgcolor="#FFA500">
 					<c:if test="${not orcamento.deletado}">
 					<form action="processarAcaoOrcamento" method="get" name="formConfirmaServico" onsubmit="return validarFormulario();">
 						<label class="label">Valor: </label><input id="valor" type="text" name="valor" value="${valor}"/>
@@ -179,7 +179,7 @@ textarea {
 						<input type="submit" value="Confirmar serviço" onclick="abrirJanela();"/>
 					</form>
 					</c:if>
-					</td>			
+					</td> --%>			
 	</tr>
 </table>
 
@@ -233,7 +233,10 @@ textarea {
 				</c:if>				
 				</c:otherwise>			
 			</c:choose>		
-<br />
-<jsp:include page="includeRodapeSI.jspf"></jsp:include>
+<p>.</p>
+<p>.</p>
+<div id="footerIndex">
+	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+</div>
 </body>
 </html>

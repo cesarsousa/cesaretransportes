@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
 import br.com.cesaretransportes.dao.EnderecoDao;
@@ -52,13 +53,13 @@ public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 			String pagina;
 			
 			if(tipo.equals("orcamento")){
-				opcao = " orcamentoLido, dataCadastro";
-				List<Orcamento> listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, 0);
+				opcao = "dataCadastro";
+				List<Orcamento> listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, 1);
 				for(Orcamento orcamento : listaDeOrcamentos){					
 					orcamento.getCliente().setTelefone(telefoneDao.get(orcamento.getCliente().getIdCliente()));
 					orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(orcamento.getIdOrcamento()));					
 				}
-				List<Servico> listaDeServicos = servicoDao.getAll();
+				/*List<Servico> listaDeServicos = servicoDao.getAll();*/
 				
 				request.setAttribute("mensagem", "Or&ccedil;amentos");
 				request.setAttribute("tipoOrcamento", "Listagem de todos os or&ccedil;amentos");

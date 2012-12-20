@@ -24,6 +24,10 @@ ul li {
 <c:if test="${not empty mensagem}">
 	<h3>${mensagem}</h3>
 </c:if>
-<jsp:include page="includeRodapeSI.jspf"></jsp:include>
+<p>.</p>
+<p>.</p>
+<div id="footerIndex">
+	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+</div>
 </body>
 </html>

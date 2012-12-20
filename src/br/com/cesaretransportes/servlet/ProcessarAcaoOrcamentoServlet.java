@@ -63,8 +63,8 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 				orcamentoDao.excluirOrcamento(idOrcamento);
 				
 				/*
-				 * Se a exclusão for da pagina de busca configura uma nova busca utilizando
-				 * os mesmos parametros da ultima solicitação.
+				 * Se a exclusao for da pagina de busca configura uma nova busca utilizando
+				 * os mesmos parametros da ultima solicitacao.
 				 */
 				if(Boolean.valueOf(request.getParameter("buscar"))){
 					request.setAttribute("buscar", true);
@@ -123,7 +123,7 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 						}else{
 							String[] dadosCliente = cliente.split(";");
 							/*
-							 * email de notificação para o cliente do novo serviço.
+							 * email de notificacao para o cliente do novo servico.
 							 */
 							Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), dadosCliente[0], 
 									"Cetrans - Confirmacao de Ordem de servico", 
@@ -146,8 +146,8 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 				dispatcher.forward(request, response);				
 				
 			} else { 
-				// ler orçamento				
-				// testa se a origem da requisição foi busca.jsp 
+				// ler orcamento				
+				// testa se a origem da requisicao foi busca.jsp 
 				if(Boolean.valueOf(request.getParameter("buscar"))){
 					request.setAttribute("buscar", true);
 					String paramBusca = request.getParameter("paramBusca");
@@ -215,26 +215,27 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 	}
 
 	/**
-	 * Atualiza os orçamentos e redireciona para a pagina mostrar-orcamentos.jsp.
+	 * Atualiza os orcamentos e redireciona para a pagina mostrar-orcamentos.jsp.
 	 */
 	private void atualizarLerOrcamentos(HttpServletRequest request, HttpServletResponse response, 
 			OrcamentoDao dao, EnderecoDao enderecoDao, ServicoDao servicoDao,
 			List<Orcamento> listaDeOrcamentos) throws ServletException, IOException, SQLException {		
 		
 				
-		listaDeOrcamentos = dao.getListaDeOrcamentos("idOrcamento", 1);
+		listaDeOrcamentos = dao.getListaDeOrcamentos("dataCadastro", 1);
 		for(Orcamento orcamento : listaDeOrcamentos){
 			orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(orcamento.getIdOrcamento()));
 		}		
 		
-		// getOrcamentos() remove serviços da lista de orçamentos.
-		request.setAttribute("listaDeOrcamentos", getOrcamentos(listaDeOrcamentos, servicoDao.getAll(false)));		
+		// getOrcamentos() remove servicos da lista de orcamentos.
+		/*request.setAttribute("listaDeOrcamentos", getOrcamentos(listaDeOrcamentos, servicoDao.getAll(false)));*/
+		request.setAttribute("listaDeOrcamentos", listaDeOrcamentos);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/mostrar-orcamentos.jsp");
 		dispatcher.forward(request, response);	
 	}
 	
 	/*
-	 * remove os orçamentos relacionados a serviços
+	 * remove os orcamentos relacionados a servicos
 	 */
 	private List<Orcamento> getOrcamentos(List<Orcamento> listaDeOrcamentos, List<Servico> listaDeServicos) {
 		
@@ -249,9 +250,9 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 		Integer indice = null;
 		
 		/*
-		 * se o lista todos os orçamentos, ao encontrar o id referente a um serviço
-		 * guarda sua posição da lista em indice. A seguir interrompe o loop e remove
-		 * o indice da lista de orçamentos.
+		 * se o lista todos os orcamentos, ao encontrar o id referente a um servico
+		 * guarda sua posicao da lista em indice. A seguir interrompe o loop e remove
+		 * o indice da lista de orcamentos.
 		 */
 		for(int i =0;i<listaDeOrcamentos.size();i++){
 			if(listaDeOrcamentos.get(i).getIdOrcamento() == idOrcamentoDoServico){

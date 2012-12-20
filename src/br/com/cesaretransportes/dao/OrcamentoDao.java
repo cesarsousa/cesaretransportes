@@ -123,9 +123,7 @@ public class OrcamentoDao {
 				orcamento.setDataExclusao(dataExclusao);
 			}
 
-			if (orcamento.getDataExclusao() == null) {
-				listaDeOrcamentos.add(orcamento);
-			}		
+			listaDeOrcamentos.add(orcamento);		
 		}
 		resultSet.close();
 		statement.close();

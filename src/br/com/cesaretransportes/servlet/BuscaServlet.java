@@ -21,8 +21,8 @@ import br.com.cesaretransportes.modelo.Orcamento;
 import br.com.cesaretransportes.modelo.Servico;
 
 /*
- * Esta classe recebe requisição de busca.jsp
- * Classe processa busca de orçamentos e contatos na base de dados.
+ * Esta classe recebe requisicao de busca.jsp
+ * Classe processa busca de orcamentos e contatos na base de dados.
  */
 public class BuscaServlet extends HttpServlet {
 	private static final long serialVersionUID = -6146017632388993698L;
@@ -108,7 +108,7 @@ public class BuscaServlet extends HttpServlet {
 	}
 
 	/*
-	 * remove os orçamentos relacionados a serviços
+	 * remove os orï¿½amentos relacionados a serviï¿½os
 	 */
 	private List<Orcamento> getOrcamentosQueNaoSaoServicos(List<Orcamento> listaDeOrcamentos, List<Servico> listaDeServicos) {
 		
@@ -123,9 +123,9 @@ public class BuscaServlet extends HttpServlet {
 		Integer indice = null;
 		
 		/*
-		 * se o lista todos os orçamentos, ao encontrar o id referente a um serviço
-		 * guarda sua posição da lista em indice. A seguir interrompe o loop e remove
-		 * o indice da lista de orçamentos.
+		 * se o lista todos os orï¿½amentos, ao encontrar o id referente a um serviï¿½o
+		 * guarda sua posiï¿½ï¿½o da lista em indice. A seguir interrompe o loop e remove
+		 * o indice da lista de orï¿½amentos.
 		 */
 		for(int i =0;i<listaDeOrcamentos.size();i++){
 			if(listaDeOrcamentos.get(i).getIdOrcamento() == idOrcamentoDoServico){
@@ -150,7 +150,7 @@ public class BuscaServlet extends HttpServlet {
 						listaAuxilar.add(orcamento);
 					}
 				}
-				// caso a lista não tenha o codigo solicitado retorna uma
+				// caso a lista nï¿½o tenha o codigo solicitado retorna uma
 				// lista vazia
 				return listaAuxilar;
 			} catch (NumberFormatException e) {

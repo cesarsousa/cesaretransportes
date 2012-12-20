@@ -84,7 +84,7 @@ table {
 						<td width="30">
 						<c:choose>
 							<c:when test="${orcamento.excluido}">
-							<img src="imagens/icone_excluir_opaco.png" alt="excluido da visualizacao" title="excluido da visualizacao" border="0" /></a>
+							<img src="imagens/icone_excluir_opaco.png" alt="excluido da visualizacao" title="excluido da visualizacao" border="0" />
 							</c:when>
 							
 							<c:otherwise>
@@ -93,6 +93,18 @@ table {
 							</c:otherwise>
 						</c:choose>					
 						</td>
+						
+						<c:choose>
+							<c:when test="${not orcamento.excluido}">
+								<td width="30">						
+									<img src="imagens/icone-confirmar_opaco.png" alt="orcamento visivel" title="orcamento visivel" border="0" /></td>
+							</c:when>
+							<c:otherwise>
+								<td width="30">
+									<a href="">
+									<img src="imagens/icone-confirmar.png" alt="confirmar orcamento para visualizacao"	title="confirmar orcamento para visualizacao" border="0" /></a></td>
+							</c:otherwise>
+						</c:choose>
 							
 						<td width="30">
 						<img src="imagens/van_orcamento_30_30.png" alt="orçamento" title="orçamento" border="0" /></td>
@@ -160,6 +172,10 @@ table {
 		</tr>
 	</table>
 </c:if>
-<br /><jsp:include page="includeRodapeSI.jspf"></jsp:include>
+<p>.</p>
+<p>.</p>
+<div id="footerIndex">
+	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+</div>
 </body>
 </html>

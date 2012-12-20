@@ -189,7 +189,7 @@ p.estilo{
 			<c:choose>
 				<c:when test="${cliente.situacaoAtual}">
 					<td width="40">						
-						<img src="imagens/icone-confirmar_opaco.png" alt="cliente salco" title="cliente visivel" border="0" /></td>
+						<img src="imagens/icone-confirmar_opaco.png" alt="cliente salvo" title="cliente visivel" border="0" /></td>
 				</c:when>
 				<c:otherwise>
 					<td width="40">
@@ -274,7 +274,11 @@ p.estilo{
 	</c:if>
 	</div>
  
-<br /><jsp:include page="includeRodapeSI.jspf"></jsp:include>
+<p>.</p>
+<p>.</p>
+<div id="footerIndex">
+	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+</div>
 
 </fieldset>
 </body>
