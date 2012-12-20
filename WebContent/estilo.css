@@ -538,6 +538,19 @@ fieldset {
     text-align: left;
 }
 
+.btTamanhoDefault {
+	
+}
+
+.espacador {
+	height: 10px;
+}
+
+.listaSimples {
+	list-style-type: none;
+	
+}
+
 .button {
 	color: #ffffff;
 	background-color: #eb610e;

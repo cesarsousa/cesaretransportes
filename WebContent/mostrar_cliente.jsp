@@ -62,7 +62,6 @@ p.estilo{
 </head>
 
 <body bgcolor="#cccccc" onunload="fecharJanela();">
-<fieldset>
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
@@ -280,6 +279,5 @@ p.estilo{
 	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
 </div>
 
-</fieldset>
 </body>
 </html>

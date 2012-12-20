@@ -47,12 +47,10 @@ table {
 </head>
 
 <body bgcolor="#cccccc">
-
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
 <h3>${mensagem}</h3>
 
-<label class="label1">${tipoOrcamento}</label>
 <!-- <ul>
 	<li><img alt="orcamento nao confirmado" src="imagens/van_orcamento_30_30.png">
 		<label class="label2">Representa um or&ccedil;amento comuns, ou seja, n&atilde;o foi confimado com um servi&ccedil;o ativo.</label>
@@ -64,12 +62,28 @@ table {
 
 <table width="100%">
 	<tr>
-		<td align="left"><jsp:useBean id="data" class="java.util.Date" />
+		<td align="left" width="50%"><jsp:useBean id="data" class="java.util.Date" />
 		<p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
+		<p>
+		<label class="label1">${tipoOrcamento}</label>
+		</p>
 		</td>
 		
+		<td align="right" width="50%" class="laranjado" bgcolor="#ffffff">
+		<label>Filtar busca de or&ccedil;amentos por:</label>
+		<ul class="listaSimples">
+		<li><input type="radio" name="tipoOrcamento" value="naolido" checked="checked">N&atilde;o Lidos
+		<input type="radio" name="tipoOrcamento" value="lido">lidos
+		<input type="radio" name="tipoOrcamento" value="excluido">Exclu&iacute;dos
+		<input type="radio" name="tipoOrcamento" value="naoexcluido">N&atilde;o Exclu&iacute;dos
+		<input type="submit" value="Pesquisar" class="button" /></li>
+		</ul>
+		</td>		
 	</tr>
+	
 </table>
+
+<div class="espacador"></div>
 
 <c:if test="${empty listaDeOrcamentos}">
 	<h3>Voce não possui nenhum or&ccedil;amento no momento</h3>
