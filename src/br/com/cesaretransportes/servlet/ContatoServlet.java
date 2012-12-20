@@ -67,7 +67,7 @@ public class ContatoServlet extends HttpServlet {
 						empresa.getEmail(),
 						empresa.getSenha(),
 						email,
-						"Cesare Transportes - confirmação de Recebimento de Email",
+						"Cesare Transportes - confirmaÃ§ao de Recebimento de Email",
 						HtmlMensagem.getMensagemNotificacaoCliente(nome, "email"));
 
 				// notificacao para a empresa de um novo email

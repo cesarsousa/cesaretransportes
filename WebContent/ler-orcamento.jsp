@@ -84,6 +84,12 @@ textarea {
 
 <h3>Detalhe do or&ccedil;amento</h3>
 
+<c:if test="${not empty orcamentoRespondido}">
+<div class="msgBorder msgSucesso">
+	<label>Or&ccedil;amento respondido com sucesso</label>
+</div>
+</c:if>
+
 
 <c:if test="${not empty orcamentoAlterado}">
 	<h4>Or&ccedil;amento alterado com sucesso.</h4>
@@ -182,8 +188,8 @@ textarea {
 <table class="laranjado" width="1000" cellspacing="10" bgcolor="#CCCCCC" align="center">
 	<tr>
 		<td>
-		<h1>Or&ccedil;amento de servi&ccedil;o n&ordm; ${orcamento.idOrcamento}.</h1>		
-		<h1>Id do cliente ${orcamento.cliente.idCliente}.</h1>		
+		<h1>Or&ccedil;amento de servi&ccedil;o n&ordm; ${orcamento.idOrcamento}.<br/>		
+		Id do cliente ${orcamento.cliente.idCliente}.</h1>		
 		De <font class="email">${orcamento.cliente.nome } (${orcamento.cliente.email })</font><br />
 		Para <font class="origem">Cesare Transportes</font>
 		</td>
@@ -192,18 +198,18 @@ textarea {
 <br />		
 			<table class="laranjado" width="1000" cellpadding="10" bgcolor="#FFFFFF" align="center">
 				<tr><td>
-					<p><b>Dados do Solicitante.</b></p>
+					<p style="color: #f90"><b>Dados do Solicitante.</b></p>
 					<p>Nome: ${ orcamento.cliente.nome }</p>
 					<p>Email: ${ orcamento.cliente.email }</p>
 					<p>Telefone: (${orcamento.cliente.telefone.ddd}) ${orcamento.cliente.telefone.numero}  ${orcamento.cliente.telefone.complemento}</p>
 					<br/>
-					<p><b>Dados do Or&ccedil;amento.</b></p>
+					<p style="color: #f90"><b>Dados do Or&ccedil;amento.</b></p>
 					<p>Origem: ${ orcamento.detalheOrigem }</p>
 					<p>Destino: ${ orcamento.detalheDestino }</p>
 					<p>Peso: ${ orcamento.peso }</p>
 					<p>Dimens&atilde;o: ${ orcamento.dimensao }</p>
 					<br/>					
-					<p><b>Mensagem.</b></p>
+					<p style="color: #f90"><b>Mensagem</b></p>
 					<p>${orcamento.mensagem }</p>
 				</td></tr>
 			</table>
@@ -213,6 +219,7 @@ textarea {
 			<c:choose>
 				<c:when test="${orcamento.orcamentoRespondido}">
 					<h3>Or&ccedil;amento j&aacute; foi respondido</h3>
+					<div class="espacador"></div>
 				</c:when>
 				<c:otherwise>
 				<c:if test="${not orcamento.deletado }">
@@ -225,7 +232,7 @@ textarea {
 							<h1>Enviar uma resposta do or&ccedil;amento para ${ orcamento.cliente.nome }</h1>
 							
 							<input type="text" readonly="readonly" disabled="disabled" value="Email : ${orcamento.cliente.email }" class="laranjado botaoInput">
-							<i><textarea id="txAreaLerOrcamento" class="laranjado" name="resposta" rows="5">Digite a resposta</textarea></i>
+							<i><textarea id="txAreaLerOrcamento" class="laranjado" name="resposta" rows="5"></textarea></i>
 							<br/>
 							<input type="submit" value="Enviar Resposta" onclick="abrirJanela();" class="button">
 						</td></tr></table>	

@@ -51,107 +51,104 @@ public class OrcamentoServlet extends HttpServlet {
 			
 			Empresa empresa = empresaDao.get();
 			
-			/*
-			 *  requisicao da pagina cadastrar-orcamento.jsp
-			 */
+			String acao = request.getParameter("acao");
 			
-			/*HttpSession sessao = request.getSession();
-			Cliente cliente = (Cliente) sessao.getAttribute("cliente");*/
+			if("cadastrarOrcamento".equals(acao)){			
 			
-			/*boolean clienteAtivo = false;
-			if(cliente != null){
-				clienteAtivo = clienteDao.clienteAtivo(cliente.getEmail(), cliente.getSenha());
-				if(!clienteAtivo){
-					new LogoutServlet().doPost(request, response);
-				}				
-			}			
-			*/
-			
-			
-			
-			String nome = request.getParameter("nome");
-			String email = request.getParameter("email");
-			String ddd = request.getParameter("ddd");
-			String telefone = request.getParameter("telefone");			
-			String cidadeOrigem = request.getParameter("origem");
-			String estadoOrigem = request.getParameter("estadoOrigem");
-			String enderecoOrigem = request.getParameter("enderecoOrigem");
-			String cidadeDestino = request.getParameter("destino");
-			String estadoDestino = request.getParameter("estadoDestino");
-			String enderecoDestino = request.getParameter("enderecoDestino");
-			String peso = request.getParameter("peso");
-			String dimensao = request.getParameter("dimensao");
-			String mensagem = request.getParameter("mensagem");			
-
-			String pagina = "/index.jsp";
-
-			if (ValidacaoOrcamento.orcamentoEhValido(nome, email, ddd, telefone, cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao) /*&& clienteAtivo*/) {
-								
-				Cliente cliente = new Cliente(nome, email);				
-				int idClienteUsuario = clienteDao.cadastrar(cliente);
-				cliente.setIdCliente(idClienteUsuario);
-				
-				Telefone telefoneUsuarioCliente = new Telefone(0, idClienteUsuario, ddd, telefone, " ");
-				telefoneDao.cadastrar(telefoneUsuarioCliente);				
-				
-				orcamento.setCliente(cliente);
-				orcamento.setPeso(peso);
-				orcamento.setDimensao(dimensao);
-				orcamento.setMensagem(mensagem);					
-				orcamento.setDataCadastro(Calendar.getInstance());
-				
-				int idOrcamento = orcamentoDao.cadastrarOrcamento(orcamento);					
-				orcamento.setIdOrcamento(idOrcamento);
-				
-				Empresa e = new Empresa();
-				e.setIdEmpresa(0);
-				Cliente c = new Cliente();
-				c.setIdCliente(0);
-				
-				Endereco endereco = new Endereco(e, c, orcamento, cidadeOrigem, estadoOrigem, enderecoOrigem, StatusEndereco.ORIGEM);
-				enderecoDao.cadastrarEndereco(endereco);
-				endereco = new Endereco(e, c, orcamento, cidadeDestino, estadoDestino, enderecoDestino, StatusEndereco.DESTINO);
-				enderecoDao.cadastrarEndereco(endereco);				
-									
 				/*
-				 *  notificacao para o cliente do recebimento do orcamento
+				 *  requisicao da pagina cadastrar-orcamento.jsp
 				 */
-				Email.enviarEmail(
-						empresa.getEmail(), empresa.getSenha(),	orcamento.getCliente().getEmail(),
-						"Cesare Transportes - confirmacao de Recebimento Orcamento",
-						HtmlMensagem.getMensagemNotificacaoCliente(orcamento.getCliente().getNome(), "or&ccedil;amento"));
 				
-				/*
-				 *  notificacao para a empresa de um novo orcamento recebido
-				 */
-				Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), empresa.getEmail(), 
-						"CeTrans - Novo Orcamento numero: " + orcamento.getIdOrcamento(), 
-						HtmlMensagem.getMensagemNotificacaoEmpresa(
-								orcamento.getCliente().getNome(), 
-								CesareUtil.formatarData(orcamento.getDataCadastro(), "dd/MM/yyyy"), 
-								orcamento.getIdOrcamento(), orcamento.getCliente().getEmail(), orcamento.getMensagem(), "or&ccedil;amento"));
-
-				request.setAttribute("mensagem", "Obrigado,\n\nSeu or&ccedil;amento foi enviado com sucesso e "
-								+ "em breve entraremos em contato!\n\nAtenciosamente,\nCesare Transportes Ltda.");
+				/*HttpSession sessao = request.getSession();
+				Cliente cliente = (Cliente) sessao.getAttribute("cliente");*/
 				
-				pagina = "/resposta-de-solicitacao.jsp";
-				RequestDispatcher dispacher = request.getRequestDispatcher(pagina);
-				dispacher.forward(request, response);
-			} else {					
-				ValidacaoOrcamento.verificarCamposPreenchidos(nome, email, ddd, telefone, cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao, mensagem, request);
-				pagina = "/cadastrar-orcamento.jsp";				
-				RequestDispatcher dispacher = request.getRequestDispatcher(pagina);
-				dispacher.forward(request, response);
-			}
-			
-			
-			
-			
+				/*boolean clienteAtivo = false;
+				if(cliente != null){
+					clienteAtivo = clienteDao.clienteAtivo(cliente.getEmail(), cliente.getSenha());
+					if(!clienteAtivo){
+						new LogoutServlet().doPost(request, response);
+					}				
+				}*/
 						
-			/*if ("responderOrcamento".equals(acao)) {
+				String nome = request.getParameter("nome");
+				String email = request.getParameter("email");
+				String ddd = request.getParameter("ddd");
+				String telefone = request.getParameter("telefone");			
+				String cidadeOrigem = request.getParameter("origem");
+				String estadoOrigem = request.getParameter("estadoOrigem");
+				String enderecoOrigem = request.getParameter("enderecoOrigem");
+				String cidadeDestino = request.getParameter("destino");
+				String estadoDestino = request.getParameter("estadoDestino");
+				String enderecoDestino = request.getParameter("enderecoDestino");
+				String peso = request.getParameter("peso");
+				String dimensao = request.getParameter("dimensao");
+				String mensagem = request.getParameter("mensagem");			
+	
+				String pagina = "/index.jsp";
+	
+				if (ValidacaoOrcamento.orcamentoEhValido(nome, email, ddd, telefone, cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao) /*&& clienteAtivo*/) {
+									
+					Cliente cliente = new Cliente(nome, email);				
+					int idClienteUsuario = clienteDao.cadastrar(cliente);
+					cliente.setIdCliente(idClienteUsuario);
+					
+					Telefone telefoneUsuarioCliente = new Telefone(0, idClienteUsuario, ddd, telefone, " ");
+					telefoneDao.cadastrar(telefoneUsuarioCliente);				
+					
+					orcamento.setCliente(cliente);
+					orcamento.setPeso(peso);
+					orcamento.setDimensao(dimensao);
+					orcamento.setMensagem(mensagem);					
+					orcamento.setDataCadastro(Calendar.getInstance());
+					
+					int idOrcamento = orcamentoDao.cadastrarOrcamento(orcamento);					
+					orcamento.setIdOrcamento(idOrcamento);
+					
+					Empresa e = new Empresa();
+					e.setIdEmpresa(0);
+					Cliente c = new Cliente();
+					c.setIdCliente(0);
+					
+					Endereco endereco = new Endereco(e, c, orcamento, cidadeOrigem, estadoOrigem, enderecoOrigem, StatusEndereco.ORIGEM);
+					enderecoDao.cadastrarEndereco(endereco);
+					endereco = new Endereco(e, c, orcamento, cidadeDestino, estadoDestino, enderecoDestino, StatusEndereco.DESTINO);
+					enderecoDao.cadastrarEndereco(endereco);				
+										
+					/*
+					 *  notificacao para o cliente do recebimento do orcamento
+					 */
+					Email.enviarEmail(
+							empresa.getEmail(), empresa.getSenha(),	orcamento.getCliente().getEmail(),
+							"Cesare Transportes - confirmacao de Recebimento Orcamento",
+							HtmlMensagem.getMensagemNotificacaoCliente(orcamento.getCliente().getNome(), "or&ccedil;amento"));
+					
+					/*
+					 *  notificacao para a empresa de um novo orcamento recebido
+					 */
+					Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), empresa.getEmail(), 
+							"CeTrans - Novo Orcamento numero: " + orcamento.getIdOrcamento(), 
+							HtmlMensagem.getMensagemNotificacaoEmpresa(
+									orcamento.getCliente().getNome(), 
+									CesareUtil.formatarData(orcamento.getDataCadastro(), "dd/MM/yyyy"), 
+									orcamento.getIdOrcamento(), orcamento.getCliente().getEmail(), orcamento.getMensagem(), "or&ccedil;amento"));
+	
+					request.setAttribute("mensagem", "Obrigado,\n\nSeu or&ccedil;amento foi enviado com sucesso e "
+									+ "em breve entraremos em contato!\n\nAtenciosamente,\nCesare Transportes Ltda.");
+					
+					pagina = "/resposta-de-solicitacao.jsp";
+					RequestDispatcher dispacher = request.getRequestDispatcher(pagina);
+					dispacher.forward(request, response);
+				} else {					
+					ValidacaoOrcamento.verificarCamposPreenchidos(nome, email, ddd, telefone, cidadeOrigem, enderecoOrigem, cidadeDestino, enderecoDestino, peso, dimensao, mensagem, request);
+					pagina = "/cadastrar-orcamento.jsp";				
+					RequestDispatcher dispacher = request.getRequestDispatcher(pagina);
+					dispacher.forward(request, response);
+				}
+			}			
+						
+			if ("responderOrcamento".equals(acao)) {
 				
-				 *  Requisicao da pagina ler-orcamento.jsp
-				 
+				 //Requisicao da pagina ler-orcamento.jsp				 
 				
 				int idOrcamento = Integer.parseInt(request.getParameter("codigo"));
 				orcamento = orcamentoDao.getOrcamento(idOrcamento);
@@ -173,19 +170,19 @@ public class OrcamentoServlet extends HttpServlet {
 				
 
 				
-				 *  Resposta do orcamento ao cliente 
+				 //  Resposta do orcamento ao cliente 
 				 
 				Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), orcamento.getCliente().getEmail(),
-						"Res: Cesare Transportes - Resposta de Or�amento. codigo " + orcamento.getIdOrcamento(), 
+						"Res: Cesare Transportes - Resposta de Orçamento. codigo " + orcamento.getIdOrcamento(), 
 						HtmlMensagem.getMensagemRespostaOrcamentoCliente(orcamento,	resposta, mesagemOriginal));			
 
-				request.setAttribute("orcamento", orcamento);				
-				request.setAttribute("veiculosCadastrado", veiculoDao.getAll());// se for ficar aki setar os servi�os 
+				request.setAttribute("orcamento", orcamento);
+				request.setAttribute("orcamentoRespondido", true);
+				/*request.setAttribute("veiculosCadastrado", veiculoDao.getAll());*/ 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ler-orcamento.jsp");
 				dispatcher.forward(request, response);
-			} else {								
-				// antiga logica de cadastrar orcamento
-			}*/
+			}			
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			new CetransServletException("CNFE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);

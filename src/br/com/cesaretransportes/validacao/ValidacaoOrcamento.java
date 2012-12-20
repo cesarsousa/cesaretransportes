@@ -21,8 +21,6 @@ public class ValidacaoOrcamento {
 			String mensagem,
 			HttpServletRequest request ) throws ServletException, IOException {
 		
-		boolean msgErro = false;
-		
 		if(nome.isEmpty() || "NOME ou EMPRESA".equals(nome)){
 			request.setAttribute("msgErro", true);
 			request.setAttribute("msgNome", "O campo 'NOME ou EMPRESA' é obrigatório!");
@@ -33,13 +31,22 @@ public class ValidacaoOrcamento {
 		if(email.isEmpty() || "EMAIL".equals(email)){
 			request.setAttribute("msgErro", true);
 			request.setAttribute("msgEmail", "O campo 'EMAIL' é obrigatório!");
-		}else{
+		}else if(!ehEmailValido(email)){
+			request.setAttribute("msgErro", true);
+			request.setAttribute("email", email);
+			request.setAttribute("msgEmail", "O campo 'EMAIL' está com um formato inválido!");
+		}
+		else{
 			request.setAttribute("email", email);
 		}
 		
 		if(ddd.isEmpty() || "DDD".equals(ddd)){
 			request.setAttribute("msgErro", true);
 			request.setAttribute("msgDdd", "O campo 'DDD' é obrigatório!");
+		}else if(!ehDddValido(ddd)){
+			request.setAttribute("msgErro", true);
+			request.setAttribute("ddd", ddd);
+			request.setAttribute("msgDdd", "O campo 'DDD' é inválido, deve possuir 2 dígitos!");
 		}else{
 			request.setAttribute("ddd", ddd);
 		}
@@ -47,6 +54,10 @@ public class ValidacaoOrcamento {
 		if(telefone.isEmpty() || "TELEFONE".equals(telefone)){
 			request.setAttribute("msgErro", true);
 			request.setAttribute("msgTelefone", "O campo 'TELEFONE' é obrigatório!");
+		}else if(!ehNumeroTelefoneValido(telefone)){
+			request.setAttribute("msgErro", true);
+			request.setAttribute("telefone", telefone);
+			request.setAttribute("msgTelefone", "O campo 'TELEFONE' é inválido, deve possuir 8 ou 9 dígitos!");
 		}else{
 			request.setAttribute("telefone", telefone);
 		}
@@ -99,9 +110,9 @@ public class ValidacaoOrcamento {
 	public static boolean orcamentoEhValido(String nome, String email, String ddd, String telefone, String origem, String enderecoOrigem,
 			String destino, String enderecoDestino, String peso, String dimensao) {		
 		if(nome.isEmpty() || "NOME ou EMPRESA".equals(nome)) return false;
-		if(email.isEmpty() || "EMAIL".equals(email)) return false;
-		if(ddd.isEmpty() || "DDD".equals(ddd)) return false;
-		if(telefone.isEmpty() || "TELEFONE".equals(telefone)) return false;
+		if(email.isEmpty() || "EMAIL".equals(email) || !ehEmailValido(email)) return false;
+		if(ddd.isEmpty() || "DDD".equals(ddd) || !ehDddValido(ddd)) return false;
+		if(telefone.isEmpty() || "TELEFONE".equals(telefone) || !ehNumeroTelefoneValido(telefone)) return false;
 		if(origem.isEmpty() || "CIDADE DE ORIGEM".equals(origem)) return false;
 		if(enderecoOrigem.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoOrigem)) return false;
 		if(destino.isEmpty() || "CIDADE DE DESTINO".equals(destino)) return false;
@@ -110,6 +121,18 @@ public class ValidacaoOrcamento {
 		if(dimensao.isEmpty() || "DIMENSAO (aproximada)".equals(dimensao)) return false;
 		
 		return true;
+	}
+	
+	public static boolean ehDddValido(String ddd){
+		return ddd.matches("\\d{2}");
+	}
+	
+	public static boolean ehNumeroTelefoneValido(String telefone){
+		return telefone.matches("(\\d{8})|(\\d{9})");
+	}
+	
+	public static boolean ehEmailValido(String email) {
+		return email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9._-]+\\.[a-z]{2,4}");
 	}
 
 }

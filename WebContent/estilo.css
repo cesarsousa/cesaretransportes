@@ -47,6 +47,41 @@ transition: 1s;}
 
 #back-top a:hover span {   background-color: #eb610e;}
 
+
+.msgBorder {
+	border-style: solid;
+	border-width: 2px;
+	display: block;
+	font: 12px Arial, helvetica, sans-serif;
+	margin: 10px 2px 2px 0;
+	padding: 5px;
+	text-align: justify;
+	vertical-align: middle;
+}
+
+.msgSucesso {
+	background-color: #E8F4D5;
+	border-color: #5D980D;
+	text-align: left;
+}
+
+.msgAlerta {
+	background-color: #F1E4BD;
+	border-color: #CFB848;
+}
+
+.msgInfo {
+	background-color: #DEE5FF;
+	border-color: #2129A7;
+	text-align: left;
+}
+
+.msgErro {
+	background-color: #FFEBE8;
+	border-color: #DD3C10;
+	text-align: left;
+}
+
 /* CSS Document */
 .laranjado {
 	border: 1px solid #F90;

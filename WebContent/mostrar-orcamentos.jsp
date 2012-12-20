@@ -72,10 +72,10 @@ table {
 		<td align="right" width="50%" class="laranjado" bgcolor="#ffffff">
 		<label>Filtar busca de or&ccedil;amentos por:</label>
 		<ul class="listaSimples">
-		<li><input type="radio" name="tipoOrcamento" value="naolido" checked="checked">N&atilde;o Lidos
-		<input type="radio" name="tipoOrcamento" value="lido">lidos
-		<input type="radio" name="tipoOrcamento" value="excluido">Exclu&iacute;dos
-		<input type="radio" name="tipoOrcamento" value="naoexcluido">N&atilde;o Exclu&iacute;dos
+		<li><input type="radio" name="tipoOrcamento" value="naolido" checked="checked"><label>N&atilde;o Lidos</label>
+		<input type="radio" name="tipoOrcamento" value="lido"><label>Lidos</label>
+		<input type="radio" name="tipoOrcamento" value="excluido"><label>Exclu&iacute;dos</label>
+		<input type="radio" name="tipoOrcamento" value="naoexcluido"><label>N&atilde;o Exclu&iacute;dos</label>
 		<input type="submit" value="Pesquisar" class="button" /></li>
 		</ul>
 		</td>		
@@ -127,7 +127,7 @@ table {
 						 <a href="processarAcaoOrcamento?acao=lerOrcamento&codigo=${orcamento.idOrcamento}" title="ler mensagem">
 						 Cod. ${orcamento.idOrcamento}</a></td>						
 						
-						<td width="100" title="cliente: ${orcamento.cliente.nome}">
+						<td width="100" title="cliente: ${orcamento.cliente.nome} (${orcamento.cliente.email})">
 						<c:set var="nome"	value="${orcamento.cliente.nome}" /> 
 						<c:out value="${fn:substring(nome,0,10)}"/>...</td>
 					

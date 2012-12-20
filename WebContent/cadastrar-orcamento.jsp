@@ -109,6 +109,7 @@
 				</c:if>		
 				
 				<form id="formCadOrcamento" action="enviarOrcamento" name="orcamento" method="post">
+				<input type="hidden" value="cadastrarOrcamento" name="acao"  />
 				
 				
 				
@@ -120,6 +121,7 @@
 				</c:if>	 --%>		
 				
 				<p class="legenda">Dados do solicitante</p>
+				<hr class="destacar"/>
 				
 				<table width="100%" cellpadding="10">				
 				<!-- se existe um cliente na sessão renderiza o formulario pre preenchido -->				
@@ -151,20 +153,24 @@
 					<tr>
 						<td>
 						<div align="left">
-						<input id="dddCadOrcamento" class="input20" type="text" maxlength="3" name="ddd" value="${ddd}"/>
+						<input id="dddCadOrcamento" class="input20" type="text" maxlength="2" name="ddd" value="${ddd}"/>
 						<input id="telefoneCadOrcamento" class="input40" type="text" maxlength="9" name="telefone" value="${telefone}"/>
 						</div></td>
 					</tr>					
 				</c:if>			
 				</table>
+				
+				<div class="espacador"></div>
 					
-				<span class="legenda">Dados de localização</span>				
+				<span class="legenda">Dados de localização</span>
+				<hr class="destacar"/>				
 				<table width="100%">
 					<tr>
 						<td>
 						<table width="100%" cellpadding="10">
 						<tr>
 						<td>
+						<span class="textoInformativo">Dados da origem</span>
 						<input id="origemCadOrcamento" type="text" name="origem" value="${origem}" class="input80" maxlength="90"/>
 						<select name="estadoOrigem" id="estadoOrigem" class="select input15"></select>
              			
@@ -180,6 +186,7 @@
 						<table width="100%" cellpadding="10">
 						<tr>
 						<td>
+						<span class="textoInformativo">Dados do destino</span>
 						<input id="destinoCadOrcamento" type="text" name="destino" value="${destino}" class="input80" maxlength="70"/>
 						<select name="estadoDestino" id="estadoDestino" class="select input15"></select>
              			
@@ -193,15 +200,21 @@
 					</tr>				
 				</table>
 				
-				<span class="legenda">Informações adicionais sobre a carga</span>				
+				<div class="espacador"></div>
+				
+				<span class="legenda">Informações adicionais sobre a carga</span>
+				<hr class="destacar"/>				
 				<table width="100%" cellpadding="10">
 					<tr>
 						<td><input id="pesoCadOrcamento" type="text" name="peso" value="${peso}" class="input100" maxlength="100"/></td>
 						<td><input id="dimensaoCadOrcamento" type="text" name="dimensao" value="${dimensao}" class="input100" maxlength="100"/></td>					
 					</tr>				
-				</table>				
+				</table>
+				
+				<div class="espacador"></div>				
 								
 				<p><span class="legenda">Informações adicionais gerais</span></p>
+				<hr class="destacar"/>
 				
 				<span class="textoInformativo">
 				Se desejar, utilize o campo abaixo para informa&ccedil;&otilde;es adicionais referentes ao servi&ccedil;o	

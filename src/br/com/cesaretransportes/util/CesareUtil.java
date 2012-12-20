@@ -74,8 +74,8 @@ public class CesareUtil {
 	}*/
 	
 	/**
-	 * <p>Formata a data de acordo com o padrão especificado.</p>
-	 * <p>Exemplo de padrões</p>
+	 * <p>Formata a data de acordo com o padrao especificado.</p>
+	 * <p>Exemplo de padroes</p>
 	 * <ul>
 	 * <li>"dd/MM/yyyy HH:mm:ss" 10/09/2011 15:54:47
 	 * <li>"dd/MM/yyyy" 10/09/2011<br/>
@@ -86,7 +86,7 @@ public class CesareUtil {
 	 * @param data
 	 *            data a ser formatada.
 	 * @param padrao
-	 *            padrão a ser utilizado (dia = dd, mês = MM, ano = yyyy).
+	 *            padrao a ser utilizado (dia = dd, mes = MM, ano = yyyy).
 	 * @return data formatada.
 	 */
 	public static String formatarData(Calendar data, String padrao) {
@@ -94,7 +94,7 @@ public class CesareUtil {
 	}
 	
 	/**
-	 * Retorna a data representada pela String no padrão yyyyMMdd.
+	 * Retorna a data representada pela String no padrao yyyyMMdd.
 	 */
 	public static Calendar getData(String data) {		
 		Calendar calendar = Calendar.getInstance();
@@ -104,10 +104,7 @@ public class CesareUtil {
 		
 		calendar.set(ano, (mes - 1), dia);
 		calendar.setLenient(false);		
-		
-		/*
-		 * instrução de teste de data. NÃO REMOVA ESTE CÓDIGO.
-		 */
+				
 		CesareUtil.formatarData(calendar, "dd/MM/yyyy");	
 		return calendar;
 	}
@@ -116,16 +113,16 @@ public class CesareUtil {
 	
 	
 	/**
-	 * <p>Formata uma sequência numérica inserindo uma máscara de acordo com o tipo
+	 * <p>Formata uma sequencia numerica inserindo uma mascara de acordo com o tipo
 	 * de documento.</p>
 	 * <ul>
-	 * <li>CPF: formato da máscara 999.999.999-99
-	 * <li>CNPJ: formato da máscara 99.999.999/9999-99</li>
+	 * <li>CPF: formato da mascara 999.999.999-99
+	 * <li>CNPJ: formato da mascara 99.999.999/9999-99</li>
 	 * </ul>
 	 *  
 	 * @param tipo o tipo do documento (CPF ou CNPJ).
-	 * @param numero sequência numérica que será inserida a máscara.
-	 * @return a sequência numérica devidamente mascarada.
+	 * @param numero sequencia numerica que sera inserida a mascara.
+	 * @return a sequencia numerica devidamente mascarada.
 	 */
 	public static String formatarDocumento(TipoDoDocumento tipo, String numero) {		
 		if(TipoDoDocumento.CNPJ == tipo){
@@ -138,11 +135,11 @@ public class CesareUtil {
 	}
 	
 	/**
-	 * <p>Formata uma sequência numérica inserindo uma máscara de telefone no 
+	 * <p>Formata uma sequencia numerica inserindo uma mascara de telefone no 
 	 * formato (99) 9999-9999.</p>
 	 * 
-	 * @param telefone a sequência numérica a ser mascarada.
-	 * @return o número do telefone mascarado.
+	 * @param telefone a sequencia numerica a ser mascarada.
+	 * @return o numero do telefone mascarado.
 	 */
 	public static String formatarTelefone(String telefone) {
 		return "(" + telefone.charAt(0) + telefone.charAt(1) + ") "
