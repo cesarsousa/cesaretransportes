@@ -6,8 +6,10 @@
 <script type="text/javascript" src="js/COMMONS.js"></script>
 <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
 <script type="text/javascript" src="js/jquery.puts.js"></script>
+<script type="text/javascript" src="js/jquery.autoresize.js"></script>
 <script type="text/javascript" src="js/cadastrarOrcamento.js"></script>
 <script type="text/javascript" src="js/cadastrarContato.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/cadastrarCliente.js"></script>
 <script type="text/javascript" src="js/recuperarSenha.js"></script>
+<script type="text/javascript" src="js/lerOrcamento.js"></script>

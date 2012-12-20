@@ -7,10 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="icon" type="image/gif" href="imagens/animated_favicon1.gif" />
-<link rel="stylesheet" type="text/css" href="estilo.css">
-<link rel="stylesheet" type="text/css" href="estilo2.css">
+
+<jsp:include page="layout/library.jspf" />
+
 <script language="javascript">
-function abrirJanela(){
+
+/* function abrirJanela(){
 	var esquerda = (screen.width - 550)/2;
 	var topo = (screen.height - 250)/2;
 	alertWindow = window.open("telaAguarde.html","bookpixWin","width=550, height=250, top="+topo+", left="+esquerda);	
@@ -18,7 +20,7 @@ function abrirJanela(){
 
 function fecharJanela(){
 	alertWindow.close();
-}
+} */
 
 function validarFormulario(){
 	doc = document.formConfirmaServico;
@@ -76,7 +78,7 @@ textarea {
 <title>Cesare Transportes - Or&ccedil;amentos</title>
 </head>
 
-<body onunload="fecharJanela();">
+<body onunload="fecharJanela();" bgcolor="#dddddd">
 
 <jsp:include page="includeCabecalhoLerEmail.jspf"></jsp:include>
 
@@ -123,21 +125,15 @@ textarea {
 <br />
 <table width="1000" align="center" border="0" class="colada" cellpadding="5">
 	<tr>
-		<td colspan="4" align="right">enviado em <b>${orcamento.infoDataCadastro}</b></td> 
-	</tr>
-	<tr>
-		<td colspan="4" align="right">data prevista para entrega em <b>${orcamento.infoDataPrevEntrega}</b></td> 
-	</tr>
-	<tr>	
-		<td colspan="4" align="right">entregue em <b>${orcamento.infoDataEntrega}</b></td> 
-	</tr>
-	<tr>
-		
+		<td colspan="4" align="right">enviado em <b>${orcamento.infoDataCadastro}</b>
+		<hr class="destacar"></td> 
+	</tr>	
+	<tr>		
 		<c:choose>
 			<c:when test="${not empty buscar}">
-				<td width="25"><a href="javascript:history.go(-1)">
+				<td width="25" class="esquerda"><a href="javascript:history.go(-1)">
 					<img src="imagens/voltar_20px.png" alt="voltar" title="voltar" border="0" /></a></td>
-				<td width="25">
+				<td width="25" class="direita">
 					<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}
 										&acao=excluirOrcamento
 										&buscar=true
@@ -148,10 +144,10 @@ textarea {
 			</c:when>
 			<c:otherwise>				
 				
-					<td width="25"><a href="mostrarListaDosOrcamentos?opcao=idOrcamento&tipo=orcamento">
+					<td width="25" class="esquerda"><a href="mostrarListaDosOrcamentos?opcao=idOrcamento&tipo=orcamento">
 					<img src="imagens/voltar_20px.png" alt="voltar" title="voltar" border="0" /></a></td>
 				
-					<td width="25"><a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}
+					<td width="25" class="direita"><a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}
 											&acao=excluirOrcamento											
 											&opcao=${opcao}
 											&filtro=${filtro}" onclick="javascript:return confirm('Deletar este Orcamento ?')">
@@ -223,18 +219,23 @@ textarea {
 				<form action="enviarOrcamento" method="post">	
 					<input type="hidden" name="acao" value="responderOrcamento">		
 					<input type="hidden" name="codigo" value="${orcamento.idOrcamento}">						
-					<div align="center">
-						<table width="1000" align="center"><tr><td>
-							<input type="submit" value="Enviar Resposta" onclick="abrirJanela();">
-							<i><textarea class="laranjado" name="resposta" rows="10">Digite a resposta</textarea></i>
+					<div class="responderOrcamento">
+					
+						<table width="900" align="center"><tr><td>
+							<h1>Enviar uma resposta do or&ccedil;amento para ${ orcamento.cliente.nome }</h1>
+							
+							<input type="text" readonly="readonly" disabled="disabled" value="Email : ${orcamento.cliente.email }" class="laranjado botaoInput">
+							<i><textarea id="txAreaLerOrcamento" class="laranjado" name="resposta" rows="5">Digite a resposta</textarea></i>
+							<br/>
+							<input type="submit" value="Enviar Resposta" onclick="abrirJanela();" class="button">
 						</td></tr></table>	
 					</div>	
 				</form>
 				</c:if>				
 				</c:otherwise>			
 			</c:choose>		
-<p>.</p>
-<p>.</p>
+<p>.<br/><br/></p>
+
 <div id="footerIndex">
 	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
 </div>

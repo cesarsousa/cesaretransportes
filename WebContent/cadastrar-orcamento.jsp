@@ -93,7 +93,7 @@
 					<div class="tableErro">
 							<div align="center">
 							<!-- <img id="fecharErro" class="direita ponteiro" src="imagens/iconeDelete.png" alt="fechar" title="fechar" border="0" width="20px" height="20px"/> -->
-							<span class="erro"><c:out value="Verifique campos obrigatórios não preenchidos"/></span><br/><br/>
+							<span class="erro tituloErro"><c:out value="Verifique campos obrigatórios não preenchidos"/></span><br/><br/>
 							</div>
 							<c:if test="${not empty msgNome }"><span class="erro"><c:out value="${msgNome}"/></span><br/></c:if>
 							<c:if test="${not empty msgEmail }"><span class="erro"><c:out value="${msgEmail}"/></span><br/></c:if>
