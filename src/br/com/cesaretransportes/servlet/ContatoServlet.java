@@ -24,15 +24,15 @@ import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.util.CesareUtil;
 import br.com.cesaretransportes.util.Email;
 import br.com.cesaretransportes.util.HtmlMensagem;
+import br.com.cesaretransportes.validacao.ValidacaoContato;
 
 public class ContatoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession sessao = request.getSession();
-		Cliente cliente = (Cliente) sessao.getAttribute("cliente");
+		/*HttpSession sessao = request.getSession();
+		Cliente cliente = (Cliente) sessao.getAttribute("cliente");*/
 
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
@@ -55,10 +55,9 @@ public class ContatoServlet extends HttpServlet {
 			request.setAttribute("primeiraExecucao", true);
 			
 
-			if (!"".equals(nome) && !"".equals(email) && emailValido(email)
-					&& !"".equals(mensagem)) {
+			if (ValidacaoContato.contatoEhValido(nome, email, mensagem)) {
 
-				int codigoCliente = cliente == null ? 0 : cliente.getIdCliente();
+				/*int codigoCliente = cliente == null ? 0 : cliente.getIdCliente();*/
 
 				String data = CesareUtil.getDataDoSistema();
 
@@ -76,7 +75,7 @@ public class ContatoServlet extends HttpServlet {
 						empresa.getSenha(), 
 						empresa.getEmail(),
 						"CeTrans - Novo contato de email", 
-						HtmlMensagem.getMensagemNotificacaoEmpresa(nome, data, codigoCliente, email, mensagem, "contato"));
+						HtmlMensagem.getMensagemNotificacaoEmpresa(nome, data, 0, email, mensagem, "contato"));
 
 				request.setAttribute("mensagem", "Obrigado,\n\nSeu email foi enviado com sucesso, "
 								+ "em breve entraremos em contato!\n\nAtenciosamente,\nCesare Transportes Ltda.");
@@ -84,7 +83,9 @@ public class ContatoServlet extends HttpServlet {
 				dispather.forward(request, response);
 
 			} else {
-				verificarCamposPreenchidos(nome, email, mensagem, request, response);
+				ValidacaoContato.verificarCamposPreenchidos(nome, email, mensagem, request);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-contato.jsp");
+				dispatcher.forward(request, response);
 			}
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -116,52 +117,12 @@ public class ContatoServlet extends HttpServlet {
 					.doPost(request, response);
 		} finally {
 			try {
-				conexao.close();
+				if (conexao != null) conexao.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				new CetransServletException("SQLE2", getClass().getSimpleName(), e.getMessage())
 						.doPost(request, response);
 			}
 		}
-	}
-
-	private boolean emailValido(String email) {
-		return email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9._-]+\\.[a-z]{2,4}");
-	}
-
-	private void verificarCamposPreenchidos(String nome, String email,
-			String mensagem, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		if ("".equals(nome)) {
-			request.setAttribute("msgNome",
-					"O campo nome deve ser preenchido !");
-		} else {
-			request.setAttribute("nome", nome);
-		}
-
-		if ("".equals(email)) {
-			request.setAttribute("msgEmail",
-					"O campo email deve ser preenchido !");
-		} else {
-			request.setAttribute("email", email);
-		}
-
-		if (!emailValido(email)) {
-			request.setAttribute("msgEmail",
-					"O campo email possui formato invalido !");
-		} else {
-			request.setAttribute("email", email);
-		}
-
-		if ("".equals(mensagem)) {
-			request.setAttribute("msgMensagem",
-					"O campo mensagem deve ser preenchido !");
-		} else {
-			request.setAttribute("mensagem", mensagem);
-		}
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-contato.jsp");
-		dispatcher.forward(request, response);
-	}
+	}		
 }

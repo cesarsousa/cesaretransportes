@@ -7,6 +7,22 @@ import javax.servlet.http.HttpServletRequest;
 
 public class ValidacaoOrcamento {
 	
+	public static boolean orcamentoEhValido(String nome, String email, String ddd, String telefone, String origem, String enderecoOrigem,
+			String destino, String enderecoDestino, String peso, String dimensao) {		
+		if(nome.isEmpty() || "NOME ou EMPRESA".equals(nome)) return false;
+		if(email.isEmpty() || "EMAIL".equals(email) || !ehEmailValido(email)) return false;
+		if(ddd.isEmpty() || "DDD".equals(ddd) || !ehDddValido(ddd)) return false;
+		if(telefone.isEmpty() || "TELEFONE".equals(telefone) || !ehNumeroTelefoneValido(telefone)) return false;
+		if(origem.isEmpty() || "CIDADE DE ORIGEM".equals(origem)) return false;
+		if(enderecoOrigem.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoOrigem)) return false;
+		if(destino.isEmpty() || "CIDADE DE DESTINO".equals(destino)) return false;
+		if(enderecoDestino.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoDestino)) return false;
+		if(peso.isEmpty() || "PESO (aproximado)".equals(peso)) return false;
+		if(dimensao.isEmpty() || "DIMENSAO (aproximada)".equals(dimensao)) return false;
+		
+		return true;
+	}
+	
 	public static void verificarCamposPreenchidos(
 			String nome, 
 			String email, 
@@ -105,23 +121,7 @@ public class ValidacaoOrcamento {
 		}
 		
 		request.setAttribute("mensagem", mensagem);				
-	}
-	
-	public static boolean orcamentoEhValido(String nome, String email, String ddd, String telefone, String origem, String enderecoOrigem,
-			String destino, String enderecoDestino, String peso, String dimensao) {		
-		if(nome.isEmpty() || "NOME ou EMPRESA".equals(nome)) return false;
-		if(email.isEmpty() || "EMAIL".equals(email) || !ehEmailValido(email)) return false;
-		if(ddd.isEmpty() || "DDD".equals(ddd) || !ehDddValido(ddd)) return false;
-		if(telefone.isEmpty() || "TELEFONE".equals(telefone) || !ehNumeroTelefoneValido(telefone)) return false;
-		if(origem.isEmpty() || "CIDADE DE ORIGEM".equals(origem)) return false;
-		if(enderecoOrigem.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoOrigem)) return false;
-		if(destino.isEmpty() || "CIDADE DE DESTINO".equals(destino)) return false;
-		if(enderecoDestino.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoDestino)) return false;
-		if(peso.isEmpty() || "PESO (aproximado)".equals(peso)) return false;
-		if(dimensao.isEmpty() || "DIMENSAO (aproximada)".equals(dimensao)) return false;
-		
-		return true;
-	}
+	}	
 	
 	public static boolean ehDddValido(String ddd){
 		return ddd.matches("\\d{2}");
