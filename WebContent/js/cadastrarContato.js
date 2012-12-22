@@ -1,9 +1,9 @@
 
 $(document).ready(function(){
 		
-	$('#inputNomeContato').puts('NOME ou EMPRESA');
-	$('#inputEmailContato').puts('EMAIL');
-	$('#mensagemCadContato').puts('DIGITE SUA MENSAGEM ...');
+	if($('#inputNomeContato').val() == "") $('#inputNomeContato').puts('NOME ou EMPRESA');
+	if($('#inputEmailContato').val() == "")$('#inputEmailContato').puts('EMAIL');
+	if($('#mensagemCadContato').val() == "")$('#mensagemCadContato').puts('DIGITE SUA MENSAGEM ...');
 	
 	addRemoveDestaque('#inputNomeContato, #inputEmailContato, #mensagemCadContato');
 	

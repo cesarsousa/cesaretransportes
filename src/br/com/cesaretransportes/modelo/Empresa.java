@@ -18,6 +18,8 @@ public class Empresa implements Serializable {
 	private String msn;
 	private String email;
 	private String senha;
+	private boolean mostrarMapa;
+	private String localizacao;
 	
 	private List<Telefone> telefones;
 	

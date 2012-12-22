@@ -9,10 +9,10 @@ public class ValidacaoContato{
 	
 	public static boolean contatoEhValido(String nome, String email, String mensagem) {
 	
-		
-		
-		
-		return !"".equals(nome) && !"".equals(email) && ValidacaoContato.emailValido(email) && !"".equals(mensagem);
+		if(nome.isEmpty() || "NOME ou EMPRESA".equals(nome)) return false;
+		if(email.isEmpty() || "EMAIL".equals(mensagem) || !emailValido(email)) return false;
+		if(mensagem.isEmpty() || "DIGITE SUA MENSAGEM ...".equals(mensagem)) return false;
+		return true;
 	}
 	
 	public static void verificarCamposPreenchidos(
@@ -21,24 +21,28 @@ public class ValidacaoContato{
 			String mensagem, 
 			HttpServletRequest request) throws ServletException, IOException {
 
-		if ("".equals(nome)) {
-			request.setAttribute("msgNome", "O campo nome deve ser preenchido !");
+		if (nome.isEmpty() || "NOME ou EMPRESA".equals(nome)) {
+			request.setAttribute("erroContato", true);
+			request.setAttribute("msgNome", "O campo 'NOME ou EMPRESA' deve ser preenchido !");
 		} else {
 			request.setAttribute("nome", nome);
 		}
 
-		if ("".equals(email)) {
-			request.setAttribute("msgEmail","O campo email deve ser preenchido !");
+		if (email.isEmpty() || "EMAIL".equals(email)) {
+			request.setAttribute("erroContato", true);
+			request.setAttribute("msgEmail","O campo 'EMAIL' deve ser preenchido !");
 		} else if (!emailValido(email)) {
+			request.setAttribute("erroContato", true);
 			request.setAttribute("email", email);
-			request.setAttribute("msgEmail", "O campo email possui formato invalido !");
+			request.setAttribute("msgEmail", "O campo 'EMAIL' possui formato inválido !");
 		} else {
 			request.setAttribute("email", email);
 		}
 
 
-		if ("".equals(mensagem)) {
-			request.setAttribute("msgMensagem", "O campo mensagem deve ser preenchido !");
+		if (mensagem.isEmpty() || "DIGITE SUA MENSAGEM ...".equals(mensagem)) {
+			request.setAttribute("erroContato", true);
+			request.setAttribute("msgMensagem", "O campo 'MENSAGEM' deve ser preenchido !");
 		} else {
 			request.setAttribute("mensagem", mensagem);
 		}	

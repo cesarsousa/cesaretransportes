@@ -1,5 +1,5 @@
 
-função javascript para voltar uma pagina
+funcao javascript para voltar uma pagina
 
 javascript:history.go(-1)
 
@@ -9,7 +9,7 @@ rotina para enviar links como post
 
 <html> 
 <head> 
-   <title>Enviar formulário ao clicar um link</title> 
+   <title>Enviar formulario ao clicar um link</title> 
 <script> 
 function enviar_formulario(){ 
    document.formulario1.submit() 

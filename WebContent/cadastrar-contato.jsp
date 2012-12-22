@@ -78,6 +78,17 @@
 <jsp:useBean id="data" class="java.util.Date"/>
 <h3><fmt:formatDate value="${data}" dateStyle="full" timeZone="America/Sao_Paulo"/></h3>
 
+<c:if test="${not empty erroContato}">
+	<div align="center">
+	<div class="tableErroContato">
+		<div align="center">
+		<span class="erro"><c:out value="Verifique campos obrigatórios não preenchidos"/></span>
+		</div>
+	</div>
+	</div>
+	<br/>
+</c:if>
+
 <table width="800px" align="center">
     <tr>
     	<td>
@@ -90,11 +101,11 @@
     		</td>
     		</tr>
     		</table>
-    		<br/>
-    		
+    		<br/>    		
     		
     		<div align="center">
-        	<iframe 
+        	
+        	<!-- <iframe 
         	width="750" 
         	height="500" 
         	frameborder="0" 
@@ -107,9 +118,24 @@
         	<small><b>
         	<a href="http://www.google.com/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=rua+alzira+miranda+koerbel+140,+afonso+pena,+s%C3%A3o+jos%C3%A9+dos+pinhais+-+PR&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=38.41771,86.572266&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Alzira+Miranda+Koerbel,+140+-+Avia%C3%A7%C3%A3o,+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+Paran%C3%A1,+83045-390,+Brasil&amp;ll=-25.518141,-49.178678&amp;spn=0.010709,0.021136&amp;t=h&amp;z=14" style="color:#0000FF;text-align:left"><font color="#FF6600">Exibir mapa ampliado</font></a>
         	</b></small>
-        	<br/><br/>
-        	</div>
-    	
+        	-->        	
+        	
+        	<iframe 
+        		width="750" 
+        		height="500" 
+        		frameborder="0" 
+        		scrolling="no" 
+        		marginheight="0" 
+        		marginwidth="0" 
+        		src="https://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=rua+padre+anchieta+142,+centro,+niteroi+rio+de+janeiro&amp;aq=&amp;sll=-22.066441,-42.924029&amp;sspn=2.830258,5.020752&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Padre+Anchieta,+142+-+Morro+do+Estado,+Niter%C3%B3i+-+Rio+de+Janeiro,+24210-050&amp;z=14&amp;ll=-22.897298,-43.120223&amp;output=embed">
+        		</iframe>
+        		<br />
+        		<small>
+        		<a href="https://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=rua+padre+anchieta+142,+centro,+niteroi+rio+de+janeiro&amp;aq=&amp;sll=-22.066441,-42.924029&amp;sspn=2.830258,5.020752&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Padre+Anchieta,+142+-+Morro+do+Estado,+Niter%C3%B3i+-+Rio+de+Janeiro,+24210-050&amp;z=14&amp;ll=-22.897298,-43.120223" style="color:#ff6600;text-align:left">Exibir mapa ampliado</a>
+        		</small>    		
+    		
+    		</div>
+    		
     	</div>   		    	   		
     	</td>
     </tr>
@@ -125,21 +151,19 @@
         <form action="enviarContato" name="contato" method="post">                
                 <input  type="hidden" name="data" value=${ dataDoSistema }/>   
                 
-                <c:if test="${empty cliente}">
                 	<p><span class="erro"><c:out value="${msgNome}"/></span><br />                
                 	<input id="inputNomeContato" class="input70" type="text" name="nome" value="${nome}" maxlength="50"/></p>               
                 
                 	<p><span class="erro"><c:out value="${msgEmail}"/></span><br />                
                 	<input id="inputEmailContato" class="input70" type="text" name="email" value="${email}" maxlength="50"/></p>
-                </c:if>
                 
-                <c:if test="${not empty cliente}">
+               <%--  <c:if test="${not empty cliente}">
                 	<p><span class="erro"><c:out value="${msgNome}"/></span><br />                
                 	<input class="input70" type="text" name="nome" value="${cliente.nome}" readonly="readonly"/></p>               
                 
                 	<p><span class="erro"><c:out value="${msgEmail}"/></span><br />                
                 	<input class="input70" type="text" name="email" value="${cliente.email}" readonly="readonly"/></p>
-                </c:if>
+                </c:if> --%>
                 
                 <p><span class="erro"><c:out value="${msgMensagem}"/></span><br />               
                 <textarea id="mensagemCadContato" name="mensagem" rows="10" class="mensagemContato">${mensagem}</textarea></p>

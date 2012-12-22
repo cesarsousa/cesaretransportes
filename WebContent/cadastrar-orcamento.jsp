@@ -121,7 +121,6 @@
 				</c:if>	 --%>		
 				
 				<p class="legenda">Dados do solicitante</p>
-				<hr class="destacar"/>
 				
 				<table width="100%" cellpadding="10">				
 				<!-- se existe um cliente na sessão renderiza o formulario pre preenchido -->				
@@ -163,7 +162,7 @@
 				<div class="espacador"></div>
 					
 				<span class="legenda">Dados de localização</span>
-				<hr class="destacar"/>				
+
 				<table width="100%">
 					<tr>
 						<td>
@@ -203,7 +202,7 @@
 				<div class="espacador"></div>
 				
 				<span class="legenda">Informações adicionais sobre a carga</span>
-				<hr class="destacar"/>				
+
 				<table width="100%" cellpadding="10">
 					<tr>
 						<td><input id="pesoCadOrcamento" type="text" name="peso" value="${peso}" class="input100" maxlength="100"/></td>
@@ -214,7 +213,6 @@
 				<div class="espacador"></div>				
 								
 				<p><span class="legenda">Informações adicionais gerais</span></p>
-				<hr class="destacar"/>
 				
 				<span class="textoInformativo">
 				Se desejar, utilize o campo abaixo para informa&ccedil;&otilde;es adicionais referentes ao servi&ccedil;o	
