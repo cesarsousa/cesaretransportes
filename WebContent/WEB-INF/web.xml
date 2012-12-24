@@ -13,6 +13,15 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet>
+    <display-name>ConfiguracaoDeContaServlet</display-name>
+    <servlet-name>ConfiguracaoDeContaServlet</servlet-name>
+    <servlet-class>br.com.cesaretransportes.servlet.ConfiguracaoDeContaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfiguracaoDeContaServlet</servlet-name>
+    <url-pattern>/ConfiguracaoDeContaServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>BuscaServlet</servlet-name>
     <servlet-class>br.com.cesaretransportes.servlet.BuscaServlet</servlet-class>
   </servlet>

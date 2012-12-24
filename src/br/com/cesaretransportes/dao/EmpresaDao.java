@@ -20,11 +20,11 @@ public class EmpresaDao {
 	}
 
 	public Empresa get() throws SQLException {
-		return get(2);
+		return get(1);
 	}
 	
 	public Empresa get(int idEmpresa) throws SQLException {
-		String sql = "select idEmpresa, nome, cnpj, msn, email, senha from empresa where idEmpresa=" + idEmpresa;
+		String sql = "select idEmpresa, nome, cnpj, msn, email, senha, mostrarMapa, localizacao from empresa where idEmpresa=" + idEmpresa;
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();
 		if(resultSet.first()){
@@ -38,7 +38,9 @@ public class EmpresaDao {
 					resultSet.getString("cnpj"),
 					resultSet.getString("msn"),
 					resultSet.getString("email"), 
-					resultSet.getString("senha"), 
+					resultSet.getString("senha"),
+					resultSet.getBoolean("mostrarMapa"),
+					resultSet.getString("localizacao"),
 					telefones);
 		}
 		return null;

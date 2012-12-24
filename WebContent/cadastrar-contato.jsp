@@ -96,44 +96,30 @@
     		<br/>
     		<table bgcolor="#ff9900" width="100%" cellpadding="10">
     		<tr align="center">
-    		<td>
-    			<font style="color: white; font-weight: bold; font-family: sans-serif;">${empresa.detalheEndereco}</font>	
+    		<td valign="middle">
+    			<font style="color: white; font-weight: bold; font-family: sans-serif;">${empresa.detalheEndereco}</font>
+    			
     		</td>
+    		<c:if test="${empresa.mostrarMapa}">
+   			<td>
+   				<img id="btMapaEmpresa" src="imagens/iconeMapa.png" align="right" width="40px" height="40px" class="ponteiro" alt="Ver no mapa" title="Ver no mapa"/>	
+			</td>    		
+    		</c:if>    		
     		</tr>
     		</table>
     		<br/>    		
     		
-    		<div align="center">
-        	
-        	<!-- <iframe 
-        	width="750" 
-        	height="500" 
-        	frameborder="0" 
-        	scrolling="no" 
-        	marginheight="0" 
-        	marginwidth="0" 
-        	src="http://www.google.com/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=rua+alzira+miranda+koerbel+140,+afonso+pena,+s%C3%A3o+jos%C3%A9+dos+pinhais+-+PR&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=38.41771,86.572266&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Alzira+Miranda+Koerbel,+140+-+Avia%C3%A7%C3%A3o,+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+Paran%C3%A1,+83045-390,+Brasil&amp;ll=-25.518141,-49.178678&amp;spn=0.010709,0.021136&amp;t=h&amp;z=14&amp;output=embed">
-        	</iframe>
-        	<br />
-        	<small><b>
-        	<a href="http://www.google.com/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=rua+alzira+miranda+koerbel+140,+afonso+pena,+s%C3%A3o+jos%C3%A9+dos+pinhais+-+PR&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=38.41771,86.572266&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Alzira+Miranda+Koerbel,+140+-+Avia%C3%A7%C3%A3o,+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+Paran%C3%A1,+83045-390,+Brasil&amp;ll=-25.518141,-49.178678&amp;spn=0.010709,0.021136&amp;t=h&amp;z=14" style="color:#0000FF;text-align:left"><font color="#FF6600">Exibir mapa ampliado</font></a>
-        	</b></small>
-        	-->        	
-        	
-        	<iframe 
-        		width="750" 
-        		height="500" 
-        		frameborder="0" 
-        		scrolling="no" 
-        		marginheight="0" 
-        		marginwidth="0" 
-        		src="https://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=rua+padre+anchieta+142,+centro,+niteroi+rio+de+janeiro&amp;aq=&amp;sll=-22.066441,-42.924029&amp;sspn=2.830258,5.020752&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Padre+Anchieta,+142+-+Morro+do+Estado,+Niter%C3%B3i+-+Rio+de+Janeiro,+24210-050&amp;z=14&amp;ll=-22.897298,-43.120223&amp;output=embed">
-        		</iframe>
-        		<br />
-        		<small>
-        		<a href="https://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=rua+padre+anchieta+142,+centro,+niteroi+rio+de+janeiro&amp;aq=&amp;sll=-22.066441,-42.924029&amp;sspn=2.830258,5.020752&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=R.+Padre+Anchieta,+142+-+Morro+do+Estado,+Niter%C3%B3i+-+Rio+de+Janeiro,+24210-050&amp;z=14&amp;ll=-22.897298,-43.120223" style="color:#ff6600;text-align:left">Exibir mapa ampliado</a>
-        		</small>    		
-    		
+    		<div align="center">        	
+	        	<div align="center">
+		    		<div id="viewMapaEmpresa">        	
+			        	<c:if test="${empresa.mostrarMapa}">
+			        	${empresa.localizacao }
+			        	<div align="right" style="padding: 10px;">
+			        	<img id="btFecharMapa" src="imagens/iconeFecharMapa.png" width="40px" height="40px" class="ponteiro" alt="Fechar Mapa" title="Fechar Mapa"/>        	
+			        	</div>
+			        	</c:if>
+		        	</div>        	
+	    		</div>        	
     		</div>
     		
     	</div>   		    	   		

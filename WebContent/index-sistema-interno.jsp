@@ -24,7 +24,7 @@ ul li {
 <c:if test="${not empty mensagem}">
 	<h3>${mensagem}</h3>
 </c:if>
-<div id="footerIndex">
+<div id="footerIndex" class="fixarRodape">
 	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
 </div>
 </body>

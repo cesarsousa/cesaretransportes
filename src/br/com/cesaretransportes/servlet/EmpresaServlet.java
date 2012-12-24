@@ -41,8 +41,8 @@ public class EmpresaServlet extends HttpServlet {
 			
 			Empresa empresa = empresaDao.get();
 			empresa.setEndereco(enderecoDao.getEnderecoEmpresa(empresa.getIdEmpresa()));
-			empresa.setTelefones(telefoneDao.getTelefonesEmpresa(empresa.getIdEmpresa()));			
-
+			empresa.setTelefones(telefoneDao.getTelefonesEmpresa(empresa.getIdEmpresa()));
+			
 			request.setAttribute("empresa", empresa);		
 			request.setAttribute("primeiraExecucao", true);		
 

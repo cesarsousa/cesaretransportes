@@ -11,9 +11,9 @@ public class Empresa implements Serializable {
 	// PK
 	private int idEmpresa;
 	
-	private Endereco endereco;
+	private Endereco endereco; //ok
 	
-	private String nome;	
+	private String nome;
 	private String cnpj;
 	private String msn;
 	private String email;
@@ -25,7 +25,17 @@ public class Empresa implements Serializable {
 	
 	public Empresa(){}
 	
-	public Empresa(int idEmpresa, String nome, Endereco endereco, String cnpj, String msn, String email, String senha, List<Telefone> telefones) {
+	public Empresa(
+			int idEmpresa, 
+			String nome, 
+			Endereco endereco, 
+			String cnpj, 
+			String msn, 
+			String email, 
+			String senha, 
+			Boolean mostrarMapa, 
+			String localizacao, 
+			List<Telefone> telefones) {
 		this.idEmpresa = idEmpresa;
 		this.nome = nome;
 		this.endereco = endereco;
@@ -33,6 +43,8 @@ public class Empresa implements Serializable {
 		this.msn = msn;
 		this.email = email;
 		this.senha = senha;
+		this.mostrarMapa = mostrarMapa;
+		this.localizacao = localizacao;
 		this.telefones = telefones;
 	}
 	
@@ -92,6 +104,22 @@ public class Empresa implements Serializable {
 		this.senha = senha;
 	}
 	
+	public void setMostrarMapa(boolean mostrarMapa) {
+		this.mostrarMapa = mostrarMapa;
+	}
+	
+	public boolean isMostrarMapa() {
+		return mostrarMapa;
+	}
+	
+	public String getLocalizacao() {
+		return localizacao;
+	}
+	
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
+	}
+	
 	public List<Telefone> getTelefones() {
 		return telefones;
 	}
@@ -105,6 +133,14 @@ public class Empresa implements Serializable {
 	}
 	
 	public String getTelefone1(){
+		try {
+			return telefones.get(0).toString();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return "";
+		}	
+	}
+	
+	public String getComplemento1(){
 		try {
 			return telefones.get(0).toString();
 		} catch (ArrayIndexOutOfBoundsException e) {

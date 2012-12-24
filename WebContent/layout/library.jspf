@@ -13,3 +13,4 @@
 <script type="text/javascript" src="js/cadastrarCliente.js"></script>
 <script type="text/javascript" src="js/recuperarSenha.js"></script>
 <script type="text/javascript" src="js/lerOrcamento.js"></script>
+<script type="text/javascript" src="js/configuracoesConta.js"></script>

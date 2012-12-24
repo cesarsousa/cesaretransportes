@@ -47,6 +47,24 @@ transition: 1s;}
 
 #back-top a:hover span {   background-color: #eb610e;}
 
+.campoInfo {
+	height: 50px;
+}
+
+.campoInfo2 {
+	height: 100px;
+}
+
+.campoInfo3 {
+	height: 70px;
+}
+
+.info {
+	color: gray;
+	font-weight: bold;
+	font-size: medium;
+}
+
 
 .msgBorder {
 	border-style: solid;
@@ -279,15 +297,18 @@ padding-left: 10px;
 }
 
 #footerIndex {
-	background: #000000;
-	position: fixed;
-	bottom: 0;
+	background: #000000;	
 	float: left;
 	width: 100%;
 	height: 50px;
 	padding: 10px;
 	text-align:center;
 	border-bottom:5px solid #eb610e;
+}
+
+.fixarRodape {
+	position: fixed;
+	bottom: 0;
 }
 
 #menuFooter {
@@ -634,6 +655,10 @@ p {
 	font-style: italic;	
 }
 
+p.estilo {
+	color: #FF6600
+}
+
 .nivel1 {
 	color: #333;
 	font-weight: bold;
@@ -689,6 +714,13 @@ h4 {
 	font-family: Verdana, Geneva, sans-serif;
 	color: #4169E1;
 	padding: 10px;
+}
+
+.h4 {
+	font-size: 13px;
+	font-weight: bold;
+	font-family: Verdana, Geneva, sans-serif;
+	color: #4169E1;
 }
 
 h5{

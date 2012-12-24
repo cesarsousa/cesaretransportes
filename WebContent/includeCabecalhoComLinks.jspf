@@ -43,7 +43,7 @@
 					<li><a href="mostrarListaDosOrcamentos?opcao=idOrcamento&tipo=orcamento">Or&ccedil;amentos</a></li>
 					<!-- <li><a href="mostrarListaDosOrcamentos?opcao=idServico&tipo=servico">Servi&ccedil;os</a></li> -->
 					<li><a href="busca.jsp">Busca em Or&ccedil;amentos</a></li>	
-					<li><a href="configuracaoDaConta.jsp">Configura&ccedil;&otilde;es da Conta</a></li>				
+					<li><a href="ConfiguracaoDeContaServlet">Configura&ccedil;&otilde;es da Conta</a></li>				
 				</ul>
 				</td>
 			</tr>
