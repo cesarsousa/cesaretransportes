@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+
+
 /* INICIO estilos para o efeito de rolagem para o topo */
 #back-top {
 position: fixed;
@@ -297,18 +299,28 @@ padding-left: 10px;
 }
 
 #footerIndex {
+	position: fixed;
+	bottom: 0;
 	background: #000000;	
-	float: left;
-	width: 100%;
-	height: 50px;
-	padding: 10px;
 	text-align:center;
-	border-bottom:5px solid #eb610e;
+	padding-top: 5px;
+	width: 100%;
 }
 
 .fixarRodape {
 	position: fixed;
 	bottom: 0;
+	width: 100%;
+}
+
+#footerIndexSI{
+	position: fixed;
+	bottom: 0;
+	background: #000000;	
+	float: left;
+	width: 100%;	
+	padding: 10px;
+	color: #eb610e;
 }
 
 #menuFooter {
@@ -481,7 +493,7 @@ fieldset {
 
 .input15 {
 	width: 15%;
-	height: 30px;
+	height: 29px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -490,7 +502,7 @@ fieldset {
 
 .input20 {
 	width: 20%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -499,7 +511,7 @@ fieldset {
 
 .input30 {
 	width: 30%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -508,7 +520,7 @@ fieldset {
 
 .input40 {
 	width: 40%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -517,7 +529,7 @@ fieldset {
 
 .input50 {
 	width: 50%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -526,7 +538,7 @@ fieldset {
 
 .input60 {
 	width: 60%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -535,7 +547,7 @@ fieldset {
 
 .input70 {
 	width: 70%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -544,7 +556,7 @@ fieldset {
 
 .input80 {
 	width: 80%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -553,7 +565,7 @@ fieldset {
 
 .input100 {
 	width: 99%;
-	height: 30px;
+	height: 25px;
 	border: 1px solid #F90;
 	-webkit-border-radius: 5px;
     border-radius: 5px;
@@ -620,6 +632,10 @@ fieldset {
 .listaSimples {
 	list-style-type: none;
 	
+}
+
+.corDeFundo{
+	color: #cccccc;
 }
 
 .button {

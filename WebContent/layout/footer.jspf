@@ -1,16 +1,17 @@
 
+<p class="corDeFundo">.</p>
+<p class="corDeFundo">.</p>
 <div id="footerIndex">
 	<label class="sizeMedium">&copy; 2010 Cesare Transportes - Todos os Direitos Reservados</label>
-	<p>
-	<div id="menuFooter">	
+	
+	<div id="menuFooter">
+		<p>	
 		<a href="index.jsp">Empresa</a> | 
 		<a href="cadastrar-contato.jsp">Contato</a> | 
 		<a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a> | 
 		<!-- <a href="download.jsp">Download</a> | -->
 		<a href="login.jsp">Login</a> |
 		<a href="valoresCeTrans.jsp" target="_blank">Pol&iacute;tica de Qualidade</a>	
-	</div>
-	</p>
-	
-	
+		</p>
+	</div>		
 </div>

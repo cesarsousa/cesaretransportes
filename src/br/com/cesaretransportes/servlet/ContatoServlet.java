@@ -13,13 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
 import br.com.cesaretransportes.dao.EmpresaDao;
 import br.com.cesaretransportes.dao.EnderecoDao;
 import br.com.cesaretransportes.dao.TelefoneDao;
-import br.com.cesaretransportes.modelo.Cliente;
 import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.util.CesareUtil;
 import br.com.cesaretransportes.util.Email;

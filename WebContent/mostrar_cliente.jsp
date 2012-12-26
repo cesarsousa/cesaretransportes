@@ -273,9 +273,9 @@ p.estilo{
 	</c:if>
 	</div>
  
-<p>.</p>
-<p>.</p>
-<div id="footerIndex">
+
+<p class="corDeFundo">.</p>
+<div id="footerIndexSI">
 	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
 </div>
 

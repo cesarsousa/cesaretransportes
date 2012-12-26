@@ -30,6 +30,10 @@
 	<h1>Dados de identifi&ccedil;&atilde;o da empresa</h1>
 	
 	<form action="ConfiguracaoDeContaServlet" method="post">
+	
+	<input type="hidden" name="idEmpresa" value="${empresa.idEmpresa}">
+	<input type="hidden" name="idEndereco" value="${empresa.endereco.idEndereco}">	
+	
 	<div class="campoInfo">
 		<label class="info esquerda">Nome da Empresa</label>
 		<input id="empresaNome" type="text" name="nome" value="${empresa.nome}" class="input50 direita">
@@ -42,6 +46,8 @@
 	
 	<h1>Dados de localiza&ccedil;&atilde;o da empresa</h1>
 	
+	
+	
 	<div class="campoInfo">
 		<label class="info esquerda">Logradouro (rua, n&uacute;mero e bairro)</label>
 		<input id="empresaEnderecoLocalizacao" type="text" name="enderecoLocalizacao" value="${empresa.endereco.localizacao}" class="input50 direita">
@@ -49,7 +55,7 @@
 	
 	<div class="campoInfo">
 		<label class="info esquerda">Cidade e estado</label>	
-		<select id="empresaEnderecoEstado" name="enderecoEstado"  class="select input10 direita">
+		<select id="empresaEnderecoEstado" name="enderecoEstado" class="select input10 direita">
 			<option value="${empresa.endereco.estado}">${empresa.endereco.estado}</option>
 		</select>	
 		<input id="empresaEnderecoCidade" type="text" name="enderecoCidade" value="${empresa.endereco.cidade}" class="input40 direita">
@@ -109,9 +115,8 @@
 	
 	
 	
-	<table style="border: 1" width="100%">
-		<thead>
-			
+	<table style="width: 100%">
+		<thead>			
 			<tr>
 			<td width="20%"><h2>DDD</h2></td>
 			<td width="30%"><h2>Telefone</h2></td>
@@ -122,11 +127,12 @@
 	
 		<tbody>
 		<c:set var="numero" value="${1}"/>
-		<c:forEach items="${empresa.telefones}" var="telefone">		
+		<c:forEach items="${empresa.telefones}" var="telefone">
+			<input type="hidden" name="idTelefone${numero}" value="${telefone.idTelefone}">		
 			<tr>
-			<td width="20%"><input id="empresaTelefone" type="text" name="ddd" value="${telefone.ddd}" class="input30"></td>
-			<td width="30%"><input id="empresaTelefone" type="text" name="telefone" value="${telefone.numero}" class="input80"></td>
-			<td width="50%"><input id="empresaTelefone" type="text" name="complemento" value="${telefone.complemento}" class="input80"></td>
+			<td width="20%"><input id="empresaTelefone" type="text" name="ddd${numero}" value="${telefone.ddd}" class="input30"></td>
+			<td width="30%"><input id="empresaTelefone" type="text" name="numero${numero}" value="${telefone.numero}" class="input80"></td>
+			<td width="50%"><input id="empresaTelefone" type="text" name="complemento${numero}" value="${telefone.complemento}" class="input80"></td>
 			</tr>		
 			<c:set var="numero" value="${numero + 1}"/>		
 		</c:forEach>
@@ -145,11 +151,10 @@
 </div>
 </div>
 
-<div class="espacador"></div>
-
-<br/>
-<div id="footerIndex">
+<p class="corDeFundo">.</p>
+<div id="footerIndexSI">	
 	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
 </div>
+
 </body>
 </html>

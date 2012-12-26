@@ -3,6 +3,10 @@ package br.com.cesaretransportes.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +19,9 @@ import br.com.cesaretransportes.dao.EmpresaDao;
 import br.com.cesaretransportes.dao.EnderecoDao;
 import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Empresa;
+import br.com.cesaretransportes.modelo.Endereco;
+import br.com.cesaretransportes.modelo.Telefone;
+import br.com.cesaretransportes.validacao.ValidacaoConta;
 
 public class ConfiguracaoDeContaServlet extends HttpServlet {
 	
@@ -60,8 +67,16 @@ public class ConfiguracaoDeContaServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		System.out.println("metodo do post ativado...");
+		
+		Empresa empresa = ValidacaoConta.criarEmpresa(request);
+		
+		if(ValidacaoConta.validada(empresa, request)){
+			// atualizar a empresa no banco
+			// enviar resposta a solicitação
+		}else{
+			// redirecionar com mensagens de erro
+		}
+		
 		
 	}
 

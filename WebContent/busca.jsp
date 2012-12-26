@@ -280,10 +280,11 @@ ul li {
 		</tr>
 	</table>
 </c:if>
-<br/>
 
-<div id="footerIndex">
+<p class="corDeFundo">.</p>
+<div id="footerIndexSI">	
 	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
 </div>
+
 </body>
 </html>

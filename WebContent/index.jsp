@@ -33,7 +33,7 @@
 		</td>
 	</tr>
 </table>
-<c:if test="${not empty cliente}">
+<%-- <c:if test="${not empty cliente}">
 <table width="100%" bgcolor="#000000">	
 	<tr>
 		<td>		
@@ -59,7 +59,7 @@
 		</td>
 	</tr>
 </table>
-</c:if>	
+</c:if>	 --%>
 
 <table width="800px" align="center">
 	<tr>
@@ -152,7 +152,12 @@
 </table>
 <br/>
 
+
+<%-- <jsp:include page="includeFooterSite.jspf"></jsp:include> --%>
+
+<div align="center">
 <jsp:include page="layout/footer.jspf"/>
+</div>
 
 </body>
 </html>
