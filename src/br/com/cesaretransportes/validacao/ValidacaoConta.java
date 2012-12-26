@@ -61,7 +61,30 @@ public class ValidacaoConta {
 
 	public static boolean validada(Empresa empresa, HttpServletRequest request) {
 		boolean resultado = true;
-		// TODO daki...
+		
+		if(empresa.getNome().isEmpty()){
+			request.setAttribute("erroNomeConta", "O campo 'Nome da empresa' deve ser preenchido");
+			resultado = false;
+		}
+		
+		if(empresa.getCnpj().isEmpty()){
+			request.setAttribute("erroCnpjConta", "O campo 'CNPJ' deve ser preenchido");
+			resultado = false;
+		}
+		
+		if(empresa.getEndereco().getLocalizacao().isEmpty()){
+			request.setAttribute("erroEnderecoConta", "O endereço da empresa deve ser preenchido");
+			resultado = false;
+		}
+		
+		if(empresa.getEndereco().getCidade().isEmpty()){
+			request.setAttribute("erroCidadeConta", "A cidade da empresa deve ser preenchida");
+			resultado = false;
+		}
+		
+		
+		
+				
 		return resultado;
 	}
 	

@@ -34,6 +34,14 @@
 	<input type="hidden" name="idEmpresa" value="${empresa.idEmpresa}">
 	<input type="hidden" name="idEndereco" value="${empresa.endereco.idEndereco}">	
 	
+	<c:if test="${not empty erroNomeConta or not empty erroCnpjConta}">		
+		<div class="msgBorder msgErro">
+			<c:if test="${not empty erroNomeConta}"><p>${erroNomeConta}</p></c:if>
+			<c:if test="${not empty erroCnpjConta}"><p>${erroCnpjConta}</p></c:if>
+		</div>
+		<br/>
+	</c:if>
+	
 	<div class="campoInfo">
 		<label class="info esquerda">Nome da Empresa</label>
 		<input id="empresaNome" type="text" name="nome" value="${empresa.nome}" class="input50 direita">
@@ -46,7 +54,13 @@
 	
 	<h1>Dados de localiza&ccedil;&atilde;o da empresa</h1>
 	
-	
+	<c:if test="${not empty erroEnderecoConta or not empty erroCidadeConta}">		
+		<div class="msgBorder msgErro">
+			<c:if test="${not empty erroEnderecoConta}"><p>${erroEnderecoConta}</p></c:if>
+			<c:if test="${not empty erroCidadeConta}"><p>${erroCidadeConta}</p></c:if>
+		</div>
+		<br/>
+	</c:if>
 	
 	<div class="campoInfo">
 		<label class="info esquerda">Logradouro (rua, n&uacute;mero e bairro)</label>

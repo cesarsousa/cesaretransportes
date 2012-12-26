@@ -67,16 +67,19 @@ public class ConfiguracaoDeContaServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String pagina = "/configuracoesConta.jsp";
 		Empresa empresa = ValidacaoConta.criarEmpresa(request);
 		
 		if(ValidacaoConta.validada(empresa, request)){
 			// atualizar a empresa no banco
 			// enviar resposta a solicitação
 		}else{
-			// redirecionar com mensagens de erro
+			request.setAttribute("empresa", empresa);
+			
 		}
 		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
+		dispatcher.forward(request, response);
 		
 	}
 
