@@ -31,5 +31,13 @@ $(document).ready(function(){
 	});
 	$('#formCadOrcamento input, textarea').blur(function(){
 		$(this).removeClass('destacar');
+	});
+	
+	$('#aguardeEnviarOrcamento').hide();
+	$('#btEnviarOrcamento').click(function(){
+		$('#btEnviarOrcamento').hide();
+		$('#aguardeEnviarOrcamento').slideDown(1000);
+		$('#pgOrcamentoPt1, #pgOrcamentoPt2').addClass('opacidade25');		
 	});	
+	
 });

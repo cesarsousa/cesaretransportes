@@ -98,7 +98,11 @@ public class ValidacaoConta {
 		if(empresa.getSenha().isEmpty()){
 			request.setAttribute("erroSenhaConta", "O campo '<b>Senha do Gmail</b>' deve ser preenchido.");
 			resultado = false;
-		}	
+		}
+		
+		if(!resultado){
+			request.setAttribute("erroNoOrcamento", true);
+		}
 				
 		return resultado;
 	}

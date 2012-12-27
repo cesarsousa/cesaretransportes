@@ -68,8 +68,7 @@ public class ConfiguracaoDeContaServlet extends HttpServlet {
 			// atualizar a empresa no banco
 			// enviar resposta a solicitação
 		}else{
-			request.setAttribute("empresa", empresa);
-			
+			request.setAttribute("empresa", empresa);			
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);

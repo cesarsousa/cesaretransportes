@@ -4,6 +4,8 @@ function abrirJanela(){
 	alertWindow = window.open("telaAguarde.html","bookpixWin","width=550, height=250, top="+topo+", left="+esquerda);	
 }
 
+
+
 function fecharJanela(){
 	alertWindow.close();
 }

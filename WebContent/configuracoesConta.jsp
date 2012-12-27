@@ -25,6 +25,19 @@
 </div>
 
 <div align="center" style="border: 0">
+
+<c:if test="${not empty erroNoOrcamento}">
+	<div align="center">
+		<div class="tableErroContato">
+			<div align="center">
+				<span class="erro"><c:out value="Verifique campos obrigatórios não preenchidos" /></span>
+			</div>
+		</div>
+	</div>
+	<br />
+</c:if>
+
+
 <div id="cardIndex" style="padding: 10px;">			
 	<div align="center"><h3><i>Dados da Empresa</i></h3></div>			
 	<h1>Dados de identifi&ccedil;&atilde;o da empresa</h1>
@@ -147,7 +160,10 @@
 		<input id="empresaNome" type="text" name="msn" value="${empresa.msn}" class="input50 direita">
 	</div>
 	
-	
+	<div class="msgBorder msgErro">
+	Erros de telefone
+	</div>
+	<br/>
 	
 	<table style="width: 100%">
 		<thead>			

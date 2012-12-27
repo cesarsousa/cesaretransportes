@@ -651,6 +651,19 @@ fieldset {
 	box-shadow: 2px 2px 2px #000000;
 }
 
+.telaAguarde {
+	width: 99%;
+	height: 100px;
+	border: 5px solid #f90;
+	background-color: #ffffff;	
+}
+
+.opacidade25 {
+	filter: alpha(opacity = 15);
+	-moz-opacity: 0.15;
+	opacity: 0.15;
+}
+
 a {
 	text-decoration: none;
 	font-size: 13px;

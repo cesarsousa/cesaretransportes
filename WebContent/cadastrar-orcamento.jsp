@@ -13,7 +13,9 @@
 <title>Cesare Transporte - Orçamento de serviço</title>
 </head>
 
-<body onunload="fecharJanela();" bgcolor="#E8E8E8">
+<body bgcolor="#E8E8E8">
+
+<div id="pgOrcamentoPt1">
 
 <jsp:include page="layout/header.jspf"/>
 
@@ -222,9 +224,8 @@
 				<textarea id="mensagemCadOrcamento" name="mensagem" rows="10" class="laranjado width">${mensagem}</textarea>
 				</p>
 				
-				<div align="right">
-					<input type="submit" value="Enviar Orçamento" onclick="abrirJanela();" class="button" />					
-				</div> 
+				
+					<input id="btEnviarOrcamento" type="submit" value="Enviar Orçamento" class="button" />					
 				
 				</form>
 				</td>
@@ -236,7 +237,31 @@
 </div>
 </div>
 <br/>
+</div>
+
+<div id="espacador"></div>
+<br />
+<div id="aguardeEnviarOrcamento" >
+	<div align="center">
+		<table class="telaAguarde">
+			<tr>
+				<td>
+					<h3>Seu or&ccedil;amento esta sendo enviado. Por favor aguarde um instante!</h3>
+					<div align="center">
+						<img alt="Aguarde" src="imagens/cetrans_gif_aguarde.gif" />
+					</div> <br /> <br />
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<br/>
+<div id="espacador"></div>
+
+
+<div id="pgOrcamentoPt2">
 <jsp:include page="layout/footer.jspf"/>
+</div>
 
 </body>
 </html>

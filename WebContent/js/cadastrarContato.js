@@ -16,5 +16,12 @@ $(document).ready(function(){
 	
 	addRemoveDestaque('#inputNomeContato, #inputEmailContato, #mensagemCadContato');
 	
+	$('#aguardeEnviarContato').hide();
+	$('#btContato').click(function(){
+		$('#btEnviarContato').hide();
+		$('#aguardeEnviarContato').slideDown(1000);
+		$('#pgContatoPt1, #pgContatoPt2').addClass('opacidade25');		
+	});
+	
 	
 });
