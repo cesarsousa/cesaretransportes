@@ -20,7 +20,7 @@ public class ValidacaoConta {
 		
 		String nome = request.getParameter("nome");
 		String cnpj = request.getParameter("cnpj");		
-		boolean mostrarMapa = Boolean.valueOf(request.getParameter("mostrarMapa"));
+		boolean mostrarMapa = request.getParameter("mostrarMapa") == null ? false : true;
 		String localizacao = request.getParameter("localizacao");
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -63,29 +63,48 @@ public class ValidacaoConta {
 		boolean resultado = true;
 		
 		if(empresa.getNome().isEmpty()){
-			request.setAttribute("erroNomeConta", "O campo 'Nome da empresa' deve ser preenchido");
+			request.setAttribute("erroNomeConta", "O campo '<b>Nome da Empresa</b>' deve ser preenchido.");
 			resultado = false;
 		}
 		
 		if(empresa.getCnpj().isEmpty()){
-			request.setAttribute("erroCnpjConta", "O campo 'CNPJ' deve ser preenchido");
+			request.setAttribute("erroCnpjConta", "O campo '<b>CNPJ</b>' deve ser preenchido.");
+			resultado = false;
+		}else if (!ehNumero(empresa.getCnpj())){
+			request.setAttribute("erroCnpjConta", "O campo '<b>CNPJ</b>' deve ser possuir exatos 14 dígitos.");
 			resultado = false;
 		}
 		
 		if(empresa.getEndereco().getLocalizacao().isEmpty()){
-			request.setAttribute("erroEnderecoConta", "O endereço da empresa deve ser preenchido");
+			request.setAttribute("erroEnderecoConta", "O campo '<b>Logradouro (rua, número e bairro)</b>' deve ser preenchido.");
 			resultado = false;
 		}
 		
 		if(empresa.getEndereco().getCidade().isEmpty()){
-			request.setAttribute("erroCidadeConta", "A cidade da empresa deve ser preenchida");
+			request.setAttribute("erroCidadeConta", "O campo '<b>Cidade</b>' deve ser preenchida.");
+			resultado = false;
+		}		
+				
+		if(empresa.isMostrarMapa() && empresa.getLocalizacao().isEmpty()){
+			request.setAttribute("erroLocalizacaoConta", "Ao '<b>Habilitar visualização com Google Maps</b>', o campo 'Geo Localização' deve ser preenchido.");
 			resultado = false;
 		}
 		
+		if(empresa.getEmail().isEmpty()){
+			request.setAttribute("erroEmailConta", "O campo '<b>Gmail</b>' deve ser preenchido.");
+			resultado = false;
+		}
 		
-		
+		if(empresa.getSenha().isEmpty()){
+			request.setAttribute("erroSenhaConta", "O campo '<b>Senha do Gmail</b>' deve ser preenchido.");
+			resultado = false;
+		}	
 				
 		return resultado;
+	}
+
+	private static boolean ehNumero(String cnpj) {
+		return cnpj.matches("\\d{14}");
 	}
 	
 

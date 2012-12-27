@@ -36,8 +36,8 @@
 	
 	<c:if test="${not empty erroNomeConta or not empty erroCnpjConta}">		
 		<div class="msgBorder msgErro">
-			<c:if test="${not empty erroNomeConta}"><p>${erroNomeConta}</p></c:if>
-			<c:if test="${not empty erroCnpjConta}"><p>${erroCnpjConta}</p></c:if>
+			<c:if test="${not empty erroNomeConta}">${erroNomeConta}<br/></c:if>
+			<c:if test="${not empty erroCnpjConta}">${erroCnpjConta}</c:if>
 		</div>
 		<br/>
 	</c:if>
@@ -49,15 +49,15 @@
 	
 	<div class="campoInfo">
 		<label class="info esquerda">CNPJ</label>
-		<input id="empresaCnpj" type="text" name="cnpj" value="${empresa.cnpj}" class="input50 direita">
+		<input id="empresaCnpj" type="text" name="cnpj" value="${empresa.cnpj}" maxlength="14" class="input50 direita">
 	</div>
 	
 	<h1>Dados de localiza&ccedil;&atilde;o da empresa</h1>
 	
 	<c:if test="${not empty erroEnderecoConta or not empty erroCidadeConta}">		
 		<div class="msgBorder msgErro">
-			<c:if test="${not empty erroEnderecoConta}"><p>${erroEnderecoConta}</p></c:if>
-			<c:if test="${not empty erroCidadeConta}"><p>${erroCidadeConta}</p></c:if>
+			<c:if test="${not empty erroEnderecoConta}">${erroEnderecoConta}<br/></c:if>
+			<c:if test="${not empty erroCidadeConta}">${erroCidadeConta}</c:if>
 		</div>
 		<br/>
 	</c:if>
@@ -92,6 +92,13 @@
 		</div>	
 	</div>
 	
+	<c:if test="${not empty erroLocalizacaoConta}">		
+		<div class="msgBorder msgErro">
+			${erroLocalizacaoConta}
+		</div>
+		<br/>
+	</c:if>
+	
 	<div id="empresaGeoLocalizacao" class="campoInfo2">
 		<label class="info esquerda">Geo Localiza&ccedil;&atilde;o</label>
 		<textarea id="empresaLocalizacao" name="localizacao" class="mensagemContato direita" rows="5">${empresa.localizacao}</textarea>
@@ -108,7 +115,13 @@
 		</div>	
 	</div>
 	
-	<div id="espacador"></div>
+	<c:if test="${not empty erroEmailConta or not empty erroSenhaConta}">		
+		<div class="msgBorder msgErro">
+			<c:if test="${not empty erroEmailConta}">${erroEmailConta}<br/></c:if>
+			<c:if test="${not empty erroSenhaConta}">${erroSenhaConta}</c:if>
+		</div>
+		<br/>
+	</c:if>
 	
 	<div class="campoInfo">
 		<label class="info esquerda">Gmail</label>
@@ -121,6 +134,13 @@
 	</div>
 	
 	<h1>Dados para contato com a empresa</h1>
+
+
+	<div class="msgBorder msgInfo">
+	Campo de preenchimento opcional. <b>Lembre-se que omitir este campo implica em um canal de contato a menos com o cliente.</b>
+	</div>
+	<br/>
+	
 	
 	<div class="campoInfo">
 		<label class="info esquerda">Msn Messenger</label>

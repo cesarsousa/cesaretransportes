@@ -70,7 +70,7 @@ transition: 1s;}
 
 .msgBorder {
 	border-style: solid;
-	border-width: 2px;
+	border-width: 1px;
 	display: block;
 	font: 12px Arial, helvetica, sans-serif;
 	margin: 10px 2px 2px 0;
