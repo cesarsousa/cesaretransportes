@@ -1,4 +1,3 @@
-configuração de email da empresa
 
 <!-- Enviar Contato(email) -->
   <servlet>
@@ -17,24 +16,4 @@ configuração de email da empresa
     <servlet-name>ContatoServlet</servlet-name>
     <url-pattern>/enviarContato</url-pattern>
   </servlet-mapping>
-  
-  ..............................................................................
-  
-  // TODO
-  
-  ao solicitar responder email atraves do icone na tela de orçamentos
-  salvos a opção de salvo esta habilitada, verificar logica e corrigir este erro...
-  
-  na mesma tela a opçao de retorno para a caixa de entrada não verifica
-  para qual caixa devera redirecionar(salvos ou não salvos)... 
-  
-  email e orçamentos cadastrados sem a aplicação estar conctada estão sendo salvo
-  uma exceção não tratada é lançada rediredionar exceção e notificar erro...
-  
-  tirar a conexão do codigo e colocar no server xml.
-  
-  ...............................................................
-  
-  tratar exceção para erro 404 quando solicita buscar sem start no banco
-  
   

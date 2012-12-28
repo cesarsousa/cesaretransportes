@@ -73,7 +73,7 @@ public class ValidacaoOrcamento {
 		}else if(!ehNumeroTelefoneValido(telefone)){
 			request.setAttribute("msgErro", true);
 			request.setAttribute("telefone", telefone);
-			request.setAttribute("msgTelefone", "O campo 'TELEFONE' é inválido, deve possuir 8 ou 9 dígitos!");
+			request.setAttribute("msgTelefone", "O campo 'TELEFONE' é inválido, deve possuir somente 8 ou 9 dígitos!");
 		}else{
 			request.setAttribute("telefone", telefone);
 		}
