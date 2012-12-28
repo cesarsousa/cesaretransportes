@@ -14,6 +14,8 @@ import br.com.cesaretransportes.modelo.Telefone;
 public class EmpresaDao {
 	
 	private Connection conexao;
+	private TelefoneDao telefoneDao;
+	private EnderecoDao enderecoDao;
 
 	public EmpresaDao(Connection conexao) {
 		this.conexao = conexao;
@@ -44,6 +46,10 @@ public class EmpresaDao {
 					telefones);
 		}
 		return null;
+	}
+	
+	public void atualizar(Empresa empresa) throws SQLException {
+		
 	}
 
 }

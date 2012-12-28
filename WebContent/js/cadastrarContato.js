@@ -20,7 +20,8 @@ $(document).ready(function(){
 	$('#btContato').click(function(){
 		$('#btEnviarContato').hide();
 		$('#aguardeEnviarContato').slideDown(1000);
-		$('#pgContatoPt1, #pgContatoPt2, #pgContatoPt3').addClass('opacidade25');		
+		$('#pgContatoPt1, #pgContatoPt2, #pgContatoPt3').addClass('opacidade25');
+		$("a").click(function() { return false; }); 
 	});
 	
 	

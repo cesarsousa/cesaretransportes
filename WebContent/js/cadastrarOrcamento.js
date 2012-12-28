@@ -37,7 +37,8 @@ $(document).ready(function(){
 	$('#btEnviarOrcamento').click(function(){
 		$('#btEnviarOrcamento').hide();
 		$('#aguardeEnviarOrcamento').slideDown(1000);
-		$('#pgOrcamentoPt1, #pgOrcamentoPt2').addClass('opacidade25');		
+		$('#pgOrcamentoPt1, #pgOrcamentoPt2').addClass('opacidade25');
+		$("a").click(function() { return false; }); 
 	});	
 	
 });

@@ -70,7 +70,7 @@ public class ValidacaoConta {
 		if(empresa.getCnpj().isEmpty()){
 			request.setAttribute("erroCnpjConta", "O campo '<b>CNPJ</b>' deve ser preenchido.");
 			resultado = false;
-		}else if (!ehNumero(empresa.getCnpj())){
+		}else if (!ehCnpj(empresa.getCnpj())){
 			request.setAttribute("erroCnpjConta", "O campo '<b>CNPJ</b>' deve ser possuir exatos 14 dígitos.");
 			resultado = false;
 		}
@@ -98,19 +98,40 @@ public class ValidacaoConta {
 		if(empresa.getSenha().isEmpty()){
 			request.setAttribute("erroSenhaConta", "O campo '<b>Senha do Gmail</b>' deve ser preenchido.");
 			resultado = false;
+		}		
+		
+		Telefone telefone1 = empresa.getTelefones().get(0);
+		if(!ehValido(telefone1)){
+			request.setAttribute("erroTelefone1", true);
+			resultado = false;
 		}
+		
 		
 		if(!resultado){
 			request.setAttribute("erroNoOrcamento", true);
 		}
 		
-		
-				
 		return resultado;
 	}
 
-	private static boolean ehNumero(String cnpj) {
+	private static boolean ehValido(Telefone telefone) {
+		if(!telefone.getDdd().isEmpty() && ehDdd(telefone.getDdd()) && !telefone.getNumero().isEmpty() && ehNumeroTelefone(telefone.getNumero())){
+			return true;
+		}
+		
+		return false;
+	}
+
+	private static boolean ehCnpj(String cnpj) {
 		return cnpj.matches("\\d{14}");
+	}
+	
+	private static boolean ehNumeroTelefone(String telefone) {
+		return telefone.matches("(\\d{8})|(\\d{9})");
+	}
+	
+	private static boolean ehDdd(String ddd) {
+		return ddd.matches("(\\d{2})");
 	}
 	
 

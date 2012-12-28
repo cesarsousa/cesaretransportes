@@ -323,7 +323,7 @@ padding-left: 10px;
 	/* position: fixed;
 	bottom: 0; */
 	background: #000000;	
-	padding: 10px;
+	padding: 1px;
 	
 }
 
@@ -345,7 +345,7 @@ padding-left: 10px;
 
 #menuFooter {
 	text-align: center;
-	padding: 10px:	
+	
 }
 
 #menuFooter a{
@@ -359,6 +359,7 @@ padding-left: 10px;
 }
 
 .sizeMedium {
+	padding: 10px;
 	font-size: medium;	
 	font-weight: bold;
 	font-style: italic;

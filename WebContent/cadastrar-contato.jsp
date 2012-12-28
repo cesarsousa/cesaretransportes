@@ -183,10 +183,10 @@
 						</h1>
 	
 						<h1>
-							<font size="2px"> <img alt="Ligue para nós"
-								src="imagens/operadoras_icone.png" align="middle" /> <img
-								alt="Este é o nosso grupo!" src="imagens/nextel_icone.png"
-								align="middle" />
+							<font size="2px">
+								<img alt="Ligue para nós" src="imagens/operadoras_icone.png" align="middle" />
+								<img alt="Este é o nosso grupo!" src="imagens/nextel_icone.png" align="middle" />
+								
 								&nbsp;&nbsp;${empresa.telefone1}&nbsp;&nbsp;${empresa.telefone2}
 								&nbsp;&nbsp;${empresa.telefone3}
 							</font>

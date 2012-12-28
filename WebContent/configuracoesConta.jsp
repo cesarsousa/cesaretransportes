@@ -15,6 +15,10 @@
 </head>
 
 <body bgcolor="#E8E8E8">
+
+<div id="wrap">
+<div id="main">
+
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
 <h3>${mensagemConta}</h3>
@@ -160,16 +164,28 @@
 		<input id="empresaNome" type="text" name="msn" value="${empresa.msn}" class="input50 direita">
 	</div>
 	
-	<div class="msgBorder msgErro">
-	Erros de telefone
+	<div class="msgBorder msgInfo">
+	<b>Forma de preenchimento de telefone.</b><br/>
+	Preenchimento opcional, ou no caso de prenchimento os campos <b>ddd</b> e <b>n&uacute;mero</b> s&atilde;o obrigat&oacute;rios. 
 	</div>
-	<br/>
+	<br/>	
+	
+	<c:if test="${not empty erroTelefoneConta}">		
+		<div class="msgBorder msgErro">
+			<c:if test="${not empty erroTelefone1}">Erro no preencimento do telefone 1<br/></c:if>
+			<c:if test="${not empty erroTelefone2}">Erro no preencimento do telefone 2<br/></c:if>
+			<c:if test="${not empty erroTelefone3}">Erro no preencimento do telefone 3</c:if>
+		</div>
+		<br/>
+	</c:if>	
+	
+	
 	
 	<table style="width: 100%">
 		<thead>			
 			<tr>
 			<td width="20%"><h2>DDD</h2></td>
-			<td width="30%"><h2>Telefone</h2></td>
+			<td width="30%"><h2>N&uacute;mero</h2></td>
 			<td width="50%"><h2>Complemento</h2></td>
 			</tr>
 		</thead>	
@@ -201,9 +217,13 @@
 </div>
 </div>
 
-<p class="corDeFundo">.</p>
-<div id="footerIndexSI">	
-	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+</div>
+</div>
+
+<br/>
+
+<div id="footer">
+	<jsp:include page="layout/footerSI.jspf"></jsp:include>
 </div>
 
 </body>
