@@ -142,6 +142,9 @@ public class CesareUtil {
 	 * @return o numero do telefone mascarado.
 	 */
 	public static String formatarTelefone(String telefone) {
+		if(telefone == null || telefone.isEmpty()){
+			return "";
+		}
 		return "(" + telefone.charAt(0) + telefone.charAt(1) + ") "
 				+ telefone.charAt(2) + telefone.charAt(3) + telefone.charAt(4) + telefone.charAt(5) + "-" 
 				+ telefone.charAt(6) + telefone.charAt(7) + telefone.charAt(8) + telefone.charAt(9);

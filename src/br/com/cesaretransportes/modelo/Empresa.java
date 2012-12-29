@@ -19,7 +19,7 @@ public class Empresa implements Serializable {
 	private String email;
 	private String senha;
 	private boolean mostrarMapa;
-	private String localizacao;
+	private String localizacao;	
 	
 	private List<Telefone> telefones;
 	
@@ -127,6 +127,27 @@ public class Empresa implements Serializable {
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
+	
+	public Telefone getTel1() {
+		if(telefones.size() > 0){
+			return telefones.get(0);
+		}
+		return new Telefone();
+	}	
+	
+	public Telefone getTel2() {
+		if(telefones.size() > 1){
+			return telefones.get(1);
+		}
+		return new Telefone();
+	}	
+	
+	public Telefone getTel3() {
+		if(telefones.size() > 2){
+			return telefones.get(2);
+		}
+		return new Telefone();
+	}	
 	
 	public String getDetalheEndereco(){
 		return endereco.getLocalizacao() + ", " + endereco.getCidade() + " - " + endereco.getEstado();

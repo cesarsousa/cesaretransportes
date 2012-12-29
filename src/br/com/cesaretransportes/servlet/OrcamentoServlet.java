@@ -14,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
 import br.com.cesaretransportes.dao.ClienteDao;
@@ -25,9 +24,9 @@ import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Cliente;
 import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.modelo.Endereco;
-import br.com.cesaretransportes.modelo.Telefone;
 import br.com.cesaretransportes.modelo.Endereco.StatusEndereco;
 import br.com.cesaretransportes.modelo.Orcamento;
+import br.com.cesaretransportes.modelo.Telefone;
 import br.com.cesaretransportes.util.CesareUtil;
 import br.com.cesaretransportes.util.Email;
 import br.com.cesaretransportes.util.HtmlMensagem;
@@ -54,21 +53,6 @@ public class OrcamentoServlet extends HttpServlet {
 			String acao = request.getParameter("acao");
 			
 			if("cadastrarOrcamento".equals(acao)){			
-			
-				/*
-				 *  requisicao da pagina cadastrar-orcamento.jsp
-				 */
-				
-				/*HttpSession sessao = request.getSession();
-				Cliente cliente = (Cliente) sessao.getAttribute("cliente");*/
-				
-				/*boolean clienteAtivo = false;
-				if(cliente != null){
-					clienteAtivo = clienteDao.clienteAtivo(cliente.getEmail(), cliente.getSenha());
-					if(!clienteAtivo){
-						new LogoutServlet().doPost(request, response);
-					}				
-				}*/
 						
 				String nome = request.getParameter("nome");
 				String email = request.getParameter("email");
@@ -146,9 +130,7 @@ public class OrcamentoServlet extends HttpServlet {
 				}
 			}			
 						
-			if ("responderOrcamento".equals(acao)) {
-				
-				 //Requisicao da pagina ler-orcamento.jsp				 
+			if ("responderOrcamento".equals(acao)) {							 
 				
 				int idOrcamento = Integer.parseInt(request.getParameter("codigo"));
 				orcamento = orcamentoDao.getOrcamento(idOrcamento);
@@ -166,9 +148,8 @@ public class OrcamentoServlet extends HttpServlet {
 				orcamentoDao.marcaStatusDeOrcamentoRespondido(idOrcamento);
 				orcamentoDao.updateNovaMensagem(novaMensagem, idOrcamento);
 				orcamento = orcamentoDao.getOrcamento(idOrcamento);
+				orcamento.getCliente().setTelefone(telefoneDao.get(orcamento.getCliente().getIdCliente()));
 				orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(idOrcamento));
-				
-
 				
 				 //  Resposta do orcamento ao cliente 
 				 

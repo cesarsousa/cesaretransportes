@@ -100,12 +100,26 @@ public class ValidacaoConta {
 			resultado = false;
 		}		
 		
-		Telefone telefone1 = empresa.getTelefones().get(0);
+		Telefone telefone1 = empresa.getTel1();
 		if(!ehValido(telefone1)){
 			request.setAttribute("erroTelefone1", true);
+			request.setAttribute("erroTelefoneConta", true);			
 			resultado = false;
 		}
 		
+		Telefone telefone2 = empresa.getTel2();
+		if(!ehValido(telefone2)){
+			request.setAttribute("erroTelefone2", true);
+			request.setAttribute("erroTelefoneConta", true);
+			resultado = false;
+		}
+		
+		Telefone telefone3 = empresa.getTel3();
+		if(!ehValido(telefone3)){
+			request.setAttribute("erroTelefone3", true);
+			request.setAttribute("erroTelefoneConta", true);
+			resultado = false;
+		}
 		
 		if(!resultado){
 			request.setAttribute("erroNoOrcamento", true);
@@ -115,6 +129,11 @@ public class ValidacaoConta {
 	}
 
 	private static boolean ehValido(Telefone telefone) {
+		if(telefone.getDdd().isEmpty() && telefone.getNumero().isEmpty()){
+			telefone.setComplemento("");
+			return true;
+		}		
+		
 		if(!telefone.getDdd().isEmpty() && ehDdd(telefone.getDdd()) && !telefone.getNumero().isEmpty() && ehNumeroTelefone(telefone.getNumero())){
 			return true;
 		}
@@ -133,6 +152,4 @@ public class ValidacaoConta {
 	private static boolean ehDdd(String ddd) {
 		return ddd.matches("(\\d{2})");
 	}
-	
-
 }

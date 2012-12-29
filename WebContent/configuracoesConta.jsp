@@ -179,29 +179,40 @@
 		<br/>
 	</c:if>	
 	
-	
+	<input type="hidden" name="idTelefone1" value="${empresa.tel1.idTelefone}">
+	<input type="hidden" name="idTelefone2" value="${empresa.tel2.idTelefone}">
+	<input type="hidden" name="idTelefone3" value="${empresa.tel3.idTelefone}">
 	
 	<table style="width: 100%">
 		<thead>			
 			<tr>
-			<td width="20%"><h2>DDD</h2></td>
+			<td width="20%"></td>
+			<td width="10%"><h2>DDD</h2></td>
 			<td width="30%"><h2>N&uacute;mero</h2></td>
-			<td width="50%"><h2>Complemento</h2></td>
+			<td width="40%"><h2>Complemento</h2></td>
 			</tr>
 		</thead>	
-	
-	
-		<tbody>
-		<c:set var="numero" value="${1}"/>
-		<c:forEach items="${empresa.telefones}" var="telefone">
-			<input type="hidden" name="idTelefone${numero}" value="${telefone.idTelefone}">		
+		<tbody>					
 			<tr>
-			<td width="20%"><input id="empresaTelefone" type="text" name="ddd${numero}" value="${telefone.ddd}" class="input30"></td>
-			<td width="30%"><input id="empresaTelefone" type="text" name="numero${numero}" value="${telefone.numero}" class="input80"></td>
-			<td width="50%"><input id="empresaTelefone" type="text" name="complemento${numero}" value="${telefone.complemento}" class="input80"></td>
+			<td width="20%"><h2>Telefone 1</h2></td>
+			<td width="10%"><input id="empresaTelefone" type="text" name="ddd1" value="${empresa.tel1.ddd}" class="input30" maxlength="2"></td>
+			<td width="30%"><input id="empresaTelefone" type="text" name="numero1" value="${empresa.tel1.numero}" class="input80" maxlength="9"></td>
+			<td width="40%"><input id="empresaTelefone" type="text" name="complemento1" value="${empresa.tel1.complemento}" class="input80"></td>
+			</tr>
+			
+			<tr>
+			<td width="20%"><h2>Telefone 2</h2></td>
+			<td width="10%"><input id="empresaTelefone" type="text" name="ddd2" value="${empresa.tel2.ddd}" class="input30" maxlength="2"></td>
+			<td width="30%"><input id="empresaTelefone" type="text" name="numero2" value="${empresa.tel2.numero}" class="input80" maxlength="9"></td>
+			<td width="40%"><input id="empresaTelefone" type="text" name="complemento2" value="${empresa.tel2.complemento}" class="input80"></td>
+			</tr>
+			
+			<tr>
+			<td width="20%"><h2>Telefone 3</h2></td>
+			<td width="10%"><input id="empresaTelefone" type="text" name="ddd3" value="${empresa.tel3.ddd}" class="input30" maxlength="2"></td>
+			<td width="30%"><input id="empresaTelefone" type="text" name="numero3" value="${empresa.tel3.numero}" class="input80" maxlength="9"></td>
+			<td width="40%"><input id="empresaTelefone" type="text" name="complemento3" value="${empresa.tel3.complemento}" class="input80"></td>
 			</tr>		
-			<c:set var="numero" value="${numero + 1}"/>		
-		</c:forEach>
 		</tbody>
 	
 	</table>

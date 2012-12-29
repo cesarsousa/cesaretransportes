@@ -14,15 +14,13 @@ import br.com.cesaretransportes.modelo.Telefone;
 public class EmpresaDao {
 	
 	private Connection conexao;
-	private TelefoneDao telefoneDao;
-	private EnderecoDao enderecoDao;
-
+	
 	public EmpresaDao(Connection conexao) {
 		this.conexao = conexao;
 	}
 
 	public Empresa get() throws SQLException {
-		return get(1);
+		return get(2);
 	}
 	
 	public Empresa get(int idEmpresa) throws SQLException {
@@ -48,7 +46,12 @@ public class EmpresaDao {
 		return null;
 	}
 	
-	public void atualizar(Empresa empresa) throws SQLException {
+	public void atualizar(Empresa empresa, EnderecoDao enderecoDao, TelefoneDao telefoneDao) throws SQLException {
+		
+		String sqlTelefone = "UPDATE telefone SET ddd='?1', numero='?2', complemento='?3' WHERE idTelefone='?4'";
+		String sqlEndereco = "UPDATE endereco SET cidade='?1', estado='?2', localizacao='?3' WHERE idEndereco='?4'";
+		String sqlEmpresa = "UPDATE empresa SET nome='?1', cnpj='?2', email='?3', senha='?4', msn='?5', mostrarMapa='?6', localizacao='?7' WHERE idEmpresa='?8'";
+		
 		
 	}
 

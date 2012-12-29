@@ -61,19 +61,43 @@ public class ConfiguracaoDeContaServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pagina = "/configuracoesConta.jsp";
-		Empresa empresa = ValidacaoConta.criarEmpresa(request);
 		
-		if(ValidacaoConta.validada(empresa, request)){
-			// atualizar a empresa no banco
-			// enviar resposta a solicitação
-		}else{
-			request.setAttribute("empresa", empresa);			
-		}
+		Connection conexao = null;
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
-		dispatcher.forward(request, response);
-		
+		try {
+			conexao = AbstractConnectionFactory.getConexao();
+			EmpresaDao empresaDao = new EmpresaDao(conexao);
+			EnderecoDao enderecoDao = new EnderecoDao(conexao);
+			TelefoneDao telefoneDao = new TelefoneDao(conexao);	
+			
+			String pagina = "/index-sistema-interno.jsp";
+			Empresa empresa = ValidacaoConta.criarEmpresa(request);
+			
+			if(ValidacaoConta.validada(empresa, request)){
+				empresaDao.atualizar(empresa, enderecoDao, telefoneDao);
+				request.setAttribute("mensagem", "Dados da empresa alterados com sucesso!");			
+			}else{
+				request.setAttribute("empresa", empresa);
+				pagina = "/configuracoesConta.jsp";
+			}
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
+			dispatcher.forward(request, response);
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();			
+			new CetransServletException("CNFE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();			
+			new CetransServletException("SQLE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
+		} finally{
+			try {
+				if (conexao != null) conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();			
+				new CetransServletException("SLE2", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
+			}
+		}		
 	}
 
 }

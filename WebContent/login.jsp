@@ -79,10 +79,9 @@
 			</td>
 		</tr>	
 	</table> 	
-	</div>
- 
+	</div> 
 </div>
- 
+<br/> 
 <div id="footer">
 <jsp:include page="layout/footer.jspf"/>
 </div>

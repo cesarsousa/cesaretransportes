@@ -84,7 +84,7 @@
 		</table>
 	</div> 
 </div>
-
+<br/>
 <div id="footer">
 <jsp:include page="layout/footer.jspf" />
 </div>
