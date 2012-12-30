@@ -370,7 +370,7 @@ public class ClienteDao {
 			}			
 		}else{
 			for(Cliente cliente : clientes){
-				if(cliente.getNumeroDoDocumento().contains(busca)){
+				if(cliente.getEmail().contains(busca)){
 					clientesDaBusca.add(cliente);
 				}
 			}

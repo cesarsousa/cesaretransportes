@@ -58,8 +58,8 @@ textarea {
 <body bgcolor="#dddddd">
 
 <div id="wrap">
-
 <div id="main">
+
 <div id="pgLerOrcamentoPt1">
 	<jsp:include page="includeCabecalhoLerEmail.jspf"></jsp:include>
 	<h3>Detalhe do or&ccedil;amento</h3>
@@ -157,7 +157,7 @@ textarea {
 			<div class="espacador"></div>
 		</c:when>
 		<c:otherwise>
-		<c:if test="${not orcamento.deletado }">
+		
 		<form action="enviarOrcamento" method="post">	
 			<input type="hidden" name="acao" value="responderOrcamento">		
 			<input type="hidden" name="codigo" value="${orcamento.idOrcamento}">						
@@ -169,11 +169,14 @@ textarea {
 					<input type="text" readonly="readonly" disabled="disabled" value="Email : ${orcamento.cliente.email }" class="laranjado botaoInput">
 					<i><textarea id="txAreaLerOrcamento" class="laranjado" name="resposta" rows="5"></textarea></i>
 					<br/>
+					
+					<h2>
+					Voc&ecirc; pode digitar <span id="contadorCaracterLerOrcamento">500</span> caracteres em sua mensagem.
+					</h2>
 					<input id="btEnviarRepostaOrcamento" type="submit" value="Enviar Resposta" class="button">
 				</td></tr></table>	
 			</div>	
 		</form>
-		</c:if>				
 		</c:otherwise>			
 	</c:choose>
 </div>
@@ -182,16 +185,18 @@ textarea {
 
 <div id="aguardeEnviarResposta" >
 	<div align="center">
-		<table class="telaAguarde">
-			<tr>
-				<td>
-					<h3>Sua resposta ao or&ccedil;amento esta sendo enviada. Por favor aguarde um instante!</h3>
-					<div align="center">
-						<img alt="Aguarde" src="imagens/cetrans_gif_aguarde.gif" />
-					</div> <br /> <br />
-				</td>
-			</tr>
-		</table>
+	<table class="telaAguarde">
+		<tr>
+			<td>
+			<h3>Sua resposta ao or&ccedil;amento esta sendo enviada. Por favor aguarde um instante!</h3>
+			<div align="center">
+			<img alt="Aguarde" src="imagens/cetrans_gif_aguarde.gif" />
+			</div>
+			<br />
+			<br />
+			</td>
+		</tr>
+	</table>
 	</div>
 	<br/>
 	<br/>

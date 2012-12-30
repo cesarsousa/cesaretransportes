@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="br.com.cesaretransportes.modelo.Cliente" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,7 +26,6 @@
 				<li><a href="index.jsp">Empresa</a></li>
 				<li><a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a></li>
 				<li><a href="cadastrar-contato.jsp">Contato</a></li>
-				<!-- <li><a href="download.jsp">Download</a></li> -->
 				<li><a href="login.jsp">Login</a></li>							
 			</ul>		
 			</td>
@@ -55,7 +53,7 @@
 						<p><input id="inputUsuario" type="text" name="usuario" class="input70" size="50" value="${usuario}"/></p>
 						<p>					
 						<input id="passwordChecker" type="text" value="SENHA" class="input70"/>
-						<input id="inputSenha" type="password" name="senha" class="input70" />
+						<input id="inputSenha" type="password" name="senha" class="input70" size="50"/>
 						</p>
 						<p>
 						<input type="submit" value="Login" class="button" />

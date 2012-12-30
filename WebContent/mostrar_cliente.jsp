@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>
@@ -10,18 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="icon" type="image/gif" href="imagens/animated_favicon1.gif" />
 <link rel="stylesheet" type="text/css" href="estilo.css" />
-<link rel="stylesheet" type="text/css" href="estilo2.css" />
-<script language="javascript">
-function abrirJanela(){
-	var esquerda = (screen.width - 550)/2;
-	var topo = (screen.height - 250)/2;
-	alertWindow = window.open("telaAguarde.html","bookpixWin","width=550, height=250, top="+topo+", left="+esquerda);	
-}
 
-function fecharJanela(){
-	alertWindow.close();
-}
-</script>
 <style type="text/css">
 p {
 	color: #333;
@@ -61,7 +50,10 @@ p.estilo{
 <title>Cesare Transportes - Clientes</title>
 </head>
 
-<body bgcolor="#cccccc" onunload="fecharJanela();">
+<body bgcolor="#cccccc">
+
+<div id="wrap">
+<div id="main">
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
@@ -138,6 +130,7 @@ p.estilo{
 							<input type="hidden" name="acao" value="4"/>
 							<label class="label">Filtro para busca:</label>
 							<input type="radio" name="filtro" value="nome" checked="checked"/><label class="label">nome</label>
+							<input type="radio" name="filtro" value="email"/><label class="label">email</label>
 							<input type="radio" name="filtro" value="id"/><label class="label">id</label>	      			
 			      			<!-- <input type="radio" name="filtro" value="documento" /><label class="label">documento</label> -->
 							<input type="text" name="parametro" class="input70" size="50"/>							
@@ -178,7 +171,7 @@ p.estilo{
 				</c:when>
 				<c:otherwise>
 					<td width="30">
-						<a href="ClienteAcaoServlet?id=${cliente.idCliente}&acao=2" onclick="javascript:return confirm('Deletar este cliente ?')">
+						<a href="ClienteAcaoServlet?id=${cliente.idCliente}&acao=2" onclick="javascript:return confirm('Excluir este cliente desta visualização?')">
 						<img src="imagens/excluir_20px.png" alt="excluir cliente desta vicualizacao"	title="excluir cliente desta visualizacao" border="0" /></a>
 					</td>
 				</c:otherwise>
@@ -192,7 +185,7 @@ p.estilo{
 				</c:when>
 				<c:otherwise>
 					<td width="40">
-						<a href="ClienteAcaoServlet?id=${cliente.idCliente}&acao=3" onclick="abrirJanela();">
+						<a href="ClienteAcaoServlet?id=${cliente.idCliente}&acao=3">
 						<img src="imagens/icone-confirmar.png" alt="confirmar cliente"	title="confirmar cliente para visualizacao" border="0" /></a></td>
 				</c:otherwise>
 			</c:choose>		
@@ -272,11 +265,12 @@ p.estilo{
 	</table>
 	</c:if>
 	</div>
- 
+</div>
+</div>
 
-<p class="corDeFundo">.</p>
-<div id="footerIndexSI">
-	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+<br/>
+<div id="footer">
+	<jsp:include page="layout/footerSI.jspf"></jsp:include>	
 </div>
 
 </body>

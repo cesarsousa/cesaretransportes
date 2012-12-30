@@ -15,7 +15,11 @@ $(document).ready(function(){
 	if($('#mensagemCadContato').val() == "")$('#mensagemCadContato').puts('DIGITE SUA MENSAGEM ...');
 	
 	addRemoveDestaque('#inputNomeContato, #inputEmailContato, #mensagemCadContato');
-	
+	$('#mensagemCadContato').autoResize();
+	$('#mensagemCadContato').keyup(function() {		
+		limitarCaracteres('#mensagemCadContato', '#contadorCaracterContato', 2000);		  
+	});
+		
 	$('#aguardeEnviarContato').hide();
 	$('#btContato').click(function(){
 		$('#btEnviarContato').hide();

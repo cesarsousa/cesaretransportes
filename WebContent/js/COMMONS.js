@@ -1,14 +1,32 @@
-function abrirJanela(){
-	var esquerda = (screen.width - 550)/2;
-	var topo = (screen.height - 250)/2;
-	alertWindow = window.open("telaAguarde.html","bookpixWin","width=550, height=250, top="+topo+", left="+esquerda);	
+
+function limitarCaracteres(areaDeTexto, contador, totalCaracteres){		
+	var valorDigitado = $(areaDeTexto).val();
+	var totalDigitado = valorDigitado.length;		
+		
+	if(totalDigitado < totalCaracteres){
+		var resto = totalCaracteres - totalDigitado;
+		$(contador).html('').html(resto);
+	}else{
+		$(contador).html('').html('0');
+		$(areaDeTexto).val(valorDigitado.substring(0, totalCaracteres-2));
+	}	
 }
 
+$('#mensagemCadOrcamento').keyup(function() {
+	
+	var valorDigitado = $('#mensagemCadOrcamento').val();
+	var totalDigitado = valorDigitado.length;		
+		
+	if(totalDigitado < 500){
+		var resto = 500 - totalDigitado;
+		$('#contadorCaracterOrcamento').html('').html(resto);
+	}else{
+		$('#contadorCaracterOrcamento').html('').html('0');
+		$('#mensagemCadOrcamento').val(valorDigitado.substring(0, 500));
+	}	  
+	  
+});
 
-
-function fecharJanela(){
-	alertWindow.close();
-}
 
 function addRemoveDestaque(elemento) {
 	$(elemento).focus(function() {

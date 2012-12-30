@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -9,7 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="icon" type="image/gif" href="imagens/animated_favicon1.gif" />
 <link rel="stylesheet" type="text/css" href="estilo.css" />
-<link rel="stylesheet" type="text/css" href="estilo2.css" />
 
 <style type="text/css">
 p {
@@ -46,18 +46,12 @@ table {
 </head>
 
 <body bgcolor="#cccccc">
+<div id="wrap">
+<div id="main">
+
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
 <h3>${mensagem}</h3>
-
-<!-- <ul>
-	<li><img alt="orcamento nao confirmado" src="imagens/van_orcamento_30_30.png">
-		<label class="label2">Representa um or&ccedil;amento comuns, ou seja, n&atilde;o foi confimado com um servi&ccedil;o ativo.</label>
-	<li><img alt="orcamento confirmado como servico" src="imagens/van_servico_30_30.png">
-		<label class="label2">Representa um servi&ccedil;o ativo que n&atilde;o foi entregue.</label>
-	<li><img alt="serviço finalizado" src="imagens/van_servico_entregue_30_30.png">
-		<label class="label2">Representa um servi&ccedil;o inativo, ou seja, um servi&ccedil;o ativo j&aacute; entregue.</label></li>
-</ul> -->
 
 <table width="100%">
 	<tr>
@@ -185,14 +179,12 @@ table {
 		</tr>
 	</table>
 </c:if>
+</div>
+</div>
 
-<p class="corDeFundo">.</p>
-
-
-
-
-<div id="footerIndexSI">	
-	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+<br/>
+<div id="footer">	
+	<jsp:include page="layout/footerSI.jspf"></jsp:include>
 </div>
 </body>
 </html>

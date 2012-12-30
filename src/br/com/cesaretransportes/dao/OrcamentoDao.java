@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import br.com.cesaretransportes.modelo.Orcamento;
 
 public class OrcamentoDao {
@@ -35,10 +37,10 @@ public class OrcamentoDao {
 			statement.setString(6, "false");
 			Date dtCad = new Date(orcamento.getDataCadastro().getTimeInMillis());
 			statement.setDate(7, dtCad);
-			statement.setDate(8, null);
+			statement.setDate(8, null);		
 			
 			statement.execute();
-			
+						
 			sql = "select max(idOrcamento) as ultimoId from orcamento;";
 			statement = conexao.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
@@ -226,7 +228,7 @@ public class OrcamentoDao {
 	public void updateNovaMensagem(String novaMensagem, int idOrcamento) throws SQLException {
 		String sql = "update orcamento set mensagem='" + novaMensagem
 				+ "' where idOrcamento='" + idOrcamento + "'";
-
+		
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.execute();
 		statement.close();

@@ -123,9 +123,10 @@
 	
 							<p>
 								<span class="erro"><c:out value="${msgMensagem}" /></span><br />
-								<textarea id="mensagemCadContato" name="mensagem" rows="10"
-									class="mensagemContato">${mensagem}</textarea>
+								<textarea id="mensagemCadContato" name="mensagem" rows="10"	class="mensagemContato">${mensagem}</textarea>
 							</p>
+							
+							<h2>Voc&ecirc; pode digitar <span id="contadorCaracterContato">1000</span> caracteres em sua mensagem.</h2>
 	
 							<div id="btEnviarContato">
 								<p>
@@ -166,24 +167,18 @@
 	
 					<div align="center">
 						<h3>
-							<font style="color: white;">Ou utilize um dos nossos canais
-								de comunica&ccedil;&atilde;o !</font>
+							<font style="color: white;">Ou utilize um dos nossos canais	de comunica&ccedil;&atilde;o !</font>
 						</h3>
 	
-	
 						<h1>
-							<img alt="Mande-nos um Gmail!" src="imagens/gmail_icone.png"
-								align="middle" />
-							&nbsp;&nbsp;${empresa.email}&nbsp;&nbsp;&nbsp;&nbsp; <img
-								alt="Me Add!" src="imagens/msn_icone.png" align="middle" />
-							&nbsp;&nbsp;${empresa.msn}
+							<img alt="Mande-nos um Gmail!" src="imagens/gmail_icone.png" align="middle" />&nbsp;&nbsp;${empresa.email}&nbsp;&nbsp;&nbsp;&nbsp;
+							<img alt="Me Add!" src="imagens/msn_icone.png" align="middle" />&nbsp;&nbsp;${empresa.msn}
 						</h1>
 	
 						<h1>
 							<font size="2px">
 								<img alt="Ligue para nós" src="imagens/operadoras_icone.png" align="middle" />
-								<img alt="Este é o nosso grupo!" src="imagens/nextel_icone.png" align="middle" />
-								
+								<img alt="Este é o nosso grupo!" src="imagens/nextel_icone.png" align="middle" />								
 								&nbsp;&nbsp;${empresa.telefone1}&nbsp;&nbsp;${empresa.telefone2}
 								&nbsp;&nbsp;${empresa.telefone3}
 							</font>

@@ -167,7 +167,9 @@
 					<p>			
 					<textarea id="mensagemCadOrcamento" name="mensagem" rows="10" class="laranjado width">${mensagem}</textarea>
 					</p>
-					
+					<h2>
+					Voc&ecirc; pode digitar <span id="contadorCaracterOrcamento">1000</span> caracteres em sua mensagem.
+					</h2>
 					
 						<input id="btEnviarOrcamento" type="submit" value="Enviar Orçamento" class="button" />					
 					

@@ -11,6 +11,10 @@ $(document).ready(function(){
 		$(this).removeClass('destacar');
 	});
 	
+	$('#txAreaLerOrcamento').keyup(function() {		
+		limitarCaracteres('#txAreaLerOrcamento', '#contadorCaracterLerOrcamento', 500);		  
+	});
+	
 	$('#aguardeEnviarResposta').hide();
 	$('#btEnviarRepostaOrcamento').click(function(){
 		$('#btEnviarRepostaOrcamento').hide();
