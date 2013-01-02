@@ -52,6 +52,49 @@ public class EmpresaDao {
 		String sqlEndereco = "UPDATE endereco SET cidade='?1', estado='?2', localizacao='?3' WHERE idEndereco='?4'";
 		String sqlEmpresa = "UPDATE empresa SET nome='?1', cnpj='?2', email='?3', senha='?4', msn='?5', mostrarMapa='?6', localizacao='?7' WHERE idEmpresa='?8'";
 		
+		sqlEndereco = sqlEndereco
+				.replace("?1", empresa.getEndereco().getCidade())
+				.replace("?2", empresa.getEndereco().getEstado())
+				.replace("?3", empresa.getEndereco().getLocalizacao())
+				.replace("?4", String.valueOf(empresa.getEndereco().getIdEndereco()));
+		
+		System.out.println(sqlEndereco);
+		
+		String sqlTelefoneFormat = sqlTelefone
+				.replace("?1", empresa.getTel1().getDdd())
+				.replace("?2", empresa.getTel1().getNumero())
+				.replace("?3", empresa.getTel1().getComplemento())
+				.replace("?4", String.valueOf(empresa.getTel1().getIdTelefone()));
+		
+		System.out.println(sqlTelefoneFormat);
+		
+		sqlTelefoneFormat = sqlTelefone
+				.replace("?1", empresa.getTel2().getDdd())
+				.replace("?2", empresa.getTel2().getNumero())
+				.replace("?3", empresa.getTel2().getComplemento())
+				.replace("?4", String.valueOf(empresa.getTel2().getIdTelefone()));
+		
+		System.out.println(sqlTelefoneFormat);
+		
+		sqlTelefoneFormat = sqlTelefone
+				.replace("?1", empresa.getTel3().getDdd())
+				.replace("?2", empresa.getTel3().getNumero())
+				.replace("?3", empresa.getTel3().getComplemento())
+				.replace("?4", String.valueOf(empresa.getTel3().getIdTelefone()));
+		
+		System.out.println(sqlTelefoneFormat);	
+		
+		sqlEmpresa = sqlEmpresa
+				.replace("?1", empresa.getNome())
+				.replace("?2", empresa.getCnpj())
+				.replace("?3", empresa.getEmail())
+				.replace("?4", empresa.getSenha())
+				.replace("?5", empresa.getMsn())
+				.replace("?6", String.valueOf(empresa.isMostrarMapa()))
+				.replace("?7", empresa.getLocalizacao())
+				.replace("?8", String.valueOf(empresa.getIdEmpresa()));
+		
+		System.out.println(sqlEmpresa);
 		
 	}
 
