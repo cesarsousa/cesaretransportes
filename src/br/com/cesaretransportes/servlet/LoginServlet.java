@@ -11,14 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
-import br.com.cesaretransportes.dao.ClienteDao;
+import br.com.cesaretransportes.dao.EmpresaDao;
 import br.com.cesaretransportes.dao.EnderecoDao;
-import br.com.cesaretransportes.dao.OrcamentoDao;
 import br.com.cesaretransportes.dao.TelefoneDao;
-import br.com.cesaretransportes.modelo.Cliente;
+import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.util.MSG;
 
 public class LoginServlet extends HttpServlet {	
@@ -31,25 +28,49 @@ public class LoginServlet extends HttpServlet {
 		try {
 						
 			conexao = AbstractConnectionFactory.getConexao();
-			OrcamentoDao orcamentoDao = new OrcamentoDao(conexao);
+			EmpresaDao empresaDao = new EmpresaDao(conexao);
 			TelefoneDao telefoneDao = new TelefoneDao(conexao);
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
-			ClienteDao clienteDao = new ClienteDao(conexao);			
 			
+			String pagina = "/resposta-de-solicitacao.jsp";
 			String usuario = request.getParameter("usuario");
 			String senha = request.getParameter("senha");
-			String pagina = "/resposta-de-solicitacao.jsp";
 			
-			usuario = "c";
-			senha = "c";
+			Empresa empresa = empresaDao.get(usuario, senha);			
 			
-			Cliente cliente = clienteDao.getCliente(usuario, senha);			
+			if (empresa == null) {
+				request.setAttribute("mensagem", MSG.LOGIN.toString());
+				pagina = "/login.jsp";
+			} else {			
+				empresa.setEndereco(enderecoDao.getEnderecoEmpresa(empresa.getIdEmpresa()));
+				empresa.setTelefones(telefoneDao.getTelefonesEmpresa(empresa.getIdEmpresa()));
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("empresa", empresa);		
+				
+				pagina = "/index-sistema-interno.jsp";				
+			}
 			
-			if (cliente == null) {
+			
+			/*
+			 
+			Cliente cliente = clienteDao.getCliente(usuario, senha);  
+			
+		 	if (cliente == null) {
 				request.setAttribute("mensagem", MSG.LOGIN.toString());
 				pagina = "/login.jsp";
 			} else {				
-				if(cliente.getTipoCliente().equals("A")){
+				if(cliente.getTipoCliente().equals("A")){				
+					
+					
+					Empresa empresa = empresaDao.get();
+					empresa.setEndereco(enderecoDao.getEnderecoEmpresa(empresa.getIdEmpresa()));
+					empresa.setTelefones(telefoneDao.getTelefonesEmpresa(empresa.getIdEmpresa()));
+					
+					HttpSession session = request.getSession();
+					session.setAttribute("empresa", empresa);
+					
+					
 					pagina = "/index-sistema-interno.jsp";
 				}else{
 					if(cliente.getDataExclusao() != null){
@@ -65,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 						pagina = "/index.jsp";						
 					}
 				}				
-			}			
+			}*/			
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
 			dispatcher.forward(request, response);

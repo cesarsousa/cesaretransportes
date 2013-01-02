@@ -75,12 +75,7 @@ public class ConfiguracaoDeContaServlet extends HttpServlet {
 			
 			if(ValidacaoConta.validada(empresa, request)){
 				empresaDao.atualizar(empresa, enderecoDao, telefoneDao);
-				request.setAttribute("mensagem", "Dados da empresa alterados com sucesso!");
-				
-				
-				
-				request.setAttribute("empresa", empresa);
-				pagina = "/configuracoesConta.jsp";
+				request.setAttribute("mensagem", "Dados da empresa alterados com sucesso!");			
 			}else{
 				request.setAttribute("empresa", empresa);
 				pagina = "/configuracoesConta.jsp";

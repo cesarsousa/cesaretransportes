@@ -54,6 +54,8 @@ p.estilo{
 
 <div id="wrap">
 <div id="main">
+<jsp:useBean id="data" class="java.util.Date" />
+<h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
@@ -62,7 +64,7 @@ p.estilo{
 
 	<table width="100%">
 		<tr>
-			<td align="left"><jsp:useBean id="data" class="java.util.Date" />
+			<td align="left">
 				<p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
 			</td>
 		</tr>

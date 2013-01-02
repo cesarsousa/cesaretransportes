@@ -2,12 +2,12 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>
 <link rel="icon" type="image/gif" href="imagens/animated_favicon1.gif" />
 <link rel="stylesheet" type="text/css" href="estilo.css">
-<link rel="stylesheet" type="text/css" href="estilo2.css">
 <style type="text/css">
 ul li {
 	text-align: left;
@@ -21,6 +21,10 @@ ul li {
 
 <div id="wrap">
 <div id="main">
+
+<jsp:useBean id="data" class="java.util.Date" />
+
+<h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 <br/>

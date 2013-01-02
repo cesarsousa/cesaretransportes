@@ -44,7 +44,14 @@
 	<table width="800px" align="center">
 		<tr>
 			<td>
-				<div id="cardIndex">				
+				<div id="cardIndex">
+				
+				<c:if test="${not empty mensagem}">
+					<div id="infoMensagem" align="center">
+						<img id="fechar" class="direita" src="imagens/iconeok.png" alt="OK" title="OK" border="0" />					
+						<pre><span class="mensagem">${mensagem}</span></pre>
+					</div>
+				</c:if>				
 				
 				<h3> &Aacute;rea Restrita. Somente pessoal autorizado.</h3>
 				
@@ -67,12 +74,16 @@
 						<div align="center">
 						<p>
 						<span id="textoRecuperarSenha" class="legenda ponteiro">Esqueceu sua senha? Clique aqui.</span>
-						</p>				
+						</p>
+						
+						<p id="textoContatoADM">
+						<span class="legenda">Entre em contato com o administrador do site.</span>
+						</p>
+										
 						</div>						
 						</td>
 					</tr>						
-				</table>
-				
+				</table>				
 				</div>
 			</td>
 		</tr>	

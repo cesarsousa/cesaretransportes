@@ -17,7 +17,7 @@ import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Empresa;
 
 /*
- * Esta servlet recebe requisa��o da pagina cadastrar-contato.jsp
+ * Esta servlet recebe requisacao da pagina cadastrar-contato.jsp
  */
 public class EmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

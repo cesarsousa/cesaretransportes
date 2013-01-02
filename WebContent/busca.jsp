@@ -31,10 +31,12 @@ ul li {
 <div id="wrap">
 <div id="main">
 
+<jsp:useBean id="data" class="java.util.Date" />
+<h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
+
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 <br />
 <h3>Consulta por Or&ccedil;amento</h3>
-<jsp:useBean id="data" class="java.util.Date" />
 <p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
 <table class="laranjado" width="740" align="center" bgcolor="#ffffff">
 	<tr>

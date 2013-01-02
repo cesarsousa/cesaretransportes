@@ -49,13 +49,16 @@ table {
 <div id="wrap">
 <div id="main">
 
+<jsp:useBean id="data" class="java.util.Date" />
+<h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
+
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
 <h3>${mensagem}</h3>
 
 <table width="100%">
 	<tr>
-		<td align="left" width="50%"><jsp:useBean id="data" class="java.util.Date" />
+		<td align="left" width="50%">
 		<p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
 		<p>
 		<label class="label1">${tipoOrcamento}</label>
@@ -65,11 +68,15 @@ table {
 		<td align="right" width="50%" class="laranjado" bgcolor="#ffffff">
 		<label>Filtar busca de or&ccedil;amentos por:</label>
 		<ul class="listaSimples">
-		<li><input type="radio" name="tipoOrcamento" value="naolido" checked="checked"><label>N&atilde;o Lidos</label>
-		<input type="radio" name="tipoOrcamento" value="lido"><label>Lidos</label>
-		<input type="radio" name="tipoOrcamento" value="excluido"><label>Exclu&iacute;dos</label>
-		<input type="radio" name="tipoOrcamento" value="naoexcluido"><label>N&atilde;o Exclu&iacute;dos</label>
-		<input type="submit" value="Pesquisar" class="button" /></li>
+		<li>
+			<form action="mostrarListaDosOrcamentos" method="get">
+			<input type="radio" name="opcao" value="naolido" checked="checked"><label>N&atilde;o Lidos</label>
+			<input type="radio" name="opcao" value="lido"><label>Lidos</label>
+			<input type="radio" name="opcao" value="excluido"><label>Exclu&iacute;dos</label>
+			<input type="radio" name="opcao" value="naoexcluido"><label>N&atilde;o Exclu&iacute;dos</label>
+			<input type="submit" value="Pesquisar" class="button" />
+			</form>
+		</li>
 		</ul>
 		</td>		
 	</tr>
@@ -95,7 +102,7 @@ table {
 							</c:when>
 							
 							<c:otherwise>
-							<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=excluirOrcamento" onclick="javascript:return confirm('Deletar este Orcamento ?')">
+							<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=excluirOrcamento" onclick="javascript:return confirm('Excluir este Orcamento?')">
 							<img src="imagens/excluir_20px.png" alt="excluir orcamento" title="excluir orcamento" border="0" /></a>
 							</c:otherwise>
 						</c:choose>					
@@ -108,7 +115,7 @@ table {
 							</c:when>
 							<c:otherwise>
 								<td width="30">
-									<a href="">
+									<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=confirmarOrcamento" onclick="javascript:return confirm('confirmar este orçamento como não excluído?')">
 									<img src="imagens/icone-confirmar.png" alt="confirmar orcamento para visualizacao"	title="confirmar orcamento para visualizacao" border="0" /></a></td>
 							</c:otherwise>
 						</c:choose>
@@ -151,8 +158,7 @@ table {
 								<img src="imagens/escrever_20.jpg" title="não respondido" alt="não respondido" border="0" />
 								</td>
 							</c:otherwise>
-						</c:choose>
-				
+						</c:choose>			
 
 						<c:choose>
 							<c:when test="${orcamento.orcamentoLido}">
