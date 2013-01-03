@@ -3,6 +3,7 @@ package br.com.cesaretransportes.modelo;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Empresa implements Serializable {
@@ -24,6 +25,11 @@ public class Empresa implements Serializable {
 	private List<Telefone> telefones;
 	
 	public Empresa(){}
+	
+	public Empresa(Endereco endereco, ArrayList<Telefone> telefones) {
+		this.endereco = endereco;
+		this.telefones = telefones;
+	}
 	
 	public Empresa(
 			int idEmpresa, 
@@ -47,7 +53,7 @@ public class Empresa implements Serializable {
 		this.localizacao = localizacao;
 		this.telefones = telefones;
 	}
-	
+
 	public int getIdEmpresa() {
 		return idEmpresa;
 	}

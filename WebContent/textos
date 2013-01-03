@@ -1,4 +1,15 @@
 
+Inicialização do banco...
+
+criar a base de dados e as tabelas...
+
+criar o registro empresa, um endereco de referencia e 3 telefones, é obrigatório criar 3 telefone, caso
+não exista dados necessários para as tabelas deixar em branco
+
+
+
+
+
 <!-- Enviar Contato(email) -->
   <servlet>
     <servlet-name>ContatoServlet</servlet-name>

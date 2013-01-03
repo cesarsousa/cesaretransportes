@@ -98,24 +98,29 @@ public class OrcamentoServlet extends HttpServlet {
 					endereco = new Endereco(e, c, orcamento, cidadeDestino, estadoDestino, enderecoDestino, StatusEndereco.DESTINO);
 					enderecoDao.cadastrarEndereco(endereco);				
 										
-					/*
-					 *  notificacao para o cliente do recebimento do orcamento
-					 */
-					Email.enviarEmail(
-							empresa.getEmail(), empresa.getSenha(),	orcamento.getCliente().getEmail(),
-							"Cesare Transportes - confirmacao de Recebimento Orcamento",
-							HtmlMensagem.getMensagemNotificacaoCliente(orcamento.getCliente().getNome(), "or&ccedil;amento"));
 					
-					/*
-					 *  notificacao para a empresa de um novo orcamento recebido
-					 */
-					Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), empresa.getEmail(), 
-							"CeTrans - Novo Orcamento numero: " + orcamento.getIdOrcamento(), 
-							HtmlMensagem.getMensagemNotificacaoEmpresa(
-									orcamento.getCliente().getNome(), 
-									CesareUtil.formatarData(orcamento.getDataCadastro(), "dd/MM/yyyy"), 
-									orcamento.getIdOrcamento(), orcamento.getCliente().getEmail(), orcamento.getMensagem(), "or&ccedil;amento"));
-	
+					if(empresa != null){						
+					
+						/*
+						 *  notificacao para o cliente do recebimento do orcamento
+						 */
+						Email.enviarEmail(
+								empresa.getEmail(), empresa.getSenha(),	orcamento.getCliente().getEmail(),
+								"Cesare Transportes - confirmacao de Recebimento Orcamento",
+								HtmlMensagem.getMensagemNotificacaoCliente(orcamento.getCliente().getNome(), "or&ccedil;amento"));
+						
+						/*
+						 *  notificacao para a empresa de um novo orcamento recebido
+						 */
+						Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), empresa.getEmail(), 
+								"CeTrans - Novo Orcamento numero: " + orcamento.getIdOrcamento(), 
+								HtmlMensagem.getMensagemNotificacaoEmpresa(
+										orcamento.getCliente().getNome(), 
+										CesareUtil.formatarData(orcamento.getDataCadastro(), "dd/MM/yyyy"), 
+										orcamento.getIdOrcamento(), orcamento.getCliente().getEmail(), orcamento.getMensagem(), "or&ccedil;amento"));
+						
+					}				
+					
 					request.setAttribute("mensagem", "Obrigado,\n\nSeu or&ccedil;amento foi enviado com sucesso e "
 									+ "em breve entraremos em contato!\n\nAtenciosamente,\nCesare Transportes Ltda.");
 					
@@ -159,7 +164,6 @@ public class OrcamentoServlet extends HttpServlet {
 
 				request.setAttribute("orcamento", orcamento);
 				request.setAttribute("orcamentoRespondido", true);
-				/*request.setAttribute("veiculosCadastrado", veiculoDao.getAll());*/ 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ler-orcamento.jsp");
 				dispatcher.forward(request, response);
 			}			

@@ -20,35 +20,19 @@ public class EmpresaDao {
 	}
 
 	public Empresa get() throws SQLException {
-		return get(2);
+		return get(1);
 	}
 	
 	public Empresa get(int idEmpresa) throws SQLException {
 		String sql = "select idEmpresa, nome, cnpj, msn, email, senha, mostrarMapa, localizacao from empresa where idEmpresa=" + idEmpresa;
 		return obterEmpresa(sql);
 	}
-
-	private Empresa obterEmpresa(String sql) throws SQLException {
-		PreparedStatement statement = conexao.prepareStatement(sql);
-		ResultSet resultSet = statement.executeQuery();
-		if(resultSet.first()){
-			Endereco endereco = new Endereco();		
-			List<Telefone> telefones = new ArrayList<Telefone>();
-			
-			return new Empresa(
-					resultSet.getInt("idEmpresa"), 
-					resultSet.getString("nome"),
-					endereco, 
-					resultSet.getString("cnpj"),
-					resultSet.getString("msn"),
-					resultSet.getString("email"), 
-					resultSet.getString("senha"),
-					resultSet.getBoolean("mostrarMapa"),
-					resultSet.getString("localizacao"),
-					telefones);
-		}
-		return null;
-	}
+	
+	public Empresa get(String email, String senha) throws SQLException {
+		String sql = "select idEmpresa, nome, cnpj, msn, email, senha, mostrarMapa, localizacao from empresa where email='?1' and senha='?2' "
+				.replace("?1", email).replace("?2", senha);
+		return obterEmpresa(sql);
+	}	
 	
 	public void atualizar(Empresa empresa, EnderecoDao enderecoDao, TelefoneDao telefoneDao) throws SQLException {
 				
@@ -106,12 +90,28 @@ public class EmpresaDao {
 		
 		statement.close();
 		conexao.close();		
-	}
-
-	public Empresa get(String email, String senha) throws SQLException {
-		String sql = "select idEmpresa, nome, cnpj, msn, email, senha, mostrarMapa, localizacao from empresa where email='?1' and senha='?2' "
-				.replace("?1", email).replace("?2", senha);
-		return obterEmpresa(sql);
+	}	
+	
+	private Empresa obterEmpresa(String sql) throws SQLException {
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+		if(resultSet.first()){
+			Endereco endereco = new Endereco();		
+			List<Telefone> telefones = new ArrayList<Telefone>();
+			
+			return new Empresa(
+					resultSet.getInt("idEmpresa"), 
+					resultSet.getString("nome"),
+					endereco, 
+					resultSet.getString("cnpj"),
+					resultSet.getString("msn"),
+					resultSet.getString("email"), 
+					resultSet.getString("senha"),
+					resultSet.getBoolean("mostrarMapa"),
+					resultSet.getString("localizacao"),
+					telefones);
+		}
+		return null;
 	}
 
 }
