@@ -15,7 +15,7 @@ public abstract class AbstractConnectionFactory {
 		/*
 		 * base de dados mysql cetrans2.sql, arquivo anexo ao projeto
 		 */
-		String url = "jdbc:mysql://localhost/cesaretransportes";
+		String url = "jdbc:mysql://localhost/cesareTransportes";
 		String usuario = "root";
 		String senha = "root";
 		String driver = "com.mysql.jdbc.Driver";

@@ -11,6 +11,8 @@
 <title>Cesare Transportes - Valores</title>
 
 <body bgcolor="#E8E8E8">
+<div id="wrap">
+<div id="main">
 
 <jsp:include page="layout/header.jspf" />
 
@@ -129,11 +131,11 @@ conhecimento aplicado, foco na relev&acirc;ncia e capacidade inovadora.</h2>
 <div id='back-top'>
 <a href='#top'><span></span></a>
 </div>
-
-<p>.</p>
-<p>.</p>
-<div id="footerIndex">
-	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+</div>
+</div>
+<br/>
+<div id="footer">
+<jsp:include page="layout/footerSI.jspf" />
 </div>
 
 </body>

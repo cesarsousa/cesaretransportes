@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
 			
 			String pagina = "/resposta-de-solicitacao.jsp";
-			String usuario = request.getParameter("usuario");
+			String usuario = request.getParameter("usuario") + "@gmail.com";
 			String senha = request.getParameter("senha");
 			
 			Empresa empresa = empresaDao.get(usuario, senha);			
