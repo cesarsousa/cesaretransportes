@@ -17,7 +17,7 @@ import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Empresa;
 
 /*
- * Esta servlet recebe requisa��o da pagina cadastrar-contato.jsp
+ * Esta servlet recebe requisacao da pagina cadastrar-contato.jsp
  */
 public class EmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +48,9 @@ public class EmpresaServlet extends HttpServlet {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastrar-contato.jsp");
 			dispatcher.forward(request, response);
+		} catch (NullPointerException e){
+			e.printStackTrace();			
+			new CetransServletException("NPE", getClass().getSimpleName(), "Não foi possível gerar a visualização dos dados da empresa.").doPost(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();			
 			new CetransServletException("CNFE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);

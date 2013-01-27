@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import br.com.cesaretransportes.modelo.Orcamento;
 
 public class OrcamentoDao {
@@ -35,10 +37,10 @@ public class OrcamentoDao {
 			statement.setString(6, "false");
 			Date dtCad = new Date(orcamento.getDataCadastro().getTimeInMillis());
 			statement.setDate(7, dtCad);
-			statement.setDate(8, null);
+			statement.setDate(8, null);		
 			
 			statement.execute();
-			
+						
 			sql = "select max(idOrcamento) as ultimoId from orcamento;";
 			statement = conexao.prepareStatement(sql);
 			ResultSet resultSet = statement.executeQuery();
@@ -63,11 +65,11 @@ public class OrcamentoDao {
 	 */
 	public List<Orcamento> getListaDeOrcamentos(int idCliente, String filtro, int tipoOrdenacao) throws SQLException {
 		if(idCliente == 0){
-			return getListaDeOrcamentos(filtro, tipoOrdenacao);
+			return getListaDeOrcamentos("", filtro, tipoOrdenacao);
 		}		
 		
 		List<Orcamento> orcamentos = new ArrayList<Orcamento>();
-		for(Orcamento orcamento : getListaDeOrcamentos(filtro, tipoOrdenacao)){
+		for(Orcamento orcamento : getListaDeOrcamentos("", filtro, tipoOrdenacao)){
 			if(orcamento.getCliente().getIdCliente() == idCliente){
 				orcamentos.add(orcamento);
 			}
@@ -77,25 +79,37 @@ public class OrcamentoDao {
 
 	/**
 	 * Metodo utilitario para a listar todos os orcamentos cadastrados.
-	 * 
-	 * @param filtro
-	 *            parametro de ordenacao para exibicao dos orcamentos.
+	 * @param opcao parametro para condicao na listagem dos orcamentos
+	 * <ul>
+	 * <li>naolido : where orcamentoLido='false'</li>
+	 * <li>lido : where orcamentoLido='true'</li>
+	 * <li>excluido : where dataExclusao is not null</li>
+	 * <li>naoexcluido : where dataExclusao is null</li>
+	 * <li>String vazia representa uma consulta sem condicao, ou seja, retorna todos os orcamentos registrados na base de dados</li>
+	 * </ul> 
+	 * @param orderBy
+	 *            parametro(s) de ordenacao para exibicao dos orcamentos.
 	 * @param tipoOrdenacao 0 para ordenacao crescente, 1 para ordenacao descrescente.
 	 * @return lista dos orcamentos que nao foram logicamente excluidos excluidos 
 	 * @throws SQLException 
 	 */
-	public List<Orcamento> getListaDeOrcamentos(String filtro, int tipoOrdenacao) throws SQLException {
+	public List<Orcamento> getListaDeOrcamentos(String opcao, String orderBy, int tipoOrdenacao) throws SQLException {
 		String ordenacao = tipoOrdenacao == 0 ? "asc" : "desc";
 		
-		String condicaoExclusao = "where dataExclusao is null";
-		
-//		String sql = "select " +
-//				"idOrcamento, idCliente, peso, dimensao, mensagem, orcamentoLido, orcamentoRespondido, dataCadastro, dataExclusao " +
-//				"from orcamento  where dataExclusao is null order by " + filtro + " " + ordenacao;
+		String sqlCondicao = "";		
+		if("naolido".equals(opcao)){
+			sqlCondicao = "where orcamentoLido='false'";
+		}else if("lido".equals(opcao)){
+			sqlCondicao = "where orcamentoLido='true'";
+		}else if("excluido".equals(opcao)){
+			sqlCondicao = "where dataExclusao is not null";
+		}else if("naoexcluido".equals(opcao)){
+			sqlCondicao = "where dataExclusao is null";
+		}
 		
 		String sql = "select " +
 				"idOrcamento, idCliente, peso, dimensao, mensagem, orcamentoLido, orcamentoRespondido, dataCadastro, dataExclusao " +
-				"from orcamento order by " + filtro + " " + ordenacao;
+				"from orcamento " + sqlCondicao + " order by " + orderBy + " " + ordenacao;
 
 		List<Orcamento> listaDeOrcamentos = new ArrayList<Orcamento>();
 		PreparedStatement statement = this.conexao.prepareStatement(sql);
@@ -202,8 +216,14 @@ public class OrcamentoDao {
 		String sql = "update orcamento set orcamentoRespondido='true' where idOrcamento='" + idOrcamento + "'";
 		PreparedStatement statement = this.conexao.prepareStatement(sql);
 		statement.execute();
-		statement.close();
-		
+		statement.close();		
+	}
+	
+	public void marcaStatusDeOrcamentoNaoExcluido(int idOrcamento) throws SQLException {		
+		String sql = "update orcamento set dataExclusao=null where idOrcamento=" + idOrcamento;
+		PreparedStatement statement = this.conexao.prepareStatement(sql);
+		statement.execute();
+		statement.close();		
 	}
 
 	public int getCodigoDoOrcamento(int idCliente, Calendar dataCadastro) throws SQLException {
@@ -226,7 +246,7 @@ public class OrcamentoDao {
 	public void updateNovaMensagem(String novaMensagem, int idOrcamento) throws SQLException {
 		String sql = "update orcamento set mensagem='" + novaMensagem
 				+ "' where idOrcamento='" + idOrcamento + "'";
-
+		
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		statement.execute();
 		statement.close();
@@ -264,5 +284,5 @@ public class OrcamentoDao {
 			}						
 		}
 		return orcamento;
-	}	
+	}		
 }

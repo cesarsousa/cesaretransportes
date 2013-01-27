@@ -1,7 +1,7 @@
 package br.com.cesaretransportes.util;
 
 /**
- * Mensagens de texto utilizadas na aplica��o.
+ * Mensagens de texto utilizadas na aplicacao.
  * 
  * @author Cesar Sousa.
  *

@@ -124,18 +124,7 @@ public class ClienteAcaoServlet extends HttpServlet {
 					}catch (NumberFormatException e) {
 						request.setAttribute("erroBusca", "digite um n&uacute;mero para busca por id.");
 					}					
-				}else if(filtro.equals("documento")){
-					// TODO daki substituir doc por email
-					// mexer no rodape das paginas de sistema interno
-					// implementar buscas em orcamentos
-					try {
-						Integer.parseInt(parametro);
-						clientes = clienteDao.getAllByBusca(true, parametro, filtro);
-						
-					} catch (NumberFormatException e) {
-						request.setAttribute("erroBusca", "digite um n&uacute;mero para busca por documento.");
-					}					
-				}else{					
+				}else {					
 					clientes = clienteDao.getAllByBusca(true, parametro, filtro);
 				}			
 				

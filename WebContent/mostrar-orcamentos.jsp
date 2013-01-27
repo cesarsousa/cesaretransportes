@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -9,7 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="icon" type="image/gif" href="imagens/animated_favicon1.gif" />
 <link rel="stylesheet" type="text/css" href="estilo.css" />
-<link rel="stylesheet" type="text/css" href="estilo2.css" />
 
 <style type="text/css">
 p {
@@ -46,22 +46,19 @@ table {
 </head>
 
 <body bgcolor="#cccccc">
+<div id="wrap">
+<div id="main">
+
+<jsp:useBean id="data" class="java.util.Date" />
+<h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
+
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
 <h3>${mensagem}</h3>
 
-<!-- <ul>
-	<li><img alt="orcamento nao confirmado" src="imagens/van_orcamento_30_30.png">
-		<label class="label2">Representa um or&ccedil;amento comuns, ou seja, n&atilde;o foi confimado com um servi&ccedil;o ativo.</label>
-	<li><img alt="orcamento confirmado como servico" src="imagens/van_servico_30_30.png">
-		<label class="label2">Representa um servi&ccedil;o ativo que n&atilde;o foi entregue.</label>
-	<li><img alt="serviço finalizado" src="imagens/van_servico_entregue_30_30.png">
-		<label class="label2">Representa um servi&ccedil;o inativo, ou seja, um servi&ccedil;o ativo j&aacute; entregue.</label></li>
-</ul> -->
-
 <table width="100%">
 	<tr>
-		<td align="left" width="50%"><jsp:useBean id="data" class="java.util.Date" />
+		<td align="left" width="50%">
 		<p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
 		<p>
 		<label class="label1">${tipoOrcamento}</label>
@@ -71,11 +68,15 @@ table {
 		<td align="right" width="50%" class="laranjado" bgcolor="#ffffff">
 		<label>Filtar busca de or&ccedil;amentos por:</label>
 		<ul class="listaSimples">
-		<li><input type="radio" name="tipoOrcamento" value="naolido" checked="checked"><label>N&atilde;o Lidos</label>
-		<input type="radio" name="tipoOrcamento" value="lido"><label>Lidos</label>
-		<input type="radio" name="tipoOrcamento" value="excluido"><label>Exclu&iacute;dos</label>
-		<input type="radio" name="tipoOrcamento" value="naoexcluido"><label>N&atilde;o Exclu&iacute;dos</label>
-		<input type="submit" value="Pesquisar" class="button" /></li>
+		<li>
+			<form action="mostrarListaDosOrcamentos" method="get">
+			<input type="radio" name="opcao" value="naolido" checked="checked"><label>N&atilde;o Lidos</label>
+			<input type="radio" name="opcao" value="lido"><label>Lidos</label>
+			<input type="radio" name="opcao" value="excluido"><label>Exclu&iacute;dos</label>
+			<input type="radio" name="opcao" value="naoexcluido"><label>N&atilde;o Exclu&iacute;dos</label>
+			<input type="submit" value="Pesquisar" class="button" />
+			</form>
+		</li>
 		</ul>
 		</td>		
 	</tr>
@@ -101,7 +102,7 @@ table {
 							</c:when>
 							
 							<c:otherwise>
-							<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=excluirOrcamento" onclick="javascript:return confirm('Deletar este Orcamento ?')">
+							<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=excluirOrcamento" onclick="javascript:return confirm('Excluir este Orcamento?')">
 							<img src="imagens/excluir_20px.png" alt="excluir orcamento" title="excluir orcamento" border="0" /></a>
 							</c:otherwise>
 						</c:choose>					
@@ -114,7 +115,7 @@ table {
 							</c:when>
 							<c:otherwise>
 								<td width="30">
-									<a href="">
+									<a href="processarAcaoOrcamento?codigo=${orcamento.idOrcamento}&acao=confirmarOrcamento" onclick="javascript:return confirm('confirmar este orçamento como não excluído?')">
 									<img src="imagens/icone-confirmar.png" alt="confirmar orcamento para visualizacao"	title="confirmar orcamento para visualizacao" border="0" /></a></td>
 							</c:otherwise>
 						</c:choose>
@@ -157,8 +158,7 @@ table {
 								<img src="imagens/escrever_20.jpg" title="não respondido" alt="não respondido" border="0" />
 								</td>
 							</c:otherwise>
-						</c:choose>
-				
+						</c:choose>			
 
 						<c:choose>
 							<c:when test="${orcamento.orcamentoLido}">
@@ -185,14 +185,12 @@ table {
 		</tr>
 	</table>
 </c:if>
+</div>
+</div>
 
-<p class="corDeFundo">.</p>
-
-
-
-
-<div id="footerIndexSI">	
-	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+<br/>
+<div id="footer">	
+	<jsp:include page="layout/footerSI.jspf"></jsp:include>
 </div>
 </body>
 </html>

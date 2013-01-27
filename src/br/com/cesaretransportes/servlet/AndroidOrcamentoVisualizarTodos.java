@@ -17,7 +17,7 @@ import br.com.cesaretransportes.dao.OrcamentoDao;
 import br.com.cesaretransportes.modelo.Orcamento;
 
 /*
- * Esta classe recebe requisição da activity OpcaoVisualizarOrcamentos
+ * Esta classe recebe requisiï¿½ï¿½o da activity OpcaoVisualizarOrcamentos
  */
 public class AndroidOrcamentoVisualizarTodos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,15 +34,15 @@ public class AndroidOrcamentoVisualizarTodos extends HttpServlet {
 		try {
 			conexao = AbstractConnectionFactory.getConexao();
 			OrcamentoDao orcamentoDao = new OrcamentoDao(conexao);
-			List<Orcamento> orcamentos = orcamentoDao.getListaDeOrcamentos("orcamentoLido", 0);
+			List<Orcamento> orcamentos = orcamentoDao.getListaDeOrcamentos("", "orcamentoLido", 0);
 			
 			ServletOutputStream out = response.getOutputStream();
 			DataOutputStream dataOut = new DataOutputStream(out);
 			
-			// escrita da quantidade de orçamentos
+			// escrita da quantidade de orï¿½amentos
 			dataOut.writeInt(orcamentos.size());
 			
-			// serialização dos orçamentos
+			// serializaï¿½ï¿½o dos orï¿½amentos
 			for (Orcamento orcamento : orcamentos){
 				orcamento.serialize(dataOut);
 			}
@@ -53,16 +53,16 @@ public class AndroidOrcamentoVisualizarTodos extends HttpServlet {
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			// TODO tratar Exceção android
+			// TODO tratar Exceï¿½ï¿½o android
 		} catch (SQLException e) {
 			e.printStackTrace();
-			// tratar Exceção android
+			// tratar Exceï¿½ï¿½o android
 		} finally{
 			try {
 				conexao.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				// tratar Exceção android
+				// tratar Exceï¿½ï¿½o android
 			}
 		}		
 	}

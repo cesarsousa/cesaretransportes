@@ -3,6 +3,7 @@ package br.com.cesaretransportes.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,11 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
 import br.com.cesaretransportes.dao.EnderecoDao;
 import br.com.cesaretransportes.dao.OrcamentoDao;
-import br.com.cesaretransportes.dao.ServicoDao;
 import br.com.cesaretransportes.dao.TelefoneDao;
-import br.com.cesaretransportes.dao.VeiculoDao;
 import br.com.cesaretransportes.modelo.Orcamento;
-import br.com.cesaretransportes.modelo.Servico;
 
 public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 
@@ -33,57 +31,38 @@ public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 			conexao = AbstractConnectionFactory.getConexao();
 			OrcamentoDao orcamentoDao = new OrcamentoDao(conexao);
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
-			ServicoDao servicoDao = new ServicoDao(conexao);
 			TelefoneDao telefoneDao = new TelefoneDao(conexao);
-			VeiculoDao veiculoDao = new VeiculoDao(conexao);
 			
-			/*
-			 * filtro de ordenacao dos orcamentos.
-			 */
-			String opcao = request.getParameter("opcao");
+			String opcao = request.getParameter("opcao");			
 			
-			/*
-			 * tipo do orcamento.
-			 * tipo = orcamento - carregar apenas dados de orcamento.
-			 * tipo = servico - carrega dados de servico.
-			 */
-			String tipo = request.getParameter("tipo");
+			String pagina = "/mostrar-orcamentos.jsp";
 			
-			String pagina;
-			
-			if(tipo.equals("orcamento")){
-				opcao = "dataCadastro";
-				List<Orcamento> listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, 1);
-				for(Orcamento orcamento : listaDeOrcamentos){					
-					orcamento.getCliente().setTelefone(telefoneDao.get(orcamento.getCliente().getIdCliente()));
-					orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(orcamento.getIdOrcamento()));					
-				}
-				/*List<Servico> listaDeServicos = servicoDao.getAll();*/
-				
-				request.setAttribute("mensagem", "Or&ccedil;amentos");
+			List<Orcamento> listaDeOrcamentos = new ArrayList<Orcamento>();
+			 		
+			if("todos".equals(opcao)){								
 				request.setAttribute("tipoOrcamento", "Listagem de todos os or&ccedil;amentos");
-				request.setAttribute("listaDeOrcamentos", listaDeOrcamentos);
-				
-				// filtrar os servicos
-				/*request.setAttribute("listaDeOrcamentos", getOrcamentos(listaDeOrcamentos, listaDeServicos));*/
-				
-				pagina = "/mostrar-orcamentos.jsp";					
-			}else{
-				List<Servico> listaDeServicos = servicoDao.getAll(false);
-				for(Servico servico : listaDeServicos){
-					int idOrcamento = servico.getOrcamento().getIdOrcamento();
-					int idVeiculo = servico.getVeiculo().getIdVeiculo();
-					servico.setOrcamento(orcamentoDao.getOrcamento(idOrcamento));
-					servico.getOrcamento().setEnderecos(enderecoDao.getEnderecosPorOrcamentos(idOrcamento));
-					servico.setVeiculo(veiculoDao.getVeiculo(idVeiculo));					
-				}
-				request.setAttribute("mensagem", "Servi&ccedil;os");
-				request.setAttribute("listaDeServicos", listaDeServicos);
-				pagina = "/mostrar-servicos.jsp";
+			}else if("naolido".equals(opcao)){
+				request.setAttribute("tipoOrcamento", "Listagem dos or&ccedil;amentos n&atilde;o lidos");
+			}else if("lido".equals(opcao)){
+				request.setAttribute("tipoOrcamento", "Listagem dos or&ccedil;amentos lidos");
+			}else if("excluido".equals(opcao)){
+				request.setAttribute("tipoOrcamento", "Listagem dos or&ccedil;amentos exclu&iacute;dos");
+			}else if("naoexcluido".equals(opcao)){
+				request.setAttribute("tipoOrcamento", "Listagem dos or&ccedil;amentos n&atilde;o exclu&iacute;dos");
 			}
 			
+			listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, "dataCadastro", 1);			
+			for(Orcamento orcamento : listaDeOrcamentos){					
+				orcamento.getCliente().setTelefone(telefoneDao.get(orcamento.getCliente().getIdCliente()));
+				orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(orcamento.getIdOrcamento()));					
+			}
+			
+			request.setAttribute("mensagem", "Or&ccedil;amentos");
+			request.setAttribute("listaDeOrcamentos", listaDeOrcamentos);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
-			dispatcher.forward(request, response);					
+			dispatcher.forward(request, response);
+			
 		} catch (ClassNotFoundException e) {			
 			e.printStackTrace();
 			new CetransServletException("CNFE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
@@ -101,37 +80,5 @@ public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 				new CetransServletException("SQLE2", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
 			}
 		}
-	}
-
-	/*
-	 * remove os orcamentos relacionados a servicos
-	 */
-	private List<Orcamento> getOrcamentos(List<Orcamento> listaDeOrcamentos, List<Servico> listaDeServicos) {
-		
-		for(Servico servico : listaDeServicos){
-			removerDaListaOrcamento(servico.getOrcamento().getIdOrcamento(), listaDeOrcamentos);			
-		}			
-		
-		return listaDeOrcamentos;
-	}
-
-	private void removerDaListaOrcamento(int idOrcamentoDoServico, List<Orcamento> listaDeOrcamentos) {
-		Integer indice = null;
-		
-		/*
-		 * se ao lista todos os orcamentos, ao encontrar o id referente a um servico
-		 * guarda sua posicao da lista em indice. A seguir interrompe o loop e remove
-		 * o indice da lista de orcamentos.
-		 */
-		for(int i =0;i<listaDeOrcamentos.size();i++){
-			if(listaDeOrcamentos.get(i).getIdOrcamento() == idOrcamentoDoServico){
-				indice = i;
-				break;
-			}
-		}
-		if(indice != null){
-			int i = indice;
-			listaDeOrcamentos.remove(i);
-		}		
 	}
 }

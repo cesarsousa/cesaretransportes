@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="br.com.cesaretransportes.modelo.Cliente" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,7 +26,6 @@
 				<li><a href="index.jsp">Empresa</a></li>
 				<li><a href="cadastrar-orcamento.jsp">Or&ccedil;amento</a></li>
 				<li><a href="cadastrar-contato.jsp">Contato</a></li>
-				<!-- <li><a href="download.jsp">Download</a></li> -->
 				<li><a href="login.jsp">Login</a></li>							
 			</ul>		
 			</td>
@@ -46,7 +44,14 @@
 	<table width="800px" align="center">
 		<tr>
 			<td>
-				<div id="cardIndex">				
+				<div id="cardIndex">
+				
+				<c:if test="${not empty mensagem}">
+					<div id="infoMensagem" align="center">
+						<img id="fechar" class="direita" src="imagens/iconeok.png" alt="OK" title="OK" border="0" />					
+						<pre><span class="mensagem">${mensagem}</span></pre>
+					</div>
+				</c:if>				
 				
 				<h3> &Aacute;rea Restrita. Somente pessoal autorizado.</h3>
 				
@@ -55,7 +60,7 @@
 						<p><input id="inputUsuario" type="text" name="usuario" class="input70" size="50" value="${usuario}"/></p>
 						<p>					
 						<input id="passwordChecker" type="text" value="SENHA" class="input70"/>
-						<input id="inputSenha" type="password" name="senha" class="input70" />
+						<input id="inputSenha" type="password" name="senha" class="input70" size="50"/>
 						</p>
 						<p>
 						<input type="submit" value="Login" class="button" />
@@ -69,12 +74,16 @@
 						<div align="center">
 						<p>
 						<span id="textoRecuperarSenha" class="legenda ponteiro">Esqueceu sua senha? Clique aqui.</span>
-						</p>				
+						</p>
+						
+						<p id="textoContatoADM">
+						<span class="legenda">Entre em contato com o administrador do site.</span>
+						</p>
+										
 						</div>						
 						</td>
 					</tr>						
-				</table>
-				
+				</table>				
 				</div>
 			</td>
 		</tr>	

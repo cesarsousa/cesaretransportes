@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -9,7 +9,6 @@
 <head>
 <link rel="icon" type="image/gif" href="imagens/animated_favicon1.gif" />
 <link rel="stylesheet" type="text/css" href="estilo.css">
-<link rel="stylesheet" type="text/css" href="estilo2.css">
 <style type="text/css">
 p {
 	color: #333;
@@ -24,15 +23,20 @@ ul li {
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cesare Transportes - Buscar</title>
+<title>Cesare Transportes</title>
 </head>
 
 <body bgcolor="#cccccc">
 
+<div id="wrap">
+<div id="main">
+
+<jsp:useBean id="data" class="java.util.Date" />
+<h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
+
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 <br />
 <h3>Consulta por Or&ccedil;amento</h3>
-<jsp:useBean id="data" class="java.util.Date" />
 <p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
 <table class="laranjado" width="740" align="center" bgcolor="#ffffff">
 	<tr>
@@ -61,46 +65,7 @@ ul li {
 				<input type="text" name="paramBusca" class="input50">
 				<input type="submit" value="Consultar" class="button" ></div>
 				<br/>
-				</form>
-		
-		
-		
-		<%-- <table border="0">
-			<tr>
-				<td width="370">
-				<fieldset><legend class="legenda">Servi&ccedil;o</legend>				
-				<form action="buscar">
-				<input type="hidden" name="opcao" value="servico">
-				<div align="center">
-				<c:choose>
-					<c:when test="${not empty mensagemServico}">
-						<p class="vermelho">${mensagemServico}</p>
-					</c:when>
-					<c:otherwise>
-						<p>Digite um par&acirc;metro de busca</p>
-					</c:otherwise>
-				</c:choose>								
-				<select name="filtro" class="select">
-					<option value="idServico">Id serv</option>
-					<option value="idOrcamento">Id orcm</option>
-					<option value="idVeiculo">Id vecl</option>
-					<option value="nome">nome</option>
-					<option value="origem">Origem</option>
-					<option value="destino">Destino</option>									
-				</select>
-				<br/><br/>				
-				<input type="text" name="paramBusca">
-				<input type="submit" value="Consultar"></div>
-				<br/>
-				</form>
-				</fieldset>
-				</td>
-
-				<td width="100%">
-				
-				</td>				
-			</tr>
-		</table> --%>
+				</form>		
 		</td>		
 	</tr>	
 </table>
@@ -280,10 +245,12 @@ ul li {
 		</tr>
 	</table>
 </c:if>
+</div>
+</div>
 
-<p class="corDeFundo">.</p>
-<div id="footerIndexSI">	
-	<label class="sizeMedium">&copy; 2011 Cesare Transportes - Todos os Direitos Reservados</label>	
+<br/>
+<div id="footer">	
+	<jsp:include page="layout/footerSI.jspf"></jsp:include>	
 </div>
 
 </body>

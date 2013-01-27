@@ -33,6 +33,11 @@ $(document).ready(function(){
 		$(this).removeClass('destacar');
 	});
 	
+	$('#mensagemCadOrcamento').autoResize();	
+	$('#mensagemCadOrcamento').keyup(function() {		
+		limitarCaracteres('#mensagemCadOrcamento', '#contadorCaracterOrcamento', 1000);		  
+	});
+	
 	$('#aguardeEnviarOrcamento').hide();
 	$('#btEnviarOrcamento').click(function(){
 		$('#btEnviarOrcamento').hide();

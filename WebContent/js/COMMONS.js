@@ -1,4 +1,33 @@
 
+function limitarCaracteres(areaDeTexto, contador, totalCaracteres){		
+	var valorDigitado = $(areaDeTexto).val();
+	var totalDigitado = valorDigitado.length;		
+		
+	if(totalDigitado < totalCaracteres){
+		var resto = totalCaracteres - totalDigitado;
+		$(contador).html('').html(resto);
+	}else{
+		$(contador).html('').html('0');
+		$(areaDeTexto).val(valorDigitado.substring(0, totalCaracteres-2));
+	}	
+}
+
+$('#mensagemCadOrcamento').keyup(function() {
+	
+	var valorDigitado = $('#mensagemCadOrcamento').val();
+	var totalDigitado = valorDigitado.length;		
+		
+	if(totalDigitado < 500){
+		var resto = 500 - totalDigitado;
+		$('#contadorCaracterOrcamento').html('').html(resto);
+	}else{
+		$('#contadorCaracterOrcamento').html('').html('0');
+		$('#mensagemCadOrcamento').val(valorDigitado.substring(0, 500));
+	}	  
+	  
+});
+
+
 function addRemoveDestaque(elemento) {
 	$(elemento).focus(function() {
 		$(this).addClass('destacar');

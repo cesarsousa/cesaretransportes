@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* INICIO dos estilos para fixar o rodape */
 html, body, #wrap {height: 100%;}
  
 body > #wrap {height: auto; min-height: 100%;}
@@ -20,7 +21,7 @@ body:before {
 	width:0;
 	margin-top:-32767px;/
 }
-
+/* FIM */
 
 
 /* INICIO estilos para o efeito de rolagem para o topo */
@@ -69,6 +70,8 @@ border-radius: 15px;
 transition: 1s;}
 
 #back-top a:hover span {   background-color: #eb610e;}
+
+/* FIM */
 
 .campoInfo {
 	height: 50px;
@@ -126,8 +129,8 @@ transition: 1s;}
 /* CSS Document */
 .laranjado {
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
 	text-align: left;
 	padding: 10px;
 }
@@ -507,90 +510,90 @@ fieldset {
 	width: 10%;
 	height: 30px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input15 {
 	width: 15%;
 	height: 29px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input20 {
 	width: 20%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input30 {
 	width: 30%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input40 {
 	width: 40%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input50 {
 	width: 50%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input60 {
 	width: 60%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input70 {
 	width: 70%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input80 {
 	width: 80%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .input100 {
 	width: 99%;
 	height: 25px;
 	border: 1px solid #F90;
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-    padding-left: 5px;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
 }
 
 .destacar {

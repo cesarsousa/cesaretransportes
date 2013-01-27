@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.modelo.Endereco;
 import br.com.cesaretransportes.modelo.Telefone;
+import br.com.cesaretransportes.util.Email;
 
 public class ValidacaoConta {
 	
@@ -88,10 +89,16 @@ public class ValidacaoConta {
 		if(empresa.isMostrarMapa() && empresa.getLocalizacao().isEmpty()){
 			request.setAttribute("erroLocalizacaoConta", "Ao '<b>Habilitar visualização com Google Maps</b>', o campo 'Geo Localização' deve ser preenchido.");
 			resultado = false;
-		}
+		}		
 		
 		if(empresa.getEmail().isEmpty()){
 			request.setAttribute("erroEmailConta", "O campo '<b>Gmail</b>' deve ser preenchido.");
+			resultado = false;
+		}else if(!emailValido(empresa.getEmail())){
+			request.setAttribute("erroEmailConta", "O campo '<b>Gmail</b>' deve possuir um formato valido.");
+			resultado = false;
+		}else if(!ehGmail(empresa.getEmail())){
+			request.setAttribute("erroEmailConta", "O campo '<b>Gmail</b>' deve ser preenchido com um <b>email do Google</b>, certifique também de usar letra minuscula durante a digitação.");
 			resultado = false;
 		}
 		
@@ -151,5 +158,13 @@ public class ValidacaoConta {
 	
 	private static boolean ehDdd(String ddd) {
 		return ddd.matches("(\\d{2})");
+	}
+	
+	private static boolean ehGmail(String email) {
+		return email.endsWith("@gmail.com");
+	}
+
+	private static boolean emailValido(String email) {
+		return email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9._-]+\\.[a-z]{2,4}");
 	}
 }

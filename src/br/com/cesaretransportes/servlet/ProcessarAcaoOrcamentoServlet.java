@@ -78,7 +78,7 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 					new BuscaServlet().doGet(request, response);
 					
 				}else{
-					atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, servicoDao, listaDeOrcamentos);
+					atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, listaDeOrcamentos);
 				}
 			} else if ("responderOrcamento".equals(acao)) {
 				orcamento = orcamentoDao.getOrcamento(idOrcamento);
@@ -91,60 +91,15 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 				dispatcher.forward(request, response);
 			} else if ("marcarOrcamentoComoNaoLido".equals(acao)) {
 				orcamentoDao.marcaStatusDeOrcamentoLido(idOrcamento, false);
-				atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, servicoDao, listaDeOrcamentos);
+				atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, listaDeOrcamentos);
 			} else if ("marcarOrcamentoComoLido".equals(acao)) {
 				orcamentoDao.marcaStatusDeOrcamentoLido(idOrcamento, true);
-				atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, servicoDao, listaDeOrcamentos);
+				atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, listaDeOrcamentos);
 			} else if ("refreshOrcamento".equals(acao)) {
-				atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, servicoDao, listaDeOrcamentos);
-			} else if ("confirmarServico".equals(acao)){
-				String pagina = "/index-sistema-interno.jsp";
-				orcamento = orcamentoDao.getOrcamento(idOrcamento);
-				orcamento.getCliente().setTelefone(telefoneDao.get(orcamento.getCliente().getIdCliente()));
-				orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(idOrcamento));				
-				
-				String dataPrevEntrega = request.getParameter("dataPrevEntrega");
-				String valor = request.getParameter("valor");
-				Veiculo veiculo = veiculoDao.getVeiculo(Integer.parseInt(request.getParameter("idVeiculo")));
-								
-				request.setAttribute("dataPrevEntrega", dataPrevEntrega);				
-				request.setAttribute("valor", valor);			
-				
-				if(dadosSaoValidos(dataPrevEntrega, valor, request)){					
-					try {
-						Servico servico = new Servico(orcamento, veiculo, new BigDecimal(valor.replace(",", ".")), CesareUtil.getData(getDataNoPadrao(dataPrevEntrega)), Calendar.getInstance());
-						int codigoServico = servicoDao.cadastrar(servico);
-						
-						String cliente = clienteDao.getClientePorOrcamento(idOrcamento);
-						
-						if("".equals(cliente)){
-							request.setAttribute("mensagem", "Novo servico cod:" + String.valueOf(codigoServico) + ". Nao foi possivel" +
-									" notificar cliente do servico.");							
-						}else{
-							String[] dadosCliente = cliente.split(";");
-							/*
-							 * email de notificacao para o cliente do novo servico.
-							 */
-							Email.enviarEmail(empresa.getEmail(), empresa.getSenha(), dadosCliente[0], 
-									"Cetrans - Confirmacao de Ordem de servico", 
-									HtmlMensagem.getMensagemConfirmacaoServico(codigoServico, idOrcamento, dadosCliente[1]));
-							
-							request.setAttribute("mensagem", "Novo servico cod:" + String.valueOf(codigoServico));	
-						}					
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-						pagina = "/ler-orcamento.jsp";
-						request.setAttribute("erroValidadeData", true);
-					}				
-				}else{
-					pagina = "/ler-orcamento.jsp";
-				}
-				
-				request.setAttribute("orcamento", orcamento);
-				request.setAttribute("veiculosCadastrado", veiculoDao.getAll());
-				RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
-				dispatcher.forward(request, response);				
-				
+				atualizarLerOrcamentos(request, response, orcamentoDao,	enderecoDao, listaDeOrcamentos);
+			} else if ("confirmarOrcamento".equals(acao)){
+				orcamentoDao.marcaStatusDeOrcamentoNaoExcluido(idOrcamento);
+				atualizarLerOrcamentos(request, response, orcamentoDao, enderecoDao, listaDeOrcamentos);				
 			} else { 
 				// ler orcamento				
 				// testa se a origem da requisicao foi busca.jsp 
@@ -169,16 +124,7 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ler-orcamento.jsp");
 				dispatcher.forward(request, response);
 			}
-		}catch (AddressException e) {
-			e.printStackTrace();			
-			new CetransServletException("AE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
-		} catch (SendFailedException e) {
-			e.printStackTrace();			
-			new CetransServletException("SFE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
-		} catch (MessagingException e) {
-			e.printStackTrace();			
-			new CetransServletException("ME", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
-		} catch (ClassNotFoundException e) {			
+		}catch (ClassNotFoundException e) {			
 			e.printStackTrace();			
 			new CetransServletException("CNFE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
 		} catch (SQLException e) {
@@ -193,76 +139,20 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 			}
 		}
 	}
-
-	private String getDataNoPadrao(String dataPrevEntrega) {
-		// retorna a data no formato yyyyMMaa
-		return dataPrevEntrega.substring(6) + dataPrevEntrega.substring(3, 5) + dataPrevEntrega.substring(0, 2);
-	}
-
-	private boolean dadosSaoValidos(String data, String valor, HttpServletRequest request) {
-		boolean resultado = true;		
-		if(!data.matches("\\d{2}/\\d{2}/\\d{4}")){
-			resultado = false;			
-			request.setAttribute("erroData", true);
-		}
-		
-		if(!valor.matches("(\\d+,\\d{2})|(\\d+)")){
-			resultado = false;
-			request.setAttribute("erroValor", true);			
-		}
-		
-		return resultado;
-	}
-
+	
 	/**
 	 * Atualiza os orcamentos e redireciona para a pagina mostrar-orcamentos.jsp.
 	 */
 	private void atualizarLerOrcamentos(HttpServletRequest request, HttpServletResponse response, 
-			OrcamentoDao dao, EnderecoDao enderecoDao, ServicoDao servicoDao,
-			List<Orcamento> listaDeOrcamentos) throws ServletException, IOException, SQLException {		
-		
-				
-		listaDeOrcamentos = dao.getListaDeOrcamentos("dataCadastro", 1);
+			OrcamentoDao dao, EnderecoDao enderecoDao, List<Orcamento> listaDeOrcamentos) throws ServletException, IOException, SQLException {		
+						
+		listaDeOrcamentos = dao.getListaDeOrcamentos("", "dataCadastro", 1);
 		for(Orcamento orcamento : listaDeOrcamentos){
 			orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(orcamento.getIdOrcamento()));
 		}		
 		
-		// getOrcamentos() remove servicos da lista de orcamentos.
-		/*request.setAttribute("listaDeOrcamentos", getOrcamentos(listaDeOrcamentos, servicoDao.getAll(false)));*/
 		request.setAttribute("listaDeOrcamentos", listaDeOrcamentos);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/mostrar-orcamentos.jsp");
 		dispatcher.forward(request, response);	
-	}
-	
-	/*
-	 * remove os orcamentos relacionados a servicos
-	 */
-	private List<Orcamento> getOrcamentos(List<Orcamento> listaDeOrcamentos, List<Servico> listaDeServicos) {
-		
-		for(Servico servico : listaDeServicos){
-			removerDaListaOrcamento(servico.getOrcamento().getIdOrcamento(), listaDeOrcamentos);			
-		}			
-		
-		return listaDeOrcamentos;
-	}
-
-	private void removerDaListaOrcamento(int idOrcamentoDoServico, List<Orcamento> listaDeOrcamentos) {
-		Integer indice = null;
-		
-		/*
-		 * se o lista todos os orcamentos, ao encontrar o id referente a um servico
-		 * guarda sua posicao da lista em indice. A seguir interrompe o loop e remove
-		 * o indice da lista de orcamentos.
-		 */
-		for(int i =0;i<listaDeOrcamentos.size();i++){
-			if(listaDeOrcamentos.get(i).getIdOrcamento() == idOrcamentoDoServico){
-				indice = i;
-				break;
-			}
-		}
-		if(indice != null){
-			int i = indice;
-			listaDeOrcamentos.remove(i);
-		}		
-	}
+	}	
 }

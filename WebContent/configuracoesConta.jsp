@@ -19,12 +19,14 @@
 <div id="wrap">
 <div id="main">
 
+<jsp:useBean id="data" class="java.util.Date" />
+<h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
+
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
 <h3>${mensagemConta}</h3>
 
 <div>
-<jsp:useBean id="data" class="java.util.Date" />
 <p class="estilo"><fmt:formatDate value="${data}" dateStyle="full" />.</p>
 </div>
 
@@ -34,7 +36,7 @@
 	<div align="center">
 		<div class="tableErroContato">
 			<div align="center">
-				<span class="erro"><c:out value="Verifique campos obrigatórios não preenchidos" /></span>
+				<span class="erro"><c:out value="Verifique campos obrigatórios com erros de preenchimento!" /></span>
 			</div>
 		</div>
 	</div>

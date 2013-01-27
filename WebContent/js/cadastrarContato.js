@@ -18,7 +18,11 @@ $(document).ready(function(){
 	
 	
 	addRemoveDestaque('#inputNomeContato, #inputEmailContato, #mensagemCadContato');
-	
+	$('#mensagemCadContato').autoResize();
+	$('#mensagemCadContato').keyup(function() {		
+		limitarCaracteres('#mensagemCadContato', '#contadorCaracterContato', 2000);		  
+	});
+		
 	$('#aguardeEnviarContato').hide();
 	$('#btContato').click(function(){
 		$('#btEnviarContato').hide();
