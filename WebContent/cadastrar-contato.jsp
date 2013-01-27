@@ -123,9 +123,10 @@
 	
 							<p>
 								<span class="erro"><c:out value="${msgMensagem}" /></span><br />
-								<textarea id="mensagemCadContato" name="mensagem" rows="10"
-									class="mensagemContato">${mensagem}</textarea>
+								<textarea id="mensagemCadContato" name="mensagem" rows="10" class="mensagemContato">${mensagem}</textarea>
 							</p>
+							
+							<h2>voc&ecirc; pode digitar <span id="numCaracterContato"></span> caractere(s).</h2>
 	
 							<div id="btEnviarContato">
 								<p>

@@ -1,5 +1,5 @@
 
-$(document).ready(function(){
+$(document).ready(function(){	
 	
 	$('#viewMapaEmpresa').hide();
 	$('#btMapaEmpresa').click(function(){
@@ -11,8 +11,11 @@ $(document).ready(function(){
 	});	
 		
 	if($('#inputNomeContato').val() == "") $('#inputNomeContato').puts('NOME ou EMPRESA');
-	if($('#inputEmailContato').val() == "")$('#inputEmailContato').puts('EMAIL');
+	if($('#inputEmailContato').val() == "")$('#inputEmailContato').puts('EMAIL');	
 	if($('#mensagemCadContato').val() == "")$('#mensagemCadContato').puts('DIGITE SUA MENSAGEM ...');
+	$('#mensagemCadContato').autoResize();
+
+	
 	
 	addRemoveDestaque('#inputNomeContato, #inputEmailContato, #mensagemCadContato');
 	
