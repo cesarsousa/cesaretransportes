@@ -62,19 +62,13 @@ textarea {
 
 <div id="pgLerOrcamentoPt1">
 	<jsp:include page="includeCabecalhoLerEmail.jspf"></jsp:include>
-	<h3>Detalhe do or&ccedil;amento</h3>
-	
-	
-	
 	<c:if test="${not empty orcamentoRespondido}">
-		<div class="msgBorder msgSucesso">
-			<label>Or&ccedil;amento respondido com sucesso</label>
-		</div>
+		<div class="tableSucesso">
+			<div align="center">Or&ccedil;amento respondido com sucesso</div>
+		</div>				
 	</c:if>
-	
-	<c:if test="${not empty orcamentoAlterado}">
-		<h4>Or&ccedil;amento alterado com sucesso.</h4>
-	</c:if>
+		
+	<h3>Detalhe do or&ccedil;amento</h3>	
 	
 	<br />
 	<table width="1000" align="center" border="0" class="colada" cellpadding="5">

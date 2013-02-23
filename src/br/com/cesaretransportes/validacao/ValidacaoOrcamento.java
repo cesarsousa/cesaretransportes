@@ -87,7 +87,7 @@ public class ValidacaoOrcamento {
 		
 		if(enderecoOrigem.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoOrigem)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgEnderecoOrigem", "O campo 'LOGRADOURO (nome da rua, numero e bairro)' é obrigatório!");
+			request.setAttribute("msgEnderecoOrigem", "O campo 'LOGRADOURO de origem (nome da rua, numero e bairro)' é obrigatório!");
 		}else{
 			request.setAttribute("enderecoOrigem", enderecoOrigem);
 		}		
@@ -101,7 +101,7 @@ public class ValidacaoOrcamento {
 		
 		if(enderecoDestino.isEmpty() || "LOGRADOURO (nome da rua, numero e bairro)".equals(enderecoDestino)){
 			request.setAttribute("msgErro", true);
-			request.setAttribute("msgEnderecoDestino", "O campo 'LOGRADOURO (nome da rua, numero e bairro)' é obrigatório!");
+			request.setAttribute("msgEnderecoDestino", "O campo 'LOGRADOURO de destino (nome da rua, numero e bairro)' é obrigatório!");
 		}else{
 			request.setAttribute("enderecoDestino", enderecoDestino);
 		}

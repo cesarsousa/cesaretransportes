@@ -89,4 +89,25 @@ public class EnviandoEmail {
             e.printStackTrace();  
         }  
     }  
-}   
+}
+
+
+select * from cliente;
+delete from cliente where idCliente > 0;
+
+select * from empresa;
+
+select * from endereco;
+delete from endereco where idEndereco > 1;
+
+select * from orcamento;
+delete from orcamento where idOrcamento > 0;
+
+select * from servico;
+delete from servico where  idServico > 0;
+
+select * from telefone;
+delete from telefone where idTelefone > 3;
+
+select * from veiculo;
+delete from veiculo where idVeiculo > 0;    

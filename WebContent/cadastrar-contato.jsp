@@ -41,6 +41,14 @@
 				</td>
 			</tr>
 		</table>
+		
+		<c:if test="${not empty erroContato}">
+			<div class="tableErro" style="padding: 30px;">								
+			<div align="center">Verifique campos obrigat&oacute;rios n&atilde;o preenchidos</div>		
+			</div>				
+		</c:if>
+		<br/>		
+		
 		<table width="800" align="center">
 			<tr>
 				<td style="padding-top: 10px"><span class="tituloPagina">Contato</span></td>
@@ -49,18 +57,8 @@
 		<jsp:useBean id="data" class="java.util.Date" />
 		<h3><fmt:formatDate value="${data}" dateStyle="full" timeZone="America/Sao_Paulo" /></h3>
 		
-		<br />
-	
-		<c:if test="${not empty erroContato}">
-			<div align="center">
-				<div class="tableErroContato">
-					<div align="center">
-						<span class="erro"><c:out value="Verifique campos obrigatórios não preenchidos" /></span>
-					</div>
-				</div>
-			</div>
-			<br />
-		</c:if>
+		<br />	
+		
 
 		<table width="800px" align="center">
 			<tr>
@@ -93,6 +91,7 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
 				</td>
 			</tr>
@@ -112,13 +111,13 @@
 							<p>
 								<span class="erro"><c:out value="${msgNome}" /></span><br /> <input
 									id="inputNomeContato" class="input70" type="text" name="nome"
-									value="${nome}" maxlength="50" />
+									value="${nome}" maxlength="100" />
 							</p>
 	
 							<p>
 								<span class="erro"><c:out value="${msgEmail}" /></span><br /> <input
 									id="inputEmailContato" class="input70" type="text" name="email"
-									value="${email}" maxlength="50" />
+									value="${email}" maxlength="100" />
 							</p>					
 	
 							<p>
@@ -165,8 +164,7 @@
 		<div id="pgContatoPt2">
 		<table bgcolor="#ffa54f" width="100%">
 			<tr>
-				<td>
-	
+				<td>	
 					<div align="center">
 						<h3>
 							<font style="color: white;">Ou utilize um dos nossos canais	de comunica&ccedil;&atilde;o !</font>
@@ -181,8 +179,7 @@
 							<font size="2px">
 								<img alt="Ligue para nós" src="imagens/operadoras_icone.png" align="middle" />
 								<img alt="Este é o nosso grupo!" src="imagens/nextel_icone.png" align="middle" />								
-								&nbsp;&nbsp;${empresa.telefone1}&nbsp;&nbsp;${empresa.telefone2}
-								&nbsp;&nbsp;${empresa.telefone3}
+								&nbsp;&nbsp;${empresa.telefone1}&nbsp;&bull;&nbsp;${empresa.telefone2}&nbsp;&bull;&nbsp;${empresa.telefone3}
 							</font>
 						</h1>
 					</div>

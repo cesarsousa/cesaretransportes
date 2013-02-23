@@ -27,11 +27,13 @@ ul li {
 <h2><fmt:formatDate value="${data}" dateStyle="full" /> : logado como ${empresa.nome} - ${empresa.email}</h2>
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
-<br/>
 
 <c:if test="${not empty mensagem}">
-	<h3>${mensagem}</h3>
+	<div class="tableSucesso">								
+	<div align="center">${mensagem}</div>		
+	</div>				
 </c:if>
+<br/>
 
 </div>
 </div>

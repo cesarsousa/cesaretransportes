@@ -32,6 +32,13 @@
 		</tr>
 	</table>
 	
+	<c:if test="${not empty mensagem}">
+	<div class="tableErro" style="padding: 30px;">								
+	<div align="center">${mensagem}</div>		
+	</div>				
+	</c:if>
+	<br/>
+			
 	<table width="800" align="center">
 		<tr>
 			<td style="padding-top: 10px"><span class="tituloPagina">Login</span></td>
@@ -46,12 +53,7 @@
 			<td>
 				<div id="cardIndex">
 				
-				<c:if test="${not empty mensagem}">
-					<div id="infoMensagem" align="center">
-						<img id="fechar" class="direita" src="imagens/iconeok.png" alt="OK" title="OK" border="0" />					
-						<pre><span class="mensagem">${mensagem}</span></pre>
-					</div>
-				</c:if>				
+							
 				
 				<h3> &Aacute;rea Restrita. Somente pessoal autorizado.</h3>
 				
@@ -90,7 +92,7 @@
 	</table> 	
 	</div> 
 </div>
-<br/> 
+<br/><br/>
 <div id="footer">
 <jsp:include page="layout/footer.jspf"/>
 </div>

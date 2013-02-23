@@ -13,9 +13,7 @@ $(document).ready(function(){
 	if($('#inputNomeContato').val() == "") $('#inputNomeContato').puts('NOME ou EMPRESA');
 	if($('#inputEmailContato').val() == "")$('#inputEmailContato').puts('EMAIL');	
 	if($('#mensagemCadContato').val() == "")$('#mensagemCadContato').puts('DIGITE SUA MENSAGEM ...');
-	$('#mensagemCadContato').autoResize();
-
-	
+	$('#mensagemCadContato').autoResize();	
 	
 	addRemoveDestaque('#inputNomeContato, #inputEmailContato, #mensagemCadContato');
 	$('#mensagemCadContato').autoResize();
@@ -30,6 +28,5 @@ $(document).ready(function(){
 		$('#pgContatoPt1, #pgContatoPt2, #pgContatoPt3').addClass('opacidade25');
 		$("a").click(function() { return false; }); 
 	});
-	
 	
 });

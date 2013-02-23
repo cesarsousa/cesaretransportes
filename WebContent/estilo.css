@@ -9,8 +9,8 @@ body > #wrap {height: auto; min-height: 100%;}
 	padding-bottom: 60px;}  /* deve ter a mesma altura do rodapé */
  
 #footer {position: relative;
-	margin-top: -60px; /* valor negativo da altura do rodapé */
-	height: 60px;
+	margin-top: -74px; /* valor negativo da altura do rodapé */
+	height: 74px;
 	clear:both;}
  
 /*Opera Fix*/
@@ -85,6 +85,10 @@ transition: 1s;}
 	height: 70px;
 }
 
+.fontPequena {
+	font-size: small;
+}
+
 .info {
 	color: gray;
 	font-weight: bold;
@@ -124,6 +128,10 @@ transition: 1s;}
 	background-color: #FFEBE8;
 	border-color: #DD3C10;
 	text-align: left;
+}
+
+.tdOrcamentoExcluido {
+	background-color: #E8E8E8;
 }
 
 /* CSS Document */
@@ -628,10 +636,22 @@ fieldset {
 	background-color: #FFDAB9; */
 	width: 100%;
 	padding: 5px;
-	background-color: #FFEBE8;
-    border: 1px solid #DD3C10;
-    color: black;
+	background-color: red;   
+    color: #ffffff;
     text-align: left;
+    font-weight: bold;
+}
+
+.tableSucesso {
+	/* border-color: #A52A2A;
+	background-color: #FFDAB9; */
+	width: 100%;
+	background-color: green;
+	padding-top: 30px;
+	padding-bottom: 30px;   
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
 }
 
 .tableErroContato {

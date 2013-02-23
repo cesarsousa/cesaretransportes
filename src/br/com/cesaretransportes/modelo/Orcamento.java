@@ -135,7 +135,7 @@ public class Orcamento {
 	}
 	
 	public String getInfoDataCadastro(){
-		return CesareUtil.formatarData(dataCadastro, "dd/MM/yyyy");
+		return CesareUtil.formatarData(dataCadastro, "dd/MM/yyyy HH:mm:ss");
 	}
 	
 	public String getInfoDataPrevEntrega(){

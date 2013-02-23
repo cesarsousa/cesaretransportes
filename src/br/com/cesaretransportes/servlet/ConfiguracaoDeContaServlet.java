@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
 import br.com.cesaretransportes.dao.EmpresaDao;
@@ -28,15 +27,14 @@ public class ConfiguracaoDeContaServlet extends HttpServlet {
 		Connection conexao = null;
 		
 		try {
-			/*conexao = AbstractConnectionFactory.getConexao();
+			conexao = AbstractConnectionFactory.getConexao();
 			EmpresaDao empresaDao = new EmpresaDao(conexao);
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
-			TelefoneDao telefoneDao = new TelefoneDao(conexao);*/
+			TelefoneDao telefoneDao = new TelefoneDao(conexao);
 			
-			HttpSession httpSession = request.getSession();			
-			Empresa empresa = (Empresa) httpSession.getAttribute("empresa");
-			//empresa.setEndereco(enderecoDao.getEnderecoEmpresa(empresa.getIdEmpresa()));
-			//empresa.setTelefones(telefoneDao.getTelefonesEmpresa(empresa.getIdEmpresa()));
+			Empresa empresa = empresaDao.get();
+			empresa.setEndereco(enderecoDao.getEnderecoEmpresa(empresa.getIdEmpresa()));
+			empresa.setTelefones(telefoneDao.getTelefonesEmpresa(empresa.getIdEmpresa()));
 			
 			request.setAttribute("empresa", empresa);
 			request.setAttribute("mensagemConta", "Alteração dos dados cadastrais da empresa");
@@ -45,6 +43,12 @@ public class ConfiguracaoDeContaServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/configuracoesConta.jsp");
 			dispatcher.forward(request, response);
 			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();			
+			new CetransServletException("CNFE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();			
+			new CetransServletException("SQLE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
 		} finally{
 			try {
 				if (conexao != null) conexao.close();

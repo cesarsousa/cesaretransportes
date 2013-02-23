@@ -51,9 +51,7 @@ public class LoginServlet extends HttpServlet {
 				pagina = "/index-sistema-interno.jsp";				
 			}
 			
-			
-			/*
-			 
+			/*			 
 			Cliente cliente = clienteDao.getCliente(usuario, senha);  
 			
 		 	if (cliente == null) {

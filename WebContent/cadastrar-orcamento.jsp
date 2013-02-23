@@ -33,7 +33,24 @@
 			</ul>		
 			</td>
 		</tr>
-	</table>
+	</table>	
+	
+	<c:if test="${not empty msgErro}">
+		<div class="tableErro">								
+				<c:if test="${not empty msgNome }">${msgNome}<br/></c:if>
+				<c:if test="${not empty msgEmail }">${msgEmail}<br/></c:if>
+				<c:if test="${not empty msgDdd }">${msgDdd}<br/></c:if>
+				<c:if test="${not empty msgTelefone }">${msgTelefone}<br/></c:if>
+				<c:if test="${not empty msgOrigem }">${msgOrigem}<br/></c:if>
+				<c:if test="${not empty msgEnderecoOrigem }">${msgEnderecoOrigem}<br/></c:if>
+				<c:if test="${not empty msgDestino }">${msgDestino}<br/></c:if>
+				<c:if test="${not empty msgEnderecoDestino }">${msgEnderecoDestino}<br/></c:if>
+				<c:if test="${not empty msgPeso }">${msgPeso}<br/></c:if>
+				<c:if test="${not empty msgDimensao }">${msgDimensao}<br/></c:if>
+		</div>				
+	</c:if>
+	<br/>
+	
 	<table width="800" align="center">
 		<tr>
 			<td style="padding-top: 10px"><span class="tituloPagina">Or&ccedil;amento</span></td>
@@ -41,6 +58,7 @@
 	</table>
 	<jsp:useBean id="data" class="java.util.Date"/>
 	<h3><fmt:formatDate value="${data}" dateStyle="full" timeZone="America/Sao_Paulo"/></h3>
+	
 	
 	<div align="center">
 	<div id="cardIndex">				
@@ -54,26 +72,7 @@
 			<td>		
 			<table width="100%" cellpadding="10">
 				<tr>
-					<td>
-					
-					<c:if test="${not empty msgErro}">
-						<div class="tableErro">
-								<div align="center">
-								<!-- <img id="fecharErro" class="direita ponteiro" src="imagens/iconeDelete.png" alt="fechar" title="fechar" border="0" width="20px" height="20px"/> -->
-								<span class="erro tituloErro"><c:out value="Verifique campos obrigatórios não preenchidos"/></span><br/><br/>
-								</div>
-								<c:if test="${not empty msgNome }"><span class="erro"><c:out value="${msgNome}"/></span><br/></c:if>
-								<c:if test="${not empty msgEmail }"><span class="erro"><c:out value="${msgEmail}"/></span><br/></c:if>
-								<c:if test="${not empty msgDdd }"><span class="erro"><c:out value="${msgDdd}"/></span><br/></c:if>
-								<c:if test="${not empty msgTelefone }"><span class="erro"><c:out value="${msgTelefone}"/></span><br/></c:if>
-								<c:if test="${not empty msgOrigem }"><span class="erro"><c:out value="${msgOrigem}"/></span><br/></c:if>
-								<c:if test="${not empty msgEnderecoOrigem }"><span class="erro"><c:out value="${msgEnderecoOrigem}"/></span><br/></c:if>
-								<c:if test="${not empty msgDestino }"><span class="erro"><c:out value="${msgDestino}"/></span><br/></c:if>
-								<c:if test="${not empty msgEnderecoDestino }"><span class="erro"><c:out value="${msgEnderecoDestino}"/></span><br/></c:if>
-								<c:if test="${not empty msgPeso }"><span class="erro"><c:out value="${msgPeso}"/></span><br/></c:if>
-								<c:if test="${not empty msgDimensao }"><span class="erro"><c:out value="${msgDimensao}"/></span><br/></c:if>
-						</div>				
-					</c:if>		
+					<td>							
 					
 					<form id="formCadOrcamento" action="enviarOrcamento" name="orcamento" method="post">
 					<input type="hidden" value="cadastrarOrcamento" name="acao"  />
@@ -91,10 +90,10 @@
 					
 					<table width="100%" cellpadding="10">				
 						<tr>						
-							<td><div align="left"><input id="nomeCadOrcamento" type="text" class="input100" name="nome" value="${nome}" /></div></td>
+							<td><div align="left"><input id="nomeCadOrcamento" type="text" class="input100" name="nome" value="${nome}" maxlength="200" /></div></td>
 						</tr>										
 						<tr>
-							<td><div align="left"><input id="emailCadOrcamento" type="text" class="input100" name="email" value="${email}"/></div></td>
+							<td><div align="left"><input id="emailCadOrcamento" type="text" class="input100" name="email" value="${email}" maxlength="200" /></div></td>
 						</tr>					
 						<tr>
 							<td>
@@ -161,7 +160,7 @@
 					<p><span class="legenda">Informações adicionais gerais</span></p>
 					
 					<span class="textoInformativo">
-					Se desejar, utilize o campo abaixo para informa&ccedil;&otilde;es adicionais referentes ao servi&ccedil;o	
+					Se desejar, utilize o campo abaixo para fazer um detalhamento da carga, ou solicitar informa&ccedil;&otilde;es adicionais referentes ao servi&ccedil;o. 	
 					</span>
 					
 					<p>			

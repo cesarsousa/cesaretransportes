@@ -22,7 +22,7 @@ public class ValidacaoConta {
 		String nome = request.getParameter("nome");
 		String cnpj = request.getParameter("cnpj");		
 		boolean mostrarMapa = request.getParameter("mostrarMapa") == null ? false : true;
-		String localizacao = request.getParameter("localizacao");
+		String localizacao = mostrarMapa == true ? request.getParameter("localizacao") : "";
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
 		String msn = request.getParameter("msn");
@@ -129,7 +129,7 @@ public class ValidacaoConta {
 		}
 		
 		if(!resultado){
-			request.setAttribute("erroNoOrcamento", true);
+			request.setAttribute("erroConfiguracaoConta", true);
 		}
 		
 		return resultado;

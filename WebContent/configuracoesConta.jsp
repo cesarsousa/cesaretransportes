@@ -24,6 +24,13 @@
 
 <jsp:include page="includeCabecalhoComLinks.jspf"></jsp:include>
 
+<c:if test="${not empty erroConfiguracaoConta}">
+	<div class="tableErro" style="padding: 30px;">								
+	<div align="center">Verifique campos obrigat&oacute;rios com erros de preenchimento</div>		
+	</div>				
+</c:if>
+<br/>
+
 <h3>${mensagemConta}</h3>
 
 <div>
@@ -31,18 +38,6 @@
 </div>
 
 <div align="center" style="border: 0">
-
-<c:if test="${not empty erroNoOrcamento}">
-	<div align="center">
-		<div class="tableErroContato">
-			<div align="center">
-				<span class="erro"><c:out value="Verifique campos obrigatórios com erros de preenchimento!" /></span>
-			</div>
-		</div>
-	</div>
-	<br />
-</c:if>
-
 
 <div id="cardIndex" style="padding: 10px;">			
 	<div align="center"><h3><i>Dados da Empresa</i></h3></div>			

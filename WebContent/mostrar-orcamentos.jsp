@@ -90,11 +90,19 @@ table {
 </c:if>
 
 <c:if test="${not empty listaDeOrcamentos}">
-	<table class="laranjado" width="100%" bgcolor="#ffffff"	cellpadding="10">
+	<table class="laranjado fontPequena" width="100%" bgcolor="#ffffff"	cellpadding="10">
 		<tr>
 			<td><c:forEach var="orcamento" items="${listaDeOrcamentos}">
 				<table border="0" width="100%">
-					<tr>
+					
+					<c:if test="${orcamento.excluido}">
+						<c:set var="cssOrcamentoExcluido" value="tdOrcamentoExcluido"/>
+					</c:if>
+					<c:if test="${not orcamento.excluido}">
+						<c:set var="cssOrcamentoExcluido" value=""/>
+					</c:if>
+					
+					<tr class="<c:out value="${cssOrcamentoExcluido}"/>">
 						<td width="30">
 						<c:choose>
 							<c:when test="${orcamento.excluido}">
@@ -123,21 +131,30 @@ table {
 						<td width="30">
 						<img src="imagens/van_orcamento_30_30.png" alt="orçamento" title="orçamento" border="0" /></td>
 						
-						<td width="80">						
-						 <a href="processarAcaoOrcamento?acao=lerOrcamento&codigo=${orcamento.idOrcamento}" title="ler mensagem">
-						 Cod. ${orcamento.idOrcamento}</a></td>						
+						<c:choose>
+							<c:when test="${orcamento.excluido}">
+								<td width="50">Cod. ${orcamento.idOrcamento}</td>
+							</c:when>							
+							<c:otherwise>
+								<td width="50">						
+									<a href="processarAcaoOrcamento?acao=lerOrcamento&codigo=${orcamento.idOrcamento}" title="ler mensagem">
+							 		Cod. ${orcamento.idOrcamento}</a></td>
+						 </c:otherwise>
+						</c:choose>
+						
+												
 						
 						<td width="100" title="cliente: ${orcamento.cliente.nome} (${orcamento.cliente.email})">
 						<c:set var="nome"	value="${orcamento.cliente.nome}" /> 
-						<c:out value="${fn:substring(nome,0,10)}"/>...</td>
+						<c:out value="${fn:substring(nome,0,20)}"/>...</td>
 					
 						<td width="100" title="origem: ${orcamento.detalheOrigem}">
 						<c:set var="origem"	value="${orcamento.detalheOrigem}"/> 
-						<c:out value="${fn:substring(origem,0,10)}"/>...</td>
+						<c:out value="${fn:substring(origem,0,20)}"/>...</td>
 						
 						<td width="100" title="destino: ${orcamento.detalheDestino}">
 						<c:set var="destino" value="${orcamento.detalheDestino}"/> 
-						<c:out value="${fn:substring(destino,0,10)}"/>...</td>
+						<c:out value="${fn:substring(destino,0,20)}"/>...</td>
 						
 						<td width="100" title="peso: ${orcamento.peso}">
 						<c:set var="peso" value="${orcamento.peso}" /> 
@@ -147,6 +164,7 @@ table {
 						<c:set var="dimensao" value="${orcamento.dimensao}" /> 
 						<c:out value="${fn:substring(dimensao,0,10)}"/>...</td>
 						
+						<c:if test="${not orcamento.excluido}">
 						<c:choose>
 							<c:when test="${orcamento.orcamentoRespondido}">
 								<td width="30">
@@ -172,10 +190,13 @@ table {
 								<img src="imagens/email_nao_lido_20.gif" title="nao lido. marcar como lido?" alt="orcamento nao lido" border="0" /></a></td>
 							</c:otherwise>
 						</c:choose>
+						</c:if>
+						<c:if test="${orcamento.excluido}">
+						<td width="30"></td>
+						<td width="30"></td>
+						</c:if>
 
-						<td><i><c:set var="msg" value="${orcamento.mensagem}" /><c:out value="${fn:substring(msg,0,100)}..." /></i></td>
-
-						<td width="150" align="right">
+						<td width="100" align="right">
 						<c:set var="dt"	value="${orcamento.infoDataCadastro}" /> 
 						<c:out value="${fn:substring(dt,0,10)}"></c:out></td>
 					</tr>
