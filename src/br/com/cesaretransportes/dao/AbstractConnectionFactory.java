@@ -7,17 +7,17 @@ import java.sql.SQLException;
 public abstract class AbstractConnectionFactory {
 	
 	public static Connection getConexao() throws ClassNotFoundException {
-		
-		//String url = "jdbc:mysql://localhost/cesareTransportes";
-		//String usuario = "cetrans";
-		//String senha = "53340276";		
-		
-		/*
-		 * base de dados mysql cetrans2.sql, arquivo anexo ao projeto
-		 */
+				
 		String url = "jdbc:mysql://localhost/cesaretransportes";
-		String usuario = "root";
-		String senha = "root";
+		
+		
+		String usuario = "cetrans2";
+		String senha = "53340276";	
+		
+		//String usuario = "root";
+		//String senha = "root";
+		
+		
 		String driver = "com.mysql.jdbc.Driver";
 		
 		/*
