@@ -2,9 +2,12 @@ package br.com.cesaretransportes.modelo;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Endereco {
+public class Endereco implements Serializable {
 	
+	private static final long serialVersionUID = 8138987477293146546L;
+
 	//PK
 	private int idEndereco;
 	
@@ -113,7 +116,7 @@ public class Endereco {
 					return status;
 				}
 			}
-			throw new IllegalArgumentException("Status de endereço inválido para o código " + codigo + ". Valor deve ser 0, 1 ou 2.");		
+			throw new IllegalArgumentException("Status de endereï¿½o invï¿½lido para o cï¿½digo " + codigo + ". Valor deve ser 0, 1 ou 2.");		
 		}
 	}
 

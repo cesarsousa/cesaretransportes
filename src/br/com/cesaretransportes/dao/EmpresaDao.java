@@ -93,6 +93,8 @@ public class EmpresaDao {
 	}	
 	
 	private Empresa obterEmpresa(String sql) throws SQLException {
+		if(conexao == null) return new Empresa("UNDEFINED");
+		
 		PreparedStatement statement = conexao.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();
 		if(resultSet.first()){

@@ -192,7 +192,7 @@ padding-left: 10px;
 .textoInformativo{
 	padding: 10px;
 	font-size: medium;
-	color: blue;
+	color: #4682B4;
 	text-align: center;
 	
 }
@@ -454,6 +454,10 @@ a {
 	
 }
 
+.bordaErro {
+	border: 1px solid red;
+}
+
 .mensagem {
 	color: #FF9900;
 	font-weight: bold;
@@ -521,6 +525,17 @@ fieldset {
 	-webkit-border-radius: 2px;
     border-radius: 2px;
     padding-left: 2px;
+}
+
+.inputErro {
+	width: 100px;
+	height: 25px;
+	border: 0;
+	-webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding-left: 2px;
+    background-color: red;
+    color: white;
 }
 
 .input15 {
@@ -670,6 +685,7 @@ fieldset {
 }
 
 .espacador {
+	border-top: 2px solid #FF6600;
 	height: 10px;
 }
 
@@ -680,6 +696,11 @@ fieldset {
 
 .corDeFundo{
 	color: #cccccc;
+}
+
+.contador {
+	font-size: small;
+	text-align: left;
 }
 
 .button {

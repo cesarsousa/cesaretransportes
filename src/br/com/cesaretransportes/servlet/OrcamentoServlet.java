@@ -39,16 +39,21 @@ public class OrcamentoServlet extends HttpServlet {
 
 		Connection conexao = null;
 		try {
-			conexao = AbstractConnectionFactory.getConexao();
+			conexao = AbstractConnectionFactory.getConexao();			
+			
 			OrcamentoDao orcamentoDao = new OrcamentoDao(conexao);
 			EmpresaDao empresaDao = new EmpresaDao(conexao);
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
 			ClienteDao clienteDao = new ClienteDao(conexao);
 			TelefoneDao telefoneDao = new TelefoneDao(conexao);
 			
-			Orcamento orcamento = new Orcamento();
+			Orcamento orcamento = new Orcamento();		
 			
 			Empresa empresa = empresaDao.get();
+			
+			if(empresa == null || "UNDEFINED".equals(empresa.getNome())){
+				throw new SQLException("N&atilde;o foi poss&iacute;vel estabelecar comunica&ccedil;&atilde;o com a empresa");
+			}
 			
 			String acao = request.getParameter("acao");
 			
@@ -188,7 +193,7 @@ public class OrcamentoServlet extends HttpServlet {
 			new CetransServletException("ME", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
 		} finally {
 			try {
-				conexao.close();
+				if(conexao != null ) conexao.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 				new CetransServletException("SQLE2", getClass().getSimpleName(), e.getMessage()).doPost(request, response);

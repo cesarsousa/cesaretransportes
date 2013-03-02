@@ -51,7 +51,7 @@ public class MostrarListaDosOrcamentosServlet extends HttpServlet{
 				request.setAttribute("tipoOrcamento", "Listagem dos or&ccedil;amentos n&atilde;o exclu&iacute;dos");
 			}
 			
-			listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, "dataCadastro", 1);			
+			listaDeOrcamentos = orcamentoDao.getListaDeOrcamentos(opcao, "idOrcamento", 1);			
 			for(Orcamento orcamento : listaDeOrcamentos){					
 				orcamento.getCliente().setTelefone(telefoneDao.get(orcamento.getCliente().getIdCliente()));
 				orcamento.setEnderecos(enderecoDao.getEnderecosPorOrcamentos(orcamento.getIdOrcamento()));					

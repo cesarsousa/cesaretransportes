@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.modelo.Endereco;
 import br.com.cesaretransportes.modelo.Telefone;
-import br.com.cesaretransportes.util.Email;
 
 public class ValidacaoConta {
 	

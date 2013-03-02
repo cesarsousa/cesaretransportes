@@ -54,6 +54,10 @@ public class Empresa implements Serializable {
 		this.telefones = telefones;
 	}
 
+	public Empresa(String nome) {
+		this.nome = nome;
+	}
+
 	public int getIdEmpresa() {
 		return idEmpresa;
 	}

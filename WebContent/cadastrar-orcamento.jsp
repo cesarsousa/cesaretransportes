@@ -36,18 +36,9 @@
 	</table>	
 	
 	<c:if test="${not empty msgErro}">
-		<div class="tableErro">								
-				<c:if test="${not empty msgNome }">${msgNome}<br/></c:if>
-				<c:if test="${not empty msgEmail }">${msgEmail}<br/></c:if>
-				<c:if test="${not empty msgDdd }">${msgDdd}<br/></c:if>
-				<c:if test="${not empty msgTelefone }">${msgTelefone}<br/></c:if>
-				<c:if test="${not empty msgOrigem }">${msgOrigem}<br/></c:if>
-				<c:if test="${not empty msgEnderecoOrigem }">${msgEnderecoOrigem}<br/></c:if>
-				<c:if test="${not empty msgDestino }">${msgDestino}<br/></c:if>
-				<c:if test="${not empty msgEnderecoDestino }">${msgEnderecoDestino}<br/></c:if>
-				<c:if test="${not empty msgPeso }">${msgPeso}<br/></c:if>
-				<c:if test="${not empty msgDimensao }">${msgDimensao}<br/></c:if>
-		</div>				
+		<div class="tableErro" style="padding: 30px;">								
+			<div align="center">Verifique campos obrigat&oacute;rios n&atilde;o preenchidos corretamente</div>		
+		</div>					
 	</c:if>
 	<br/>
 	
@@ -77,36 +68,44 @@
 					<form id="formCadOrcamento" action="enviarOrcamento" name="orcamento" method="post">
 					<input type="hidden" value="cadastrarOrcamento" name="acao"  />
 					
+					<p class="legenda">Dados do solicitante do or&ccedil;amento</p>
 					
-					
-					<%-- <c:if test="${not empty mensagem}">
-						<div id="infoMensagem" align="center">
-							<img id="fechar" class="direita" src="imagens/iconeok.png" alt="OK" title="OK" border="0" />					
-							<pre><span class="mensagem">${mensagem}</span></pre>
-						</div>
-					</c:if>	 --%>		
-					
-					<p class="legenda">Dados do solicitante</p>
+					<c:if test="${not empty msgNome }"><c:set var="erronome" value="bordaErro"></c:set></c:if>
 					
 					<table width="100%" cellpadding="10">				
 						<tr>						
-							<td><div align="left"><input id="nomeCadOrcamento" type="text" class="input100" name="nome" value="${nome}" maxlength="200" /></div></td>
+							<td>
+							<div align="left">
+							<c:if test="${not empty msgNome }"><label class="erro">${msgNome}</label><br/></c:if>
+							<input id="nomeCadOrcamento" type="text" class="input100" name="nome" value="${nome}" maxlength="200" />
+							</div>
+							</td>
 						</tr>										
 						<tr>
-							<td><div align="left"><input id="emailCadOrcamento" type="text" class="input100" name="email" value="${email}" maxlength="200" /></div></td>
+							<td>
+							<div align="left">
+							<c:if test="${not empty msgEmail }"><label class="erro">${msgEmail}</label><br/></c:if>
+							<input id="emailCadOrcamento" type="text" class="input100" name="email" value="${email}" maxlength="200" />
+							</div>
+							</td>
 						</tr>					
 						<tr>
 							<td>
 							<div align="left">
+							
+							<c:if test="${not empty msgDdd }"><label class="erro">${msgDdd}</label><br/></c:if>
+							<c:if test="${not empty msgTelefone }"><label class="erro">${msgTelefone}</label><br/></c:if>							
+							
 							<input id="dddCadOrcamento" class="input20" type="text" maxlength="2" name="ddd" value="${ddd}"/>
 							<input id="telefoneCadOrcamento" class="input40" type="text" maxlength="9" name="telefone" value="${telefone}"/>
-							</div></td>
+							</div>
+							</td>
 						</tr>					
 					</table>
 					
 					<div class="espacador"></div>
 						
-					<span class="legenda">Dados de localização</span>
+					<span class="legenda">Dados de localiza&ccedil;&atilde;o do or&ccedil;amento</span>
 	
 					<table width="100%">
 						<tr>
@@ -114,12 +113,15 @@
 							<table width="100%" cellpadding="10">
 							<tr>
 							<td>
-							<span class="textoInformativo">Dados da origem</span>
+							<span class="textoInformativo">Dados da origem</span><br/>
+							
+							<c:if test="${not empty msgOrigem }"><label class="erro">${msgOrigem}</label><br/></c:if>							
 							<input id="origemCadOrcamento" type="text" name="origem" value="${origem}" class="input80" maxlength="90"/>
 							<select name="estadoOrigem" id="estadoOrigem" class="select input15"></select>
 	             			
 	             			<br /><br />
 	             			 
+	             			<c:if test="${not empty msgEnderecoOrigem }"><label class="erro">${msgEnderecoOrigem}</label><br/></c:if> 
 	             			<input id="enderecoOrigemCadOrcamento" type="text" name="enderecoOrigem" value="${enderecoOrigem}" class="input100" maxlength="254"/>
 	             			</td>
 							</tr>
@@ -130,12 +132,15 @@
 							<table width="100%" cellpadding="10">
 							<tr>
 							<td>
-							<span class="textoInformativo">Dados do destino</span>
+							<span class="textoInformativo">Dados do destino</span><br/>
+							
+							<c:if test="${not empty msgDestino }"><label class="erro">${msgDestino}</label><br/></c:if>				
 							<input id="destinoCadOrcamento" type="text" name="destino" value="${destino}" class="input80" maxlength="70"/>
 							<select name="estadoDestino" id="estadoDestino" class="select input15"></select>
 	             			
 	             			<br /><br /> 
 	             			
+	             			<c:if test="${not empty msgEnderecoDestino }"><label class="erro">${msgEnderecoDestino}</label><br/></c:if>
 	             			<input id="enderecoDestinoCadOrcamento" type="text" name="enderecoDestino" value="${enderecoDestino}" class="input100" maxlength="254"/>
 	             			</td>
 	             			</tr>
@@ -146,18 +151,23 @@
 					
 					<div class="espacador"></div>
 					
-					<span class="legenda">Informações adicionais sobre a carga</span>
+					<span class="legenda">Informa&ccedil;&otilde;es adicionais sobre a carga</span>
 	
 					<table width="100%" cellpadding="10">
 						<tr>
-							<td><input id="pesoCadOrcamento" type="text" name="peso" value="${peso}" class="input100" maxlength="100"/></td>
-							<td><input id="dimensaoCadOrcamento" type="text" name="dimensao" value="${dimensao}" class="input100" maxlength="100"/></td>					
+							<td>
+							<c:if test="${not empty msgPeso }"><label class="erro">${msgPeso}</label><br/></c:if>				
+							<input id="pesoCadOrcamento" type="text" name="peso" value="${peso}" class="input100" maxlength="100"/></td>
+							
+							<td>
+							<c:if test="${not empty msgDimensao }"><label class="erro">${msgDimensao}</label><br/></c:if>
+							<input id="dimensaoCadOrcamento" type="text" name="dimensao" value="${dimensao}" class="input100" maxlength="100"/></td>					
 						</tr>				
 					</table>
 					
 					<div class="espacador"></div>				
 									
-					<p><span class="legenda">Informações adicionais gerais</span></p>
+					<p><span class="legenda">Informa&ccedil;&otilde;es adicionais gerais</span></p>
 					
 					<span class="textoInformativo">
 					Se desejar, utilize o campo abaixo para fazer um detalhamento da carga, ou solicitar informa&ccedil;&otilde;es adicionais referentes ao servi&ccedil;o. 	

@@ -36,10 +36,14 @@ public class LoginServlet extends HttpServlet {
 			String usuario = request.getParameter("usuario") + "@gmail.com";
 			String senha = request.getParameter("senha");
 			
-			Empresa empresa = empresaDao.get(usuario, senha);			
+			Empresa empresa = empresaDao.get(usuario, senha);
+			
 			
 			if (empresa == null) {
 				request.setAttribute("mensagem", MSG.LOGIN.toString());
+				pagina = "/login.jsp";
+			} else if ("UNDEFINED".equals(empresa.getNome())){
+				request.setAttribute("mensagem", MSG.NODBFOUND.toString());
 				pagina = "/login.jsp";
 			} else {			
 				empresa.setEndereco(enderecoDao.getEnderecoEmpresa(empresa.getIdEmpresa()));
@@ -97,7 +101,7 @@ public class LoginServlet extends HttpServlet {
 			new CetransServletException("SQLE", getClass().getSimpleName(), e.getMessage()).doPost(request, response);
 		} finally {
 			try {
-				conexao.close();
+				if (conexao != null)  conexao.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 				new CetransServletException("SQLE2", getClass().getSimpleName(), e.getMessage()).doPost(request, response);

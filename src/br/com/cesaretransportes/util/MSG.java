@@ -23,7 +23,9 @@ public enum MSG {
 	ERRO_VEICULO_CADASTRADO("A placa digitada j&aacute; esta cadastrada na base."),
 	ERRO_CLIENTE("Ocorreu um erro inexperado durante sua solicita&ccedil;&atilde;o.<br /><br />" +
 			"Sua se&ccedil;&atilde;o teve que ser encerrada. Desculpe-nos pelo transtorno.<br /><br />" +
-			"Atenciosamente...");
+			"Atenciosamente..."), 
+	NODBFOUND("N&atilde;o foi poss&iacute;vel estabelecar comunica&ccedil;&atilde;o com o banco de dados.<br/>" +
+			"Contacte o administrador do sistema.");
 	
 	private String mensagem;
 	

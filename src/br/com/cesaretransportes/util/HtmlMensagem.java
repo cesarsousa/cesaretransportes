@@ -5,7 +5,7 @@ import br.com.cesaretransportes.modelo.Orcamento;
 
 /**
  * 
- * Classe geradora de mensagem HTML utilizada nos email enviados pela aplicação.
+ * Classe geradora de mensagem HTML utilizada nos email enviados pela aplicaï¿½ï¿½o.
  *  
  * @author cesar sousa
  *
@@ -76,7 +76,7 @@ public class HtmlMensagem {
 		String mensagem  = new CesareUtil().lerArquivo(PATH + "resposta_orcamento_cliente.html");
 		return mensagem
 			.replace("[NOMECLIENTE]", orcamento.getCliente().getNome())
-			.replace("[DATA]", CesareUtil.formatarData(orcamento.getDataCadastro(), "dd/MM/yyyy"))
+			.replace("[DATA]", CesareUtil.formatarData(orcamento.getDataCadastro(), "dd/MM/yyyy HH:mm:ss"))
 			.replace("[ORIGEM]", orcamento.getDetalheOrigem())
 			.replace("[DESTINO]", orcamento.getDetalheDestino())
 			.replace("[PESO]", orcamento.getPeso())

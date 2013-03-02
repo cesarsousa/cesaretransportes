@@ -1,16 +1,11 @@
 package br.com.cesaretransportes.servlet;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
-import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,20 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
-import br.com.cesaretransportes.dao.ClienteDao;
-import br.com.cesaretransportes.dao.EmpresaDao;
 import br.com.cesaretransportes.dao.EnderecoDao;
 import br.com.cesaretransportes.dao.OrcamentoDao;
-import br.com.cesaretransportes.dao.ServicoDao;
 import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.dao.VeiculoDao;
-import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.modelo.Orcamento;
-import br.com.cesaretransportes.modelo.Servico;
-import br.com.cesaretransportes.modelo.Veiculo;
-import br.com.cesaretransportes.util.CesareUtil;
-import br.com.cesaretransportes.util.Email;
-import br.com.cesaretransportes.util.HtmlMensagem;
 
 public class ProcessarAcaoOrcamentoServlet extends HttpServlet{	
 	private static final long serialVersionUID = 1L;
@@ -49,12 +35,7 @@ public class ProcessarAcaoOrcamentoServlet extends HttpServlet{
 			OrcamentoDao orcamentoDao = new OrcamentoDao(conexao);
 			VeiculoDao veiculoDao = new VeiculoDao(conexao);
 			EnderecoDao enderecoDao = new EnderecoDao(conexao);
-			ServicoDao servicoDao = new ServicoDao(conexao);
 			TelefoneDao telefoneDao = new TelefoneDao(conexao);
-			ClienteDao clienteDao = new ClienteDao(conexao);
-			EmpresaDao empresaDao = new EmpresaDao(conexao);
-			
-			Empresa empresa = empresaDao.get();
 			
 			Orcamento orcamento;
 			List<Orcamento> listaDeOrcamentos = new ArrayList<Orcamento>();

@@ -31,8 +31,10 @@ public abstract class AbstractConnectionFactory {
 		try {
 			Class.forName(driver);
 			return DriverManager.getConnection(url, usuario, senha);
-		} catch (SQLException e) {			
-			throw new RuntimeException(e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
+		
 	}
 }

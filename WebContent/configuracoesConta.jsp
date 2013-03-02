@@ -228,7 +228,7 @@
 </div>
 </div>
 
-<br/>
+<br/><br/>
 
 <div id="footer">
 	<jsp:include page="layout/footerSI.jspf"></jsp:include>

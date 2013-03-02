@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
-import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,16 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.cesaretransportes.dao.AbstractConnectionFactory;
 import br.com.cesaretransportes.dao.ClienteDao;
-import br.com.cesaretransportes.dao.EmpresaDao;
 import br.com.cesaretransportes.dao.EnderecoDao;
 import br.com.cesaretransportes.dao.OrcamentoDao;
 import br.com.cesaretransportes.dao.TelefoneDao;
 import br.com.cesaretransportes.modelo.Cliente;
-import br.com.cesaretransportes.modelo.Empresa;
 import br.com.cesaretransportes.modelo.Orcamento;
 import br.com.cesaretransportes.util.AcaoCliente;
-import br.com.cesaretransportes.util.Email;
-import br.com.cesaretransportes.util.HtmlMensagem;
 
 /**
  * Classe servlet responsavel pelo tratamento das requisicoes da view <code>mostrar-cliente.jsp</code>
@@ -52,7 +45,7 @@ public class ClienteAcaoServlet extends HttpServlet {
 		
 		try {
 			conexao = AbstractConnectionFactory.getConexao();
-			Empresa empresa = new EmpresaDao(conexao).get();
+			
 			int id = 0;
 			OrcamentoDao orcamentoDao = new OrcamentoDao(conexao);
 			TelefoneDao telefoneDao = new TelefoneDao(conexao);
